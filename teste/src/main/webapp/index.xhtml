@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>HemoCloud</title>
+</h:head>
+<!-- Add 50px padding top to the body for the navbar -->
+<h:body style="padding-top: 50px; padding-bottom: 20px;">
+	<b:navBar brand="HemoCloud" brandHref="#" inverse="true" fixed="top">
+		<h:form styleClass="navbar-form navbar-right">
+			<div class="form-group">
+				<b:inputText placeholder="Email" fieldSize="sm">
+					<f:facet name="prepend">
+						<b:iconAwesome name="user" />
+					</f:facet>
+				</b:inputText>
+				<!--input type="text" class="form-control" placeholder="Search"/-->
+			</div>
+			<div class="form-group">
+				<b:inputText placeholder="Senha" fieldSize="sm" type="password">
+					<f:facet name="prepend">
+						<b:iconAwesome name="key" />
+					</f:facet>
+				</b:inputText>
+			</div> 
+                #{' '}
+                <b:buttonGroup>
+				<b:commandButton action="a" value="Entrar" look="danger"
+					iconAwesome="chevron-right" iconAlign="right" />
+				<b:commandButton action="#{usuarioBean.novo}" value="Cadastrar" look="default"
+					iconAwesome="chevron-right" iconAlign="right" />
+			</b:buttonGroup>
+		</h:form>
+	</b:navBar>
+	<b:jumbotron>
+		<b:modal id="amodal"
+			title="HemoCloud - Um Estudo Sobre a Utilização de Banco de Dados como Serviço para Sistemas de Saúde"
+			styleClass="modalPseudoClass">
+			<p>Olá,</p>
+			<p />
+			<p>Meu nome é Guilherme Schá Vieira e este é o HemoCloud, um
+				protótipo que tem como objetivo simular o funcionamento de um
+				Hemocentro, sendo que esta aplicação será avaliada implantada
+				localmente e na nuvem, também utilizando banco de dados relacional e
+				não-relacional.</p>
+			<f:facet name="footer">
+				<b:button value="Ok" look="danger" dismiss="modal"
+					onclick="return false;" />
+			</f:facet>
+		</b:modal>
+		<b:container>
+			<h1>HemoCloud</h1>
+			<p>Protótipo utilizado para o desenvolvimento do trabalho
+				"HemoCloud - Um Estudo Sobre a Utilização de Banco de Dados como
+				Serviço para Sistemas de Saúde".</p>
+			<p>
+				<a id="atrigger" class="btn btn-danger btn-lg" href="#amodal"
+					data-toggle="modal">Saiba mais »</a>
+			</p>
+		</b:container>
+	</b:jumbotron>
+	<b:container>
+		<footer>
+		<p>© Guilherme Schá Vieira - 2015</p>
+		</footer>
+	</b:container>
+
+</h:body>
+</html>

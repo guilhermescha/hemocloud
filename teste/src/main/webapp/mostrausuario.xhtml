@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Usuário cadastrado</title>
+		<style type="text/css">
+.form-showuser {
+	margin: 0 auto;
+	max-width: 1000px;
+	padding: 15px;
+}
+</style>
+</h:head>
+<b:navBar brand="HemoCloud" brandHref="#" inverse="true" fixed="top" />
+<h:body style="padding-top: 54px;">
+<b:well>
+	<h:form  styleClass="form-showuser">
+	<h1>Usuário cadastrado</h1>
+	<hr/>
+	Prezado <h:outputText value="#{usuarioBean.nome}"/>,  <br/><br/>
+	Seu cadastro foi concluído com sucesso. Um e-mail foi enviado para <h:outputLink value="mailto:#{usuarioBean.email}"> 
+					<h:outputText value="#{usuarioBean.email}"/>
+					</h:outputLink> contendo os dados do seu cadastro.<br/>
+	<hr/>
+		<b:commandButton look="link btn-block" value="Início" action="index"
+				iconAwesome="home" size="lg" />
+	</h:form>
+</b:well>
+
+</h:body>
+</html>
