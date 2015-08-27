@@ -19,9 +19,9 @@
 	<h:form  styleClass="form-showuser">
 	<h1>Usuário cadastrado</h1>
 	<hr/>
-	Prezado <h:outputText value="#{usuarioBean.nome}"/>,  <br/><br/>
-	Seu cadastro foi concluído com sucesso. Um e-mail foi enviado para <h:outputLink value="mailto:#{usuarioBean.email}"> 
-					<h:outputText value="#{usuarioBean.email}"/>
+	Prezado <h:outputText value="#{usuarioBean.usuario.nome}"/>,  <br/><br/>
+	Seu cadastro foi concluído com sucesso. Um e-mail foi enviado para <h:outputLink value="mailto:#{usuarioBean.usuario.email}"> 
+					<h:outputText value="#{usuarioBean.usuario.email}"/>
 					</h:outputLink> contendo os dados do seu cadastro.<br/>
 	<hr/>
 		<b:commandButton look="link btn-block" value="Início" action="index"

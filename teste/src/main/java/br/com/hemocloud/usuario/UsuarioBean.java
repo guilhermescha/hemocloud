@@ -1,4 +1,4 @@
-package br.com.javaparaweb.teste.web;
+package br.com.hemocloud.usuario;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -8,43 +8,35 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name="usuarioBean")
 @RequestScoped
 public class UsuarioBean {
-	private String nome;
-	private String email;
-	private String senha;
+	
+	private Usuario usuario = new Usuario();
 	private String confirmaSenha;
 	
 	public String novo() {
+		this.usuario = new Usuario();
+		this.usuario.setAtivo(true);
 		return "usuario";
 	}
 	
 	public String salvar() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		if (!this.senha.equalsIgnoreCase(this.confirmaSenha)) {
+		String senha = this.usuario.getSenha();
+		if (!senha.equals(this.confirmaSenha)) {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Senha confirmada incorretamente!",""));
 			return "usuario";
 		}
-		// FUTURO - Salva o usuário
+		
+		UsuarioRN usuarioRN = new UsuarioRN();
+		usuarioRN.salvar(this.usuario);
+		
 		return "mostrausuario";
 	}
-	
-	public String getNome() {
-		return nome;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	public String getConfirmasenha() {
 		return confirmaSenha;

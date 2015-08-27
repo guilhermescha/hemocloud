@@ -19,17 +19,17 @@
 	<b:container>
 		<h:form styleClass="form-signin" prependId="false">
 			<h2 class="form-signin-heading">Cadastre-se</h2>
-			<b:inputText id="nome" placeholder="Nome" value="#{usuarioBean.nome}" required="true">
+			<b:inputText id="nome" placeholder="Nome" value="#{usuarioBean.usuario.nome}" required="true">
 				<f:facet name="prepend">
 					<b:iconAwesome name="user" />
 				</f:facet>
 			</b:inputText>
-			<b:inputText id="email" placeholder="Email" value="#{usuarioBean.email}" required="true">
+			<b:inputText id="email" placeholder="Email" value="#{usuarioBean.usuario.email}" required="true">
 				<f:facet name="prepend">
 					<b:iconAwesome name="envelope-o" />
 				</f:facet>
 			</b:inputText>
-			<b:inputText id="senha" placeholder="Senha" type="password" value="#{usuarioBean.senha}" required="true">
+			<b:inputText id="senha" placeholder="Senha" type="password" value="#{usuarioBean.usuario.senha}" required="true">
 				<f:facet name="prepend">
 					<b:iconAwesome name="key" />
 				</f:facet>
