@@ -77,32 +77,47 @@
 <h:body style="padding-top: 50px; padding-bottom: 20px;">
 	<b:navBar brand="HemoCloud" brandHref="#" inverse="true" fixed="top">
 		<h:form styleClass="navbar-form navbar-right">
-			<b:dropButton value="Usuário" look="danger">
+			<b:dropButton value="Administrador" look="success">
 				<b:navLink value="Configurações" iconAwesome="cog" href="#"></b:navLink>
 				<b:navLink value="Sair" iconAwesome="sign-out" href="#"></b:navLink>
 			</b:dropButton>
 		</h:form>
 	</b:navBar>
-
-        <b:container fluid="true">
-            <b:row>
-                <b:column col-sm="3" col-md="2" styleClass="sidebar">
-                    <b:listLinks>
-                        <b:navLink header="Cadastros" />
-                        <b:navLink href="#" value="Pacientes" iconAwesome="user"/>
-                    </b:listLinks>
-                    <b:listLinks>
-                        <b:navLink header="Rotinas" />
-                        <b:navLink value="Triagem" iconAwesome="medkit" />
-                    </b:listLinks>
-                    <b:listLinks>
-                        <b:navLink header="Parâmetros" />
-                        <b:navLink value="Opções" iconAwesome="cog" />
-                    </b:listLinks>
-                </b:column>
-                
-            </b:row>
-        </b:container> 
-
+	<b:container fluid="true">
+		<b:row>
+			<b:column col-sm="3" col-md="2" styleClass="sidebar">
+				<b:listLinks>
+					<b:navLink header="Cadastros" />
+					<b:navLink outcome="usuarios" value="Usuários" iconAwesome="user"
+						active="true" />
+				</b:listLinks>
+			</b:column>
+			<b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+				<h1>Cadastro de Usuários</h1>
+				<h:dataTable styleClass="table" value="#{usuarioBean.lista}"
+					var="usuario">
+					<h:column>
+						<f:facet name="header"> #</f:facet>
+						#{usuario.codigo}
+					</h:column>
+					<h:column>
+						<f:facet name="header"> Nome</f:facet>
+						#{usuario.nome}
+					</h:column>
+					<h:column>
+						<f:facet name="header"> Email</f:facet>
+						#{usuario.email}
+					</h:column>
+					<h:column>
+						<b:button action="#{usuarioBean.editar}" look="primary" value="Editar" iconAwesome="pencil"/>
+					</h:column>
+					<h:column>
+						<b:button action="#{usuarioBean.excluir}" look="danger" value="Excluir" iconAwesome="trash-o"
+						onclick="if (!confirm('Confirma a exclusão do usuário #{usuario.nome}?')) return false;"/>
+					</h:column>
+				</h:dataTable>
+			</b:column>
+		</b:row>
+	</b:container>
 </h:body>
 </html>

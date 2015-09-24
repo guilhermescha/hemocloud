@@ -21,6 +21,11 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 
 	@Override
 	public void atualizar(Usuario usuario) {
+		if (usuario.getPermissao() == null || usuario.getPermissao().size() == 0) {
+			Usuario usuarioPermissao = this.carregar(usuario.getCodigo());
+			usuario.setPermissao(usuarioPermissao.getPermissao());
+			this.session.evict(usuarioPermissao);
+		}
 		this.session.update(usuario);
 
 	}
@@ -47,8 +52,7 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 
 	@Override
 	public List<Usuario> listar() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.session.createCriteria(Usuario.class).list();
 	}
 
 }

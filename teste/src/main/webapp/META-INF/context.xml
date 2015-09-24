@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context reloadable="true">
+	<Resource 	name="jdbc/HemoCloudDB"
+			auth="Container"
+			type="javax.sql.DataSource"
+			maxTotal="100"
+			maxIdle="30"
+			maxWaitMillis="10000"
+			username="root"
+			password="tcc"
+			driverClassName="com.mysql.jdbc.Driver"
+			url="jdbc:mysql://localhost:3306/hemocloud?autoReconnect=true"/>
+</Context>

@@ -9,29 +9,18 @@
 </h:head>
 <!-- Add 50px padding top to the body for the navbar -->
 <h:body style="padding-top: 50px; padding-bottom: 20px;">
+	<h:panelGroup rendered="#{!empty param.login_error}">
+		<span style="font-color:red"> Erro ao efetuar o login.</span><br/><br/>
+		Motivo: #{SPRING_SECURITY_LAST_EXCEPTION.message}
+	</h:panelGroup>
 	<b:navBar brand="HemoCloud" brandHref="#" inverse="true" fixed="top">
-		<h:form styleClass="navbar-form navbar-right">
-			<div class="form-group">
-				<b:inputText placeholder="Email" fieldSize="sm">
-					<f:facet name="prepend">
-						<b:iconAwesome name="user" />
-					</f:facet>
-				</b:inputText>
-				<!--input type="text" class="form-control" placeholder="Search"/-->
-			</div>
-			<div class="form-group">
-				<b:inputText placeholder="Senha" fieldSize="sm" type="password">
-					<f:facet name="prepend">
-						<b:iconAwesome name="key" />
-					</f:facet>
-				</b:inputText>
-			</div> 
-                #{' '}
-                <b:buttonGroup>
-				<b:commandButton action="a" value="Entrar" look="danger"
+		<h:form id="login" styleClass="navbar-form navbar-right"
+			action="#{request.contextPath}/j_spring_security_check">
+			<b:buttonGroup>
+				<b:commandButton action="publico/login" value="Entrar" look="danger"
 					iconAwesome="chevron-right" iconAlign="right" />
-				<b:commandButton action="#{usuarioBean.novo}" value="Cadastrar" look="default"
-					iconAwesome="chevron-right" iconAlign="right" />
+				<b:commandButton action="#{usuarioBean.novo}" value="Cadastrar"
+					look="default" iconAwesome="chevron-right" iconAlign="right" />
 			</b:buttonGroup>
 		</h:form>
 	</b:navBar>
@@ -67,6 +56,5 @@
 		<p>© Guilherme Schá Vieira - 2015</p>
 		</footer>
 	</b:container>
-
 </h:body>
 </html>
