@@ -9,10 +9,6 @@
 </h:head>
 <!-- Add 50px padding top to the body for the navbar -->
 <h:body style="padding-top: 50px; padding-bottom: 20px;">
-	<h:panelGroup rendered="#{!empty param.login_error}">
-		<span style="font-color:red"> Erro ao efetuar o login.</span><br/><br/>
-		Motivo: #{SPRING_SECURITY_LAST_EXCEPTION.message}
-	</h:panelGroup>
 	<b:navBar brand="HemoCloud" brandHref="#" inverse="true" fixed="top">
 		<h:form id="login" styleClass="navbar-form navbar-right"
 			action="#{request.contextPath}/j_spring_security_check">
