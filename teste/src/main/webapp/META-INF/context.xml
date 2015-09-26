@@ -7,7 +7,7 @@
 			maxIdle="30"
 			maxWaitMillis="10000"
 			username="root"
-			password="tcc"
+			password="tcchemocloud"
 			driverClassName="com.mysql.jdbc.Driver"
-			url="jdbc:mysql://localhost:3306/hemocloud?autoReconnect=true"/>
+			url="jdbc:mysql://aa1o5wl6r5hj80i.cjcrbtpsxn87.sa-east-1.rds.amazonaws.com:3306/ebdb?autoReconnect=true"/>
 </Context>
