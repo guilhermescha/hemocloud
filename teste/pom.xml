@@ -95,5 +95,10 @@
 			<artifactId>facelets-taglib-jsf20-spring-3</artifactId>
 			<version>0.5</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-dbcp</artifactId>
+			<version>8.0.26</version>
+		</dependency>
     </dependencies>
 </project>

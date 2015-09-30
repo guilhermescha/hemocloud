@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context reloadable="true">
-	<Resource 	name="jdbc/HemoCloudDB"
-			auth="Container"
-			type="javax.sql.DataSource"
-			maxTotal="100"
-			maxIdle="30"
-			maxWaitMillis="10000"
-			username="root"
-			password="tcchemocloud"
-			driverClassName="com.mysql.jdbc.Driver"
-			url="jdbc:mysql://aa1o5wl6r5hj80i.cjcrbtpsxn87.sa-east-1.rds.amazonaws.com:3306/ebdb?autoReconnect=true"/>
+<Context reloadable="true" >
+    <Resource name="jdbc/HemoCloudDB" 
+          auth="Container"
+          type="javax.sql.DataSource" 
+          username="${RDS_USERNAME}" 
+          password="${RDS_PASSWORD}"
+          driverClassName="com.mysql.jdbc.Driver"
+          url="jdbc:mysql://${RDS_HOSTNAME}:${RDS_PORT}/${RDS_DB_NAME}?autoReconnect=true"
+          validationQuery="select 1"
+          maxActive="10" 
+          maxIdle="4"/>
 </Context>

@@ -8,6 +8,7 @@
 		<property name="connection.datasource">java:/comp/env/jdbc/HemoCloudDB</property>
 		<property name="current_session_context_class">thread</property> 
 		<property name="hibernate.hbm2ddl.auto">update</property> 
+		<property name="hibernate.session_factory_name">hibernate/HibernateFactory</property> 
 
 		<mapping class="br.com.hemocloud.usuario.Usuario"/> 
 
