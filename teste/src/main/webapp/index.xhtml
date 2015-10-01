@@ -1,56 +1,190 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:b="http://bootsfaces.net/ui"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="font-awesome.css"></h:outputStylesheet>
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<title>HemoCloud</title>
+
+	<!-- Bootstrap -->
+	<!-- <link href="resources/css/bootstrap.min.css" rel="stylesheet" /> -->
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </h:head>
-<!-- Add 50px padding top to the body for the navbar -->
-<h:body style="padding-top: 50px; padding-bottom: 20px;">
-	<b:navBar brand="HemoCloud" brandHref="#" inverse="true" fixed="top">
-		<h:form id="login" styleClass="navbar-form navbar-right"
-			action="#{request.contextPath}/j_spring_security_check">
-			<b:buttonGroup>
-				<b:commandButton action="publico/login" value="Entrar" look="danger"
-					iconAwesome="chevron-right" iconAlign="right" />
-				<b:commandButton action="#{usuarioBean.novo}" value="Cadastrar"
-					look="default" iconAwesome="chevron-right" iconAlign="right" />
-			</b:buttonGroup>
-		</h:form>
-	</b:navBar>
-	<b:jumbotron>
-		<b:modal id="amodal"
-			title="HemoCloud - Um Estudo Sobre a Utilização de Banco de Dados como Serviço para Sistemas de Saúde"
-			styleClass="modalPseudoClass">
-			<p>Olá,</p>
-			<p />
-			<p>Meu nome é Guilherme Schá Vieira e este é o HemoCloud, um
-				protótipo que tem como objetivo simular o funcionamento de um
-				Hemocentro, sendo que esta aplicação será avaliada implantada
-				localmente e na nuvem, também utilizando banco de dados relacional e
-				não-relacional.</p>
-			<f:facet name="footer">
-				<b:button value="Ok" look="danger" dismiss="modal"
-					onclick="return false;" />
-			</f:facet>
-		</b:modal>
-		<b:container>
-			<h1>HemoCloud</h1>
-			<p>Protótipo utilizado para o desenvolvimento do trabalho
-				"HemoCloud - Um Estudo Sobre a Utilização de Banco de Dados como
-				Serviço para Sistemas de Saúde".</p>
-			<p>
-				<a id="atrigger" class="btn btn-danger btn-lg" href="#amodal"
-					data-toggle="modal">Saiba mais »</a>
-			</p>
-		</b:container>
-	</b:jumbotron>
-	<b:container>
-		<footer>
-		<p>© Guilherme Schá Vieira - 2015</p>
-		</footer>
-	</b:container>
+<h:body>
+
+	<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><i class="fa fa-cloud"></i> HemoCloud</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<form id="login" method="post"
+						action="#{request.contextPath}/j_spring_security_check"
+						class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1"><i
+									class="fa fa-envelope" /></span> <input type="text" name='j_username'
+									class="form-control" placeholder="Email" />
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1"><i
+									class="fa fa-key" /></span> <input type="password" name='j_password'
+									class="form-control" placeholder="Senha" />
+							</div>
+						</div>
+						<button type="submit" class="btn btn-danger">
+							Entrar <span class="glyphicon glyphicon-log-in"
+								aria-hidden="true" />
+						</button>
+						<script>
+							document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
+						</script>
+					</form>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="jumbotron">
+					<h1>
+						<i class="fa fa-cloud"></i> HemoCloud
+					</h1>
+
+					<p>Protótipo utilizado para o desensvolvimento do trabalho
+						"HemoCloud - Um Estudo Sobre a Utilização de Banco de Dados como
+						Serviço para Sistemas de Saúde".</p>
+					<p>
+						<button type="button" data-toggle="modal" data-target="#tcModal"
+							class="btn btn-danger btn-lg">
+							Saiba mais <span class="glyphicon glyphicon-menu-right"
+								aria-hidden="true" />
+						</button>
+					</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<h2>Cadastre-se</h2>
+				<hr />
+				<h:form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="inputPassword1" class="col-md-3 control-label">Nome</label>
+						<div class="col-md-9">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1"><i
+									class="glyphicon glyphicon-user"></i></span>
+								<h:inputText type="text" value="#{usuarioBean.usuario.nome}"
+									required="true" requiredMessage="Nome obrigatório"
+									class="form-control" id="inputNome" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword1" class="col-md-3 control-label">Email</label>
+						<div class="col-md-9">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1"><i
+									class="fa fa-envelope" /></span>
+								<h:inputText type="email" value="#{usuarioBean.usuario.email}"
+									required="true" class="form-control" id="inputEmail1" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword1" class="col-md-3 control-label">Senha</label>
+						<div class="col-md-9">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1"><i
+									class="fa fa-key" /></span>
+								<h:inputSecret type="password"
+									value="#{usuarioBean.usuario.senha}" required="true"
+									class="form-control" id="inputPassword1" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword1" class="col-md-3 control-label">Confirme
+							a senha</label>
+						<div class="col-md-9">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1"><i
+									class="glyphicon glyphicon-ok"></i></span>
+								<h:inputSecret value="#{usuarioBean.confirmasenha}"
+									required="true" type="password" class="form-control"
+									id="inputPassword2" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12">
+							<h:commandButton action="#{usuarioBean.salvar}"
+								class="btn btn-danger btn-block" value="Cadastrar" />
+						</div>
+					</div>
+				</h:form>
+
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="tcModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h4 class="modal-title">Sobre o Protótipo</h4>
+					</div>
+					<div class="modal-body">
+						<p>Olá,</p>
+						<p />
+						<p>Meu nome é Guilherme Schá Vieira e este é o HemoCloud, um
+							protótipo que tem como objetivo simular o funcionamento de um
+							Hemocentro, sendo que esta aplicação será avaliada implantada
+							localmente e na nuvem, também utilizando banco de dados
+							relacional e não-relacional.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<footer><p><i class="fa fa-copyright"></i> Guilherme Scha Vieira - 2015</p></footer>
+	</div>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="resources/js/bootstrap.min.js"></script>
 </h:body>
 </html>

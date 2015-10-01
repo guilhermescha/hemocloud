@@ -16,7 +16,7 @@ public class UsuarioBean {
 	private String destinosalvar;
 	
 	public String novo() {
-		this.destinosalvar = "usuariosucesso";
+		this.destinosalvar = "/publico/mostrausuario";
 		this.usuario = new Usuario();
 		this.usuario.setAtivo(true);
 		return "usuario";
@@ -33,13 +33,13 @@ public class UsuarioBean {
 		if (!senha.equals(this.confirmaSenha)) {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Senha confirmada incorretamente!",""));
-			return "/publico/usuario";
+			return "index";
 		}
-		
+		this.usuario.setAtivo(true);
 		UsuarioRN usuarioRN = new UsuarioRN();
 		usuarioRN.salvar(this.usuario);
 		
-		return this.destinosalvar;
+		return "/publico/mostrausuario";
 	}
 	
 	public String excluir() {
