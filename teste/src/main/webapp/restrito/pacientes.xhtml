@@ -41,6 +41,7 @@
 							class="glyphicon glyphicon-user"></i> <h:outputText value=" #{request.userPrincipal.name}"/> <span class="caret"></span></a>
 						<ul id="g-account-menu" class="dropdown-menu" role="menu">
 							<li><a href="#">My Profile</a></li>
+							<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR"><li><a href="../admin/principal.jsf"><i class="glyphicon glyphicon-lock"></i> Área Administrativa</a></li></sec:ifAnyGranted>
 							<li><a href="#{request.contextPath}/j_spring_security_logout"><i class="glyphicon glyphicon-lock"></i>
 									Logout</a></li>
 						</ul></li>
@@ -65,7 +66,21 @@
 
 				<ul class="nav nav-stacked">
 					<li class="active"><a href="#"><i class="fa fa-users"></i>
-							Usuários</a></li>
+							Pacientes</a></li>
+					<li class="disabled"><a href="javascript:;"><i
+							class="glyphicon glyphicon-flash"></i> Alerts</a></li>
+					<li><a href="javascript:;"><i
+							class="glyphicon glyphicon-link"></i> Links</a></li>
+					<li><a href="javascript:;"><i
+							class="glyphicon glyphicon-list-alt"></i> Reports</a></li>
+					<li><a href="javascript:;"><i
+							class="glyphicon glyphicon-book"></i> Books</a></li>
+					<li><a href="javascript:;"><i
+							class="glyphicon glyphicon-briefcase"></i> Tools</a></li>
+					<li><a href="javascript:;"><i
+							class="glyphicon glyphicon-time"></i> Real-time</a></li>
+					<li><a href="javascript:;"><i
+							class="glyphicon glyphicon-plus"></i> Advanced..</a></li>
 				</ul>
 
 				<hr />
@@ -76,7 +91,7 @@
 
 				<!-- column 2 -->
 				<h3>
-					<i class="fa fa-shield"></i> Área Administrativa
+					<i class="glyphicon glyphicon-dashboard"></i> Dashboard
 				</h3>
 
 				<hr />
@@ -111,30 +126,6 @@
 							<button type="button" class="btn btn-info btn-group-lg">
 								<i class="glyphicon glyphicon-question-sign"></i><br /> Help
 							</button>
-
-				<h:dataTable styleClass="table" value="#{usuarioBean.lista}"
-					var="usuario">
-					<h:column>
-						<f:facet name="header"> #</f:facet>
-						#{usuario.codigo}
-					</h:column>
-					<h:column>
-						<f:facet name="header"> Nome</f:facet>
-						#{usuario.nome}
-					</h:column>
-					<h:column>
-						<f:facet name="header"> Email</f:facet>
-						#{usuario.email}
-					</h:column>
-					<h:column>
-							<h:commandButton action="#{usuarioBean.editar}"
-								class="btn btn-danger btn-block" value="Editar" />
-					</h:column>
-					<h:column>
-							<h:commandButton action="#{usuarioBean.excluir}"
-								class="btn btn-danger btn-block" value="Editar" />
-					</h:column>
-				</h:dataTable>
 
 							<!-- Modal -->
 							<div class="modal fade" id="tcModal" tabindex="-1" role="dialog"
