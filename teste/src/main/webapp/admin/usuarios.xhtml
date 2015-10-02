@@ -31,18 +31,21 @@
 					data-target=".navbar-collapse">
 					<span class="icon-toggle"></span>
 				</button>
-				<a class="navbar-brand" href="#"><i class="fa fa-cloud"></i> HemoCloud</a>
+				<a class="navbar-brand" href="#"><i class="fa fa-cloud"></i>
+					HemoCloud</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 
 					<li class="dropdown"><a class="dropdown-toggle" role="button"
 						data-toggle="dropdown" href="#"> <i
-							class="glyphicon glyphicon-user"></i> <h:outputText value=" #{request.userPrincipal.name}"/> <span class="caret"></span></a>
+							class="glyphicon glyphicon-user"></i> <h:outputText
+								value=" #{request.userPrincipal.name}" /> <span class="caret"></span></a>
 						<ul id="g-account-menu" class="dropdown-menu" role="menu">
 							<li><a href="#">My Profile</a></li>
-							<li><a href="#{request.contextPath}/j_spring_security_logout"><i class="glyphicon glyphicon-lock"></i>
-									Logout</a></li>
+							<li><a
+								href="#{request.contextPath}/j_spring_security_logout"><i
+									class="glyphicon glyphicon-lock"></i> Logout</a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -59,11 +62,13 @@
 			<div class="col-sm-3">
 				<!-- left -->
 				<h3>
-					<i class="glyphicon glyphicon-briefcase"></i> Toolbox
+					<i class="fa fa-shield"></i> Área Administrativa
 				</h3>
 				<hr />
 
 				<ul class="nav nav-stacked">
+					<li class="active"><a href="../restrito/dashboard.jsf"><i
+							class="glyphicon glyphicon-dashboard"></i> Dashboard</a></li>
 					<li class="active"><a href="#"><i class="fa fa-users"></i>
 							Usuários</a></li>
 				</ul>
@@ -74,10 +79,34 @@
 			<!-- /span-3 -->
 			<div class="col-sm-9">
 
-				<!-- column 2 -->
-				<h3>
-					<i class="fa fa-shield"></i> Área Administrativa
-				</h3>
+				<div class="row">
+					<div class="col-md-3">
+						<!-- column 2 -->
+						<h2>
+							<i class="fa fa-users"></i> Usuários
+						</h2>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group h2">
+							<input name="data[search]" class="form-control" id="search"
+								type="text" placeholder="Pesquisar Usuários" /> <span
+								class="input-group-btn">
+								<button class="btn btn-primary" type="submit">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+							</span>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="btn-group" role="group" aria-label="...">
+							<button type="button" class="btn btn-success h2"
+								data-toggle="modal" data-target="#tcModal">
+								<i class="fa fa-user-plus"></i> Cadastrar Usuário
+							</button>
+						</div>
+					</div>
+				</div>
+
 
 				<hr />
 
@@ -94,108 +123,116 @@
 							Paciente cadastrado com sucesso.
 						</div>
 
-						<div class="btn-group" role="group" aria-label="...">
-							<button type="button" class="btn btn-info btn-group-lg"
-								data-toggle="modal" data-target="#tcModal">
-								<i class="fa fa-user-plus"></i><br /> Cadastrar
-							</button>
-							<button type="button" class="btn btn-info btn-group-lg">
-								<i class="glyphicon glyphicon-plus"></i><br /> Service
-							</button>
-							<button type="button" class="btn btn-info btn-group-lg">
-								<i class="glyphicon glyphicon-cloud"></i><br /> Cloud
-							</button>
-							<button type="button" class="btn btn-info btn-group-lg">
-								<i class="glyphicon glyphicon-cog"></i><br /> Tools
-							</button>
-							<button type="button" class="btn btn-info btn-group-lg">
-								<i class="glyphicon glyphicon-question-sign"></i><br /> Help
-							</button>
-
-				<h:dataTable styleClass="table" value="#{usuarioBean.lista}"
-					var="usuario">
-					<h:column>
-						<f:facet name="header"> #</f:facet>
+						<h:form>
+						<h:dataTable styleClass="table" value="#{usuarioBean.lista}"
+							var="usuario">
+							<h:column>
+								<f:facet name="header"> #</f:facet>
 						#{usuario.codigo}
 					</h:column>
-					<h:column>
-						<f:facet name="header"> Nome</f:facet>
+							<h:column>
+								<f:facet name="header"> Nome</f:facet>
 						#{usuario.nome}
 					</h:column>
-					<h:column>
-						<f:facet name="header"> Email</f:facet>
+							<h:column>
+								<f:facet name="header"> Email</f:facet>
 						#{usuario.email}
 					</h:column>
-					<h:column>
-							<h:commandButton action="#{usuarioBean.editar}"
-								class="btn btn-danger btn-block" value="Editar" />
-					</h:column>
-					<h:column>
-							<h:commandButton action="#{usuarioBean.excluir}"
-								class="btn btn-danger btn-block" value="Editar" />
-					</h:column>
-				</h:dataTable>
-
-							<!-- Modal -->
-							<div class="modal fade" id="tcModal" tabindex="-1" role="dialog"
-								aria-labelledby="myModalLabel" aria-hidden="true">
-								<div class="modal-dialog modal-lg">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">×</button>
-											<h4 class="modal-title">Cadastro de Pacientes</h4>
-										</div>
-										<div class="modal-body">
-											<div class="bs-callout bs-callout-success"
-												id="callout-glyphicons-dont-mix">
-												<h4>Aviso</h4>
-												<p>
-													Icon classes cannot be directly combined with other
-													components. They should not be used along with other
-													classes on the same element. Instead, add a nested
-													<code>&lt;span&gt;</code>
-													and apply the icon classes to the
-													<code>&lt;span&gt;</code>
-													.
-												</p>
-											</div>
-											<div class="panel panel-default">
-												<div class="panel-heading">Panel heading without title</div>
-												<div class="panel-body">Blah blah. Lorem ipsum dolor
-													sit amet, consectetur adipiscing elit. Duis pharetra varius
-													quam sit amet vulputate. Quisque mauris augue, molestie
-													tincidunt condimentum vitae, gravida a libero. Aenean sit
-													amet felis dolor, in sagittis nisi. Sed ac orci quis tortor
-													imperdiet venenatis. Duis elementum auctor accumsan.
-													Aliquam in felis sit amet augue.</div>
-											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-danger"
-												data-dismiss="modal">
-												<i class="glyphicon glyphicon-remove"></i> Cancelar
-											</button>
-											<button type="button" class="btn btn-success"
-												data-dismiss="modal" data-toggle="collapse"
-												href="#alertCadastroPaciente">
-												Confirmar <i class="glyphicon glyphicon-ok"></i>
-											</button>
-										</div>
-									</div>
-									<!-- /.modal-content -->
-								</div>
-								<!-- /.modal-dialog -->
-							</div>
-							<!-- /.modal -->
-						</div>
-
-
+							<h:column>
+								<f:facet name="header"> Privilégios</f:facet>
+									<h:outputFormat rendered="#{usuario.permissao.contains('ROLE_ADMINISTRADOR')}" value=" "><i class="fa fa-shield"></i></h:outputFormat>
+									<h:outputFormat rendered="#{usuario.permissao.contains('ROLE_USUARIO')}" value=" "><i class="fa fa-user"></i></h:outputFormat>
+							</h:column>
+							<h:column>
+								<h:commandButton action="#" class="btn btn-success btn-block"
+									value="Visualizar" />
+							</h:column>
+							<h:column>
+								<h:commandButton action="#{usuarioBean.editar}"
+								onclick="$('#tcModal').modal('show');"
+									class="btn btn-warning btn-block" value="Editar" />
+							</h:column>
+							<h:column>
+								<h:commandButton action="#{usuarioBean.excluir}"
+								onclick="if (!confirm('Confirma a exclusão do usuário #{usuario.nome}?')) return false;"
+									class="btn btn-danger btn-block" value="Excluir">
+									
+								<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
+									</h:commandButton>
+							</h:column>
+						</h:dataTable>
+						</h:form>
 
 					</div>
 					<!--/col-span-6-->
+					<div id="bottom" class="row">
+						<div class="col-md-12">
 
+							<ul class="pagination">
+								<li class="disabled"><a>&lt; Anterior</a></li>
+								<li class="disabled"><a>1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li class="next"><a href="#" rel="next">Próximo &gt;</a></li>
+							</ul>
+							<!-- /.pagination -->
 
+						</div>
+					</div>
+					<!-- /#bottom -->
+
+					<!-- Modal -->
+					<div class="modal fade" id="tcModal" tabindex="-1" role="dialog"
+						aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">×</button>
+									<h4 class="modal-title">Cadastro de Pacientes</h4>
+								</div>
+								<div class="modal-body">
+									<div class="bs-callout bs-callout-success"
+										id="callout-glyphicons-dont-mix">
+										<h4>Aviso</h4>
+										<p>
+											Icon classes cannot be directly combined with other
+											components. They should not be used along with other classes
+											on the same element. Instead, add a nested
+											<code>&lt;span&gt;</code>
+											and apply the icon classes to the
+											<code>&lt;span&gt;</code>
+											.
+										</p>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading">Panel heading without title</div>
+										<div class="panel-body">Blah blah. Lorem ipsum dolor sit
+											amet, consectetur adipiscing elit. Duis pharetra varius quam
+											sit amet vulputate. Quisque mauris augue, molestie tincidunt
+											condimentum vitae, gravida a libero. Aenean sit amet felis
+											dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet
+											venenatis. Duis elementum auctor accumsan. Aliquam in felis
+											sit amet augue.</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal">
+										<i class="glyphicon glyphicon-remove"></i> Cancelar
+									</button>
+									<button type="button" class="btn btn-success"
+										data-dismiss="modal" data-toggle="collapse"
+										href="#alertCadastroPaciente">
+										Confirmar <i class="glyphicon glyphicon-ok"></i>
+									</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
 
 				</div>
 				<!--/row-->
@@ -205,14 +242,19 @@
 		</div>
 		<!--/row-->
 		<!-- /upper section -->
-		<footer><p><i class="fa fa-copyright"></i> Guilherme Scha Vieira - 2015</p></footer>
+		<footer>
+		<p>
+			<i class="fa fa-copyright"></i> Guilherme Scha Vieira - 2015
+		</p>
+		</footer>
 
 	</div>
 	<!--/container-->
 	<!-- /Main -->
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="../resources/js/bootstrap.min.js"></script>
 </h:body>
