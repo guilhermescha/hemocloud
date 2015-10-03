@@ -50,11 +50,7 @@ public class UsuarioBean {
 	}
 	
 	public String ativar() {
-		if (this.usuario.isAtivo())
-			this.usuario.setAtivo(false);
-		else
-			this.usuario.setAtivo(true);
-		
+		this.usuario.setAtivo(this.usuario.isAtivo() ? false : true);
 		UsuarioRN usuarioRN = new UsuarioRN();
 		usuarioRN.salvar(this.usuario);
 		return null;
