@@ -124,38 +124,45 @@
 						</div>
 
 						<h:form>
-						<h:dataTable styleClass="table" value="#{usuarioBean.lista}"
+						<h:dataTable styleClass="table table-striped" value="#{usuarioBean.lista}"
 							var="usuario">
 							<h:column>
 								<f:facet name="header"> #</f:facet>
 						#{usuario.codigo}
 					</h:column>
 							<h:column>
-								<f:facet name="header"> Nome</f:facet>
-						#{usuario.nome}
-					</h:column>
+								<f:facet name="header"></f:facet>
+								<h:commandLink action="#{usuarioBean.ativar}" id="usuarioativo">
+									<h:outputFormat rendered="#{usuario.ativo}" value=" " tooltip="Teste"><i class="fa fa-check-circle"></i></h:outputFormat>
+									<h:outputFormat rendered="#{!usuario.ativo}" value=" "><i class="fa fa-ban"></i></h:outputFormat>
+								<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
+							</h:commandLink>
+							</h:column>
 							<h:column>
-								<f:facet name="header"> Email</f:facet>
-						#{usuario.email}
-					</h:column>
+								<f:facet name="header"> Nome</f:facet>#{usuario.nome}
+							</h:column>
+							<h:column>
+								<f:facet name="header"> Email</f:facet>#{usuario.email}
+							</h:column>
 							<h:column>
 								<f:facet name="header"> Privilégios</f:facet>
-									<h:outputFormat rendered="#{usuario.permissao.contains('ROLE_ADMINISTRADOR')}" value=" "><i class="fa fa-shield"></i></h:outputFormat>
+									<h:outputFormat rendered="#{usuario.permissao.contains('ROLE_ADMINISTRADOR')}" value=" " tooltip="Teste"><i class="fa fa-shield"></i></h:outputFormat>
 									<h:outputFormat rendered="#{usuario.permissao.contains('ROLE_USUARIO')}" value=" "><i class="fa fa-user"></i></h:outputFormat>
 							</h:column>
 							<h:column>
-								<h:commandButton action="#" class="btn btn-success btn-block"
+								<h:commandButton action="#" class="btn btn-success btn-xs btn-block"
 									value="Visualizar" />
 							</h:column>
 							<h:column>
 								<h:commandButton action="#{usuarioBean.editar}"
-								onclick="$('#tcModal').modal('show');"
-									class="btn btn-warning btn-block" value="Editar" />
+									class="btn btn-warning btn-xs btn-block" value="Editar">
+								<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
+									</h:commandButton>
 							</h:column>
 							<h:column>
 								<h:commandButton action="#{usuarioBean.excluir}"
 								onclick="if (!confirm('Confirma a exclusão do usuário #{usuario.nome}?')) return false;"
-									class="btn btn-danger btn-block" value="Excluir">
+									class="btn btn-danger btn-xs btn-block" value="Excluir">
 									
 								<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
 									</h:commandButton>
@@ -189,43 +196,75 @@
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal"
 										aria-hidden="true">×</button>
-									<h4 class="modal-title">Cadastro de Pacientes</h4>
+									<h4 class="modal-title">Cadastro de Usuários</h4>
 								</div>
 								<div class="modal-body">
 									<div class="bs-callout bs-callout-success"
 										id="callout-glyphicons-dont-mix">
-										<h4>Aviso</h4>
-										<p>
-											Icon classes cannot be directly combined with other
-											components. They should not be used along with other classes
-											on the same element. Instead, add a nested
-											<code>&lt;span&gt;</code>
-											and apply the icon classes to the
-											<code>&lt;span&gt;</code>
-											.
-										</p>
+										<h4>Cadastro de Usuários</h4>
+										<p>O cadastro de usuários através da área administrativa
+											possui algumas diferenças em relação ao cadastro da página
+											inicial. Através deste painel, é possível cadastrar um
+											usuário já tornando-o administrador, por exemplo.</p>
 									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading">Panel heading without title</div>
-										<div class="panel-body">Blah blah. Lorem ipsum dolor sit
-											amet, consectetur adipiscing elit. Duis pharetra varius quam
-											sit amet vulputate. Quisque mauris augue, molestie tincidunt
-											condimentum vitae, gravida a libero. Aenean sit amet felis
-											dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet
-											venenatis. Duis elementum auctor accumsan. Aliquam in felis
-											sit amet augue.</div>
-									</div>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-danger"
-										data-dismiss="modal">
-										<i class="glyphicon glyphicon-remove"></i> Cancelar
-									</button>
-									<button type="button" class="btn btn-success"
-										data-dismiss="modal" data-toggle="collapse"
-										href="#alertCadastroPaciente">
-										Confirmar <i class="glyphicon glyphicon-ok"></i>
-									</button>
+									<h:form class="form-horizontal" role="form">
+										<div class="form-group">
+											<label for="inputPassword1" class="col-md-3 control-label">Nome</label>
+											<div class="col-md-9">
+												<div class="input-group">
+													<span class="input-group-addon" id="basic-addon1"><i
+														class="glyphicon glyphicon-user"></i></span>
+													<h:inputText type="text"
+														value="#{usuarioBean.usuario.nome}" required="true"
+														requiredMessage="Nome obrigatório" class="form-control"
+														id="inputNome" />
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="inputPassword1" class="col-md-3 control-label">Email</label>
+											<div class="col-md-9">
+												<div class="input-group">
+													<span class="input-group-addon" id="basic-addon1"><i
+														class="fa fa-envelope" /></span>
+													<h:inputText type="email"
+														value="#{usuarioBean.usuario.email}" required="true"
+														class="form-control" id="inputEmail1" />
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="inputPassword1" class="col-md-3 control-label">Senha</label>
+											<div class="col-md-9">
+												<div class="input-group">
+													<span class="input-group-addon" id="basic-addon1"><i
+														class="fa fa-key" /></span>
+													<h:inputSecret type="password"
+														value="#{usuarioBean.usuario.senha}" required="true"
+														class="form-control" id="inputPassword1" />
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="inputPassword1" class="col-md-3 control-label">Confirme
+												a senha</label>
+											<div class="col-md-9">
+												<div class="input-group">
+													<span class="input-group-addon" id="basic-addon1"><i
+														class="glyphicon glyphicon-ok"></i></span>
+													<h:inputSecret value="#{usuarioBean.confirmasenha}"
+														required="true" type="password" class="form-control"
+														id="inputPassword2" />
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-md-12">
+												<h:commandButton action="#{usuarioBean.salvar}"
+													class="btn btn-success pull-right" value="Cadastrar" />
+											</div>
+										</div>
+									</h:form>
 								</div>
 							</div>
 							<!-- /.modal-content -->
@@ -233,7 +272,6 @@
 						<!-- /.modal-dialog -->
 					</div>
 					<!-- /.modal -->
-
 				</div>
 				<!--/row-->
 			</div>
