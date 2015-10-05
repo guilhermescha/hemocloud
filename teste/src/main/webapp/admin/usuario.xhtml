@@ -70,7 +70,7 @@
 				<ul class="nav nav-stacked">
 					<li class="active"><a href="../restrito/dashboard.jsf"><i
 							class="glyphicon glyphicon-dashboard"></i> Dashboard</a></li>
-					<li class="active"><a href="#"><i class="fa fa-users"></i>
+					<li class="active"><a href="usuarios.jsf"><i class="fa fa-users"></i>
 							Usuários</a></li>
 				</ul>
 
@@ -79,40 +79,7 @@
 			</div>
 			<!-- /span-3 -->
 			<div class="col-sm-9">
-
 				<div class="row">
-					<div class="col-md-3">
-						<!-- column 2 -->
-						<h2>
-							<i class="fa fa-users"></i> Usuários
-						</h2>
-					</div>
-					<div class="col-md-6">
-<!-- 						<div class="input-group h2"> -->
-<!-- 							<input name="data[search]" class="form-control" id="search" -->
-<!-- 								type="text" placeholder="Pesquisar Usuários" /> <span -->
-<!-- 								class="input-group-btn"> -->
-<!-- 								<button class="btn btn-primary" type="submit"> -->
-<!-- 									<span class="glyphicon glyphicon-search"></span> -->
-<!-- 								</button> -->
-<!-- 							</span> -->
-<!-- 						</div> -->
-					</div>
-					<div class="col-md-3">
-						<div class="btn-group" role="group" aria-label="...">
-							<button type="button" class="btn btn-success h2"
-								data-toggle="modal" data-target="#tcModal">
-								<i class="fa fa-user-plus"></i> Cadastrar Usuário
-							</button>
-						</div>
-					</div>
-				</div>
-
-
-				<hr />
-
-				<div class="row">
-
 					<!--center-right-->
 					<div class="col-md-12">
 						<div id="alertCadastroPaciente"
@@ -125,66 +92,40 @@
 						</div>
 
 						<h:form>
-							<p:dataTable var="usuario" value="#{usuarioBean.lista}" rows="12" tableStyle="table-layout: auto;"
-								paginator="true"
-								emptyMessage="Nenhum usuário foi encontrado." filteredValue="#{usuarioBean.listaFiltrada}"
-								paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-								rowsPerPageTemplate="6,12,16">
-								<p:column headerText="#" sortBy="#{usuario.codigo}">
-									<h:outputText value="#{usuario.codigo}" />
-								</p:column>
-								<p:column headerText="">
-									<h:commandLink action="#{usuarioBean.ativar}" id="usuarioativo">
-										<h:outputFormat rendered="#{usuario.ativo}" value=" "
-											tooltip="Teste">
-											<i class="fa fa-check-circle text-success"></i>
-										</h:outputFormat>
-										<h:outputFormat rendered="#{!usuario.ativo}" value=" ">
-											<i class="fa fa-ban text-danger"></i>
-										</h:outputFormat>
-										<f:setPropertyActionListener value="#{usuario}"
-											target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
-									</h:commandLink>
-								</p:column>
-								<p:column headerText="Nome" sortBy="#{usuario.nome}">
-									<h:outputText value="#{usuario.nome}" />
-								</p:column>
-								<p:column headerText="Email" sortBy="#{usuario.email}">
-									<h:outputText value="#{usuario.email}" />
-								</p:column>
-								<p:column headerText="Privilégios">
-									<h:outputFormat
-										rendered="#{usuario.permissao.contains('ROLE_ADMINISTRADOR')}"
-										value=" " tooltip="Teste">
-										<i class="fa fa-shield"></i>
-									</h:outputFormat>
-									<h:outputFormat
-										rendered="#{usuario.permissao.contains('ROLE_USUARIO')}"
-										value=" ">
-										<i class="fa fa-user"></i>
-									</h:outputFormat>
-								</p:column>
-								<p:column headerText="">
-									<h:commandButton action="#"
-										class="btn btn-success btn-xs btn-block" value="Visualizar" />
-								</p:column>
-								<p:column headerText="">
-									<h:commandButton action="#{usuarioBean.editar}"
-										class="btn btn-warning btn-xs btn-block" value="Editar">
-										<f:setPropertyActionListener
-											target="#{usuarioBean.usuario}" value="#{usuario}"></f:setPropertyActionListener>
-									</h:commandButton>
-								</p:column>
-								<p:column headerText="">
-									<h:commandButton action="#{usuarioBean.excluir}"
-										onclick="if (!confirm('Confirma a exclusão do usuário #{usuario.nome}?')) return false;"
-										class="btn btn-danger btn-xs btn-block" value="Excluir">
-
-										<f:setPropertyActionListener value="#{usuario}"
-											target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
-									</h:commandButton>
-								</p:column>
-								</p:dataTable>
+					<div class="form-group">
+						<label for="inputPassword1" class="col-md-3 control-label">Nome</label>
+						<div class="col-md-9">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1"><i
+									class="glyphicon glyphicon-user"></i></span>
+								<h:inputText type="text" value="#{usuarioBean.usuario.nome}"
+									class="form-control" id="inputNome" />
+							</div>
+						</div>
+					</div><br/>
+					<div class="form-group">
+						<label for="inputPassword1" class="col-md-3 control-label">Email</label>
+						<div class="col-md-9">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1"><i
+									class="fa fa-envelope" /></span>
+								<h:inputText type="email" value="#{usuarioBean.usuario.email}"
+									class="form-control" id="inputEmail1" />
+							</div>
+						</div>
+					</div><br/>
+					<div class="form-group">
+						<label for="inputPassword1" class="col-md-3 control-label">Senha</label>
+						<div class="col-md-9">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1"><i
+									class="fa fa-key" /></span>
+								<h:inputSecret type="password"
+									value="#{usuarioBean.usuario.senha}"
+									class="form-control" id="inputPassword1" />
+							</div>
+						</div>
+					</div>
 						</h:form>
 
 					</div>
