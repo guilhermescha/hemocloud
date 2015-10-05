@@ -13,6 +13,7 @@ public class UsuarioBean {
 	private Usuario usuario = new Usuario();
 	private String confirmaSenha;
 	private List<Usuario> lista;
+	private List<Usuario> listaFiltrada;
 	private String destinosalvar;
 	
 	public String novo() {
@@ -24,7 +25,7 @@ public class UsuarioBean {
 	
 	public String editar() {
 		this.confirmaSenha = this.usuario.getSenha();
-		return "/publico/usuario";
+		return "usuario";
 	}
 	
 	public String salvar() {
@@ -64,6 +65,14 @@ public class UsuarioBean {
 		return this.lista;
 	}
 	
+	public List<Usuario> getListaFiltrada() {
+		return listaFiltrada;
+	}
+
+	public void setListaFiltrada(List<Usuario> listaFiltrada) {
+		this.listaFiltrada = listaFiltrada;
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
