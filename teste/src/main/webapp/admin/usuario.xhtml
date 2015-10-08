@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:sec="http://www.springframework.org/security/facelets/tags">
 <h:head>
 	<meta charset="utf-8" />
@@ -69,7 +70,7 @@
 				<ul class="nav nav-stacked">
 					<li class="active"><a href="../restrito/dashboard.jsf"><i
 							class="glyphicon glyphicon-dashboard"></i> Dashboard</a></li>
-					<li class="active"><a href="#"><i class="fa fa-users"></i>
+					<li class="active"><a href="usuarios.jsf"><i class="fa fa-users"></i>
 							Usuários</a></li>
 				</ul>
 
@@ -78,31 +79,20 @@
 			</div>
 			<!-- /span-3 -->
 			<div class="col-sm-9">
-
-				<div class="row">
+			
+							<div class="row">
 					<div class="col-md-3">
 						<!-- column 2 -->
 						<h2>
-							<i class="fa fa-users"></i> Usuários
+							<i class="fa fa-users"></i> Usuário
 						</h2>
-					</div>
-					<div class="col-md-6">
-					</div>
-					<div class="col-md-3">
-						<div class="btn-group" role="group" aria-label="...">
-							<button type="button" class="btn btn-success h2"
-								data-toggle="modal" data-target="#tcModal">
-								<i class="fa fa-user-plus"></i> Cadastrar Usuário
-							</button>
-						</div>
 					</div>
 				</div>
 
 
 				<hr />
-
+			
 				<div class="row">
-
 					<!--center-right-->
 					<div class="col-md-12">
 						<div id="alertCadastroPaciente"
@@ -111,54 +101,73 @@
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							Usuário cadastrado com sucesso.
+							Paciente cadastrado com sucesso.
 						</div>
 
 						<h:form>
-						<h:dataTable styleClass="table table-striped" value="#{usuarioBean.lista}"
-							var="usuario">
-							<h:column>
-								<f:facet name="header"> #</f:facet>
-						#{usuario.codigo}
-					</h:column>
-							<h:column>
-								<f:facet name="header"></f:facet>
-								<h:commandLink action="#{usuarioBean.ativar}" id="usuarioativo">
-									<h:outputFormat rendered="#{usuario.ativo}" value=" " tooltip="Teste"><i class="fa fa-check-circle text-success"></i></h:outputFormat>
-									<h:outputFormat rendered="#{!usuario.ativo}" value=" "><i class="fa fa-ban text-danger"></i></h:outputFormat>
-								<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
-							</h:commandLink>
-							</h:column>
-							<h:column>
-								<f:facet name="header"> Nome</f:facet>#{usuario.nome}
-							</h:column>
-							<h:column>
-								<f:facet name="header"> Email</f:facet>#{usuario.email}
-							</h:column>
-							<h:column>
-								<f:facet name="header"> Privilégios</f:facet>
-									<h:outputFormat rendered="#{usuario.permissao.contains('ROLE_ADMINISTRADOR')}" value=" " tooltip="Teste"><i class="fa fa-shield"></i></h:outputFormat>
-									<h:outputFormat rendered="#{usuario.permissao.contains('ROLE_USUARIO')}" value=" "><i class="fa fa-user"></i></h:outputFormat>
-							</h:column>
-							<h:column>
-								<h:commandButton action="#" class="btn btn-success btn-xs btn-block"
-									value="Visualizar" />
-							</h:column>
-							<h:column>
-								<h:commandButton action="#{usuarioBean.editar}"
-									class="btn btn-warning btn-xs btn-block" value="Editar">
-								<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
-									</h:commandButton>
-							</h:column>
-							<h:column>
-								<h:commandButton action="#{usuarioBean.excluir}"
-								onclick="if (!confirm('Confirma a exclusão do usuário #{usuario.nome}?')) return false;"
-									class="btn btn-danger btn-xs btn-block" value="Excluir">
-									
-								<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
-									</h:commandButton>
-							</h:column>
-						</h:dataTable>
+					
+									<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="panel-title">
+							<i class="glyphicon glyphicon-wrench pull-right"></i>
+							<h4>Dados do usuário</h4>
+						</div>
+					</div>
+					<div class="panel-body">
+
+						<h:form class="form form-vertical" role="form">
+							<h:inputHidden value="#{usuarioBean.usuario.codigo}" />
+							<div class="control-group">
+								<label>Nome</label>
+								<div class="controls">
+								<h:inputText type="text" value="#{usuarioBean.usuario.nome}"
+									class="form-control" id="inputNome" />
+								</div>
+							</div>
+							<div class="control-group">
+								<label>Email</label>
+								<div class="controls">
+								<h:inputText type="email" value="#{usuarioBean.usuario.email}"
+									class="form-control" id="inputEmail1" />
+								</div>
+							</div>
+							<div class="control-group">
+								<label>Senha</label>
+								<div class="controls">
+								<h:inputText type="email" value="#{usuarioBean.usuario.senha}"
+									class="form-control" id="inputSenha1" />
+								</div>
+							</div>
+							<div class="control-group">
+								<label>Confirma Senha</label>
+								<div class="controls">
+								<h:inputText type="email" value="#{usuarioBean.confirmasenha}"
+									class="form-control" id="inputConfirmaSenha1" />
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<h:selectBooleanCheckbox value="#{usuarioBean.usuario.ativo}" /> Usuário Ativo
+								</div>
+							</div>
+							<div class="control-group">
+								<label></label>
+								<div class="controls">
+												<h:commandButton action="#{usuarioBean.salvar}"
+													class="btn btn-primary btn-block" value="Cadastrar">
+													<f:setPropertyActionListener value="/admin/usuarios"
+														target="#{usuarioBean.destinosalvar}"></f:setPropertyActionListener>
+												</h:commandButton>
+											</div>
+							</div>
+						</h:form>
+
+
+					</div>
+					<!--/panel content-->
+				</div>
+				<!--/panel-->
+					
 						</h:form>
 
 					</div>
@@ -166,14 +175,14 @@
 					<div id="bottom" class="row">
 						<div class="col-md-12">
 
-							<ul class="pagination">
-								<li class="disabled"><a>&lt; Anterior</a></li>
-								<li class="disabled"><a>1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li class="next"><a href="#" rel="next">Próximo &gt;</a></li>
-							</ul>
-							<!-- /.pagination -->
+<!-- 							<ul class="pagination"> -->
+<!-- 								<li class="disabled"><a>&lt; Anterior</a></li> -->
+<!-- 								<li class="disabled"><a>1</a></li> -->
+<!-- 								<li><a href="#">2</a></li> -->
+<!-- 								<li><a href="#">3</a></li> -->
+<!-- 								<li class="next"><a href="#" rel="next">Próximo &gt;</a></li> -->
+<!-- 							</ul> -->
+<!-- 							/.pagination -->
 
 						</div>
 					</div>

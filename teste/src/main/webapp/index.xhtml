@@ -143,7 +143,10 @@
 					<div class="form-group">
 						<div class="col-md-12">
 							<h:commandButton action="#{usuarioBean.salvar}"
-								class="btn btn-danger btn-block" value="Cadastrar" />
+								class="btn btn-danger btn-block" value="Cadastrar">
+								<f:setPropertyActionListener value="/publico/mostrausuario"
+									target="#{usuarioBean.destinosalvar}"></f:setPropertyActionListener>
+								</h:commandButton>
 						</div>
 					</div>
 				</h:form>
