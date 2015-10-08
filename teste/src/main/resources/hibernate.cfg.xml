@@ -11,6 +11,7 @@
 		<property name="hibernate.session_factory_name">hibernate/HibernateFactory</property> 
 
 		<mapping class="br.com.hemocloud.usuario.Usuario"/> 
+		<mapping class="br.com.hemocloud.paciente.Paciente"/> 
 
 	</session-factory>
 </hibernate-configuration>
