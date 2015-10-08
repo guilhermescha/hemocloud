@@ -13,7 +13,6 @@ public class UsuarioBean {
 	private Usuario usuario = new Usuario();
 	private String confirmaSenha;
 	private List<Usuario> lista;
-	private List<Usuario> listaFiltrada;
 	private String destinosalvar;
 	
 	public String novo() {
@@ -36,11 +35,13 @@ public class UsuarioBean {
 					"Senha confirmada incorretamente!",""));
 			return "index";
 		}
-		this.usuario.setAtivo(true);
+		if (this.usuario.getCodigo() == null || this.usuario.getCodigo() == 0) {
+			this.usuario.setAtivo(true);
+		}
 		UsuarioRN usuarioRN = new UsuarioRN();
 		usuarioRN.salvar(this.usuario);
 		
-		return "/publico/mostrausuario";
+		return this.destinosalvar;
 	}
 	
 	public String excluir() {
@@ -65,12 +66,15 @@ public class UsuarioBean {
 		return this.lista;
 	}
 	
-	public List<Usuario> getListaFiltrada() {
-		return listaFiltrada;
-	}
-
-	public void setListaFiltrada(List<Usuario> listaFiltrada) {
-		this.listaFiltrada = listaFiltrada;
+	public String atribuiPermissao(Usuario usuario, String permissao) {
+		this.usuario = usuario;
+		java.util.Set<String> permissoes = this.usuario.getPermissao();
+		if (permissoes.contains(permissao)) {
+			permissoes.remove(permissao);
+		} else {
+			permissoes.add(permissao);
+		}
+		return null;
 	}
 
 	public Usuario getUsuario() {

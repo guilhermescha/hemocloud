@@ -14,6 +14,7 @@
 		<property name="hibernate.hbm2ddl.auto">update</property> 
 
 		<mapping class="br.com.hemocloud.usuario.Usuario"/> 
+		<mapping class="br.com.hemocloud.paciente.Paciente"/> 
 
 	</session-factory>
 </hibernate-configuration>

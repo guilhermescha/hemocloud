@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
 	xmlns:sec="http://www.springframework.org/security/facelets/tags">
 <h:head>
 	<meta charset="utf-8" />
@@ -88,15 +87,6 @@
 						</h2>
 					</div>
 					<div class="col-md-6">
-<!-- 						<div class="input-group h2"> -->
-<!-- 							<input name="data[search]" class="form-control" id="search" -->
-<!-- 								type="text" placeholder="Pesquisar Usuários" /> <span -->
-<!-- 								class="input-group-btn"> -->
-<!-- 								<button class="btn btn-primary" type="submit"> -->
-<!-- 									<span class="glyphicon glyphicon-search"></span> -->
-<!-- 								</button> -->
-<!-- 							</span> -->
-<!-- 						</div> -->
 					</div>
 					<div class="col-md-3">
 						<div class="btn-group" role="group" aria-label="...">
@@ -121,70 +111,54 @@
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							Paciente cadastrado com sucesso.
+							Usuário cadastrado com sucesso.
 						</div>
 
 						<h:form>
-							<p:dataTable var="usuario" value="#{usuarioBean.lista}" rows="12" tableStyle="table-layout: auto;"
-								paginator="true"
-								emptyMessage="Nenhum usuário foi encontrado." filteredValue="#{usuarioBean.listaFiltrada}"
-								paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-								rowsPerPageTemplate="6,12,16">
-								<p:column headerText="#" sortBy="#{usuario.codigo}">
-									<h:outputText value="#{usuario.codigo}" />
-								</p:column>
-								<p:column headerText="">
-									<h:commandLink action="#{usuarioBean.ativar}" id="usuarioativo">
-										<h:outputFormat rendered="#{usuario.ativo}" value=" "
-											tooltip="Teste">
-											<i class="fa fa-check-circle text-success"></i>
-										</h:outputFormat>
-										<h:outputFormat rendered="#{!usuario.ativo}" value=" ">
-											<i class="fa fa-ban text-danger"></i>
-										</h:outputFormat>
-										<f:setPropertyActionListener value="#{usuario}"
-											target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
-									</h:commandLink>
-								</p:column>
-								<p:column headerText="Nome" sortBy="#{usuario.nome}">
-									<h:outputText value="#{usuario.nome}" />
-								</p:column>
-								<p:column headerText="Email" sortBy="#{usuario.email}">
-									<h:outputText value="#{usuario.email}" />
-								</p:column>
-								<p:column headerText="Privilégios">
-									<h:outputFormat
-										rendered="#{usuario.permissao.contains('ROLE_ADMINISTRADOR')}"
-										value=" " tooltip="Teste">
-										<i class="fa fa-shield"></i>
-									</h:outputFormat>
-									<h:outputFormat
-										rendered="#{usuario.permissao.contains('ROLE_USUARIO')}"
-										value=" ">
-										<i class="fa fa-user"></i>
-									</h:outputFormat>
-								</p:column>
-								<p:column headerText="">
-									<h:commandButton action="#"
-										class="btn btn-success btn-xs btn-block" value="Visualizar" />
-								</p:column>
-								<p:column headerText="">
-									<h:commandButton action="#{usuarioBean.editar}"
-										class="btn btn-warning btn-xs btn-block" value="Editar">
-										<f:setPropertyActionListener
-											target="#{usuarioBean.usuario}" value="#{usuario}"></f:setPropertyActionListener>
+						<h:dataTable styleClass="table table-striped" value="#{usuarioBean.lista}"
+							var="usuario">
+							<h:column>
+								<f:facet name="header"> #</f:facet>
+						#{usuario.codigo}
+					</h:column>
+							<h:column>
+								<f:facet name="header"></f:facet>
+								<h:commandLink action="#{usuarioBean.ativar}" id="usuarioativo">
+									<h:outputFormat rendered="#{usuario.ativo}" value=" " tooltip="Teste"><i class="fa fa-check-circle text-success"></i></h:outputFormat>
+									<h:outputFormat rendered="#{!usuario.ativo}" value=" "><i class="fa fa-ban text-danger"></i></h:outputFormat>
+								<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
+							</h:commandLink>
+							</h:column>
+							<h:column>
+								<f:facet name="header"> Nome</f:facet>#{usuario.nome}
+							</h:column>
+							<h:column>
+								<f:facet name="header"> Email</f:facet>#{usuario.email}
+							</h:column>
+							<h:column>
+								<f:facet name="header"> Privilégios</f:facet>
+									<h:outputFormat rendered="#{usuario.permissao.contains('ROLE_ADMINISTRADOR')}" value=" " tooltip="Teste"><i class="fa fa-shield"></i></h:outputFormat>
+									<h:outputFormat rendered="#{usuario.permissao.contains('ROLE_USUARIO')}" value=" "><i class="fa fa-user"></i></h:outputFormat>
+							</h:column>
+							<h:column>
+								<h:commandButton action="#" class="btn btn-success btn-xs btn-block"
+									value="Visualizar" />
+							</h:column>
+							<h:column>
+								<h:commandButton action="#{usuarioBean.editar}"
+									class="btn btn-warning btn-xs btn-block" value="Editar">
+								<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
 									</h:commandButton>
-								</p:column>
-								<p:column headerText="">
-									<h:commandButton action="#{usuarioBean.excluir}"
-										onclick="if (!confirm('Confirma a exclusão do usuário #{usuario.nome}?')) return false;"
-										class="btn btn-danger btn-xs btn-block" value="Excluir">
-
-										<f:setPropertyActionListener value="#{usuario}"
-											target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
+							</h:column>
+							<h:column>
+								<h:commandButton action="#{usuarioBean.excluir}"
+								onclick="if (!confirm('Confirma a exclusão do usuário #{usuario.nome}?')) return false;"
+									class="btn btn-danger btn-xs btn-block" value="Excluir">
+									
+								<f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
 									</h:commandButton>
-								</p:column>
-								</p:dataTable>
+							</h:column>
+						</h:dataTable>
 						</h:form>
 
 					</div>
@@ -192,14 +166,14 @@
 					<div id="bottom" class="row">
 						<div class="col-md-12">
 
-<!-- 							<ul class="pagination"> -->
-<!-- 								<li class="disabled"><a>&lt; Anterior</a></li> -->
-<!-- 								<li class="disabled"><a>1</a></li> -->
-<!-- 								<li><a href="#">2</a></li> -->
-<!-- 								<li><a href="#">3</a></li> -->
-<!-- 								<li class="next"><a href="#" rel="next">Próximo &gt;</a></li> -->
-<!-- 							</ul> -->
-<!-- 							/.pagination -->
+							<ul class="pagination">
+								<li class="disabled"><a>&lt; Anterior</a></li>
+								<li class="disabled"><a>1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li class="next"><a href="#" rel="next">Próximo &gt;</a></li>
+							</ul>
+							<!-- /.pagination -->
 
 						</div>
 					</div>
