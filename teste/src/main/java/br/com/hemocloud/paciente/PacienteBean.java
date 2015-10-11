@@ -15,14 +15,14 @@ public class PacienteBean {
 	private String destinosalvar;
 	
 	public String novo() {
-		this.destinosalvar = "/publico/mostrapaciente";
+		this.destinosalvar = "pacientes";
 		this.paciente = new Paciente();
 		this.paciente.setAtivo(true);
-		return "paciente";
+		return "pacientes";
 	}
 	
 	public String editar() {
-		return "paciente";
+		return "pacientes";
 	}
 	
 	public String salvar() {
