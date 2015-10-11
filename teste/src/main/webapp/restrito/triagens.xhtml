@@ -31,19 +31,25 @@
 					data-target=".navbar-collapse">
 					<span class="icon-toggle"></span>
 				</button>
-				<a class="navbar-brand" href="#"><i class="fa fa-cloud"></i> HemoCloud</a>
+				<a class="navbar-brand" href="#"><i class="fa fa-cloud"></i>
+					HemoCloud</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 
 					<li class="dropdown"><a class="dropdown-toggle" role="button"
 						data-toggle="dropdown" href="#"> <i
-							class="glyphicon glyphicon-user"></i> <h:outputText value=" #{request.userPrincipal.name}"/> <span class="caret"></span></a>
+							class="glyphicon glyphicon-user"></i> <h:outputText
+								value=" #{request.userPrincipal.name}" /> <span class="caret"></span></a>
 						<ul id="g-account-menu" class="dropdown-menu" role="menu">
 							<li><a href="#">My Profile</a></li>
-							<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR"><li><a href="../admin/principal.jsf"><i class="glyphicon glyphicon-lock"></i> Área Administrativa</a></li></sec:ifAnyGranted>
-							<li><a href="#{request.contextPath}/j_spring_security_logout"><i class="glyphicon glyphicon-lock"></i>
-									Logout</a></li>
+							<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+								<li><a href="../admin/principal.jsf"><i
+										class="glyphicon glyphicon-lock"></i> Área Administrativa</a></li>
+							</sec:ifAnyGranted>
+							<li><a
+								href="#{request.contextPath}/j_spring_security_logout"><i
+									class="glyphicon glyphicon-lock"></i> Logout</a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -65,8 +71,8 @@
 				<hr />
 
 				<ul class="nav nav-stacked">
-					<li><a href="dashboard.jsf"><i class="glyphicon glyphicon-dashboard"></i>
-							Painel do Usuário</a></li>
+					<li><a href="dashboard.jsf"><i
+							class="glyphicon glyphicon-dashboard"></i> Painel do Usuário</a></li>
 					<li><a href="pacientes.jsf"><i class="fa fa-users"></i>
 							Pacientes</a></li>
 					<li><a href="triagens.jsf"><i
@@ -86,14 +92,11 @@
 							<i class="glyphicon glyphicon-list-alt"></i> Triagens
 						</h2>
 					</div>
-					<div class="col-md-6">
-					</div>
+					<div class="col-md-6"></div>
 					<div class="col-md-3">
 						<div class="btn-group" role="group" aria-label="...">
-							<button type="button" class="btn btn-success h2"
-								data-toggle="modal" data-target="#tcModal">
-								<i class="fa fa-user-plus"></i> Cadastrar Triagem
-							</button>
+							<a class="btn btn-success h2" href="triagem.jsf" role="button"><i
+								class="fa fa-user-plus"></i> Cadastrar Triagem</a>
 						</div>
 					</div>
 				</div>
@@ -103,7 +106,7 @@
 
 				<div class="row">
 
-<!-- 					center-right -->
+					<!-- 					center-right -->
 					<div class="col-md-12">
 						<div id="alertCadastroPaciente"
 							class="alert alert-success collapse" role="alert">
@@ -115,49 +118,58 @@
 						</div>
 
 						<h:form>
-						<h:dataTable styleClass="table table-striped" value="#{pacienteBean.lista}"
-							var="paciente">
-							<h:column>
-								<f:facet name="header"> #</f:facet>
+							<h:dataTable styleClass="table table-striped"
+								value="#{pacienteBean.lista}" var="paciente">
+								<h:column>
+									<f:facet name="header"> #</f:facet>
 						#{paciente.codigo}
 					</h:column>
-							<h:column>
-								<f:facet name="header"></f:facet>
-								<h:commandLink action="#{pacienteBean.ativar}" id="pacienteativo">
-									<h:outputFormat rendered="#{paciente.ativo}" value=" " tooltip="Teste"><i class="fa fa-check-circle text-success"></i></h:outputFormat>
-									<h:outputFormat rendered="#{!paciente.ativo}" value=" "><i class="fa fa-ban text-danger"></i></h:outputFormat>
-								<f:setPropertyActionListener value="#{paciente}" target="#{pacienteBean.paciente}"></f:setPropertyActionListener>
-							</h:commandLink>
+								<h:column>
+									<f:facet name="header"></f:facet>
+									<h:commandLink action="#{pacienteBean.ativar}"
+										id="pacienteativo">
+										<h:outputFormat rendered="#{paciente.ativo}" value=" "
+											tooltip="Teste">
+											<i class="fa fa-check-circle text-success"></i>
+										</h:outputFormat>
+										<h:outputFormat rendered="#{!paciente.ativo}" value=" ">
+											<i class="fa fa-ban text-danger"></i>
+										</h:outputFormat>
+										<f:setPropertyActionListener value="#{paciente}"
+											target="#{pacienteBean.paciente}"></f:setPropertyActionListener>
+									</h:commandLink>
+								</h:column>
+								<h:column>
+									<f:facet name="header"> Nome</f:facet>#{paciente.nome}
 							</h:column>
-							<h:column>
-								<f:facet name="header"> Nome</f:facet>#{paciente.nome}
+								<h:column>
+									<f:facet name="header"> RG</f:facet>#{paciente.rg}
 							</h:column>
-							<h:column>
-								<f:facet name="header"> RG</f:facet>#{paciente.rg}
-							</h:column>
-							<h:column>
-								<h:commandButton action="#" class="btn btn-success btn-xs btn-block"
-									value="Visualizar" />
-							</h:column>
-							<h:column>
-								<h:commandButton action="#{pacienteBean.editar}"
-									class="btn btn-warning btn-xs btn-block" value="Editar">
-								<f:setPropertyActionListener value="#{paciente}" target="#{pacienteBean.paciente}"></f:setPropertyActionListener>
+								<h:column>
+									<h:commandButton action="#"
+										class="btn btn-success btn-xs btn-block" value="Visualizar" />
+								</h:column>
+								<h:column>
+									<h:commandButton action="#{pacienteBean.editar}"
+										class="btn btn-warning btn-xs btn-block" value="Editar">
+										<f:setPropertyActionListener value="#{paciente}"
+											target="#{pacienteBean.paciente}"></f:setPropertyActionListener>
 									</h:commandButton>
-							</h:column>
-							<h:column>
-								<h:commandButton action="#{pacienteBean.excluir}"
-								onclick="if (!confirm('Confirma a exclusão do paciente #{paciente.nome}?')) return false;"
-									class="btn btn-danger btn-xs btn-block" value="Excluir">
-									
-								<f:setPropertyActionListener value="#{paciente}" target="#{pacienteBean.paciente}"></f:setPropertyActionListener>
+								</h:column>
+								<h:column>
+									<h:commandButton action="#{pacienteBean.excluir}"
+										onclick="if (!confirm('Confirma a exclusão do paciente #{paciente.nome}?')) return false;"
+										class="btn btn-danger btn-xs btn-block" value="Excluir">
+
+										<f:setPropertyActionListener value="#{paciente}"
+											target="#{pacienteBean.paciente}"></f:setPropertyActionListener>
 									</h:commandButton>
-							</h:column>
-						</h:dataTable>
+								</h:column>
+							</h:dataTable>
 						</h:form>
 
 					</div>
-<!-- 					/col-span-6 -->
+					<!-- 					/col-span-6 -->
 					<div id="bottom" class="row">
 						<div class="col-md-12">
 
@@ -168,13 +180,13 @@
 								<li><a href="#">3</a></li>
 								<li class="next"><a href="#" rel="next">Próximo &gt;</a></li>
 							</ul>
-<!-- 							/.pagination -->
+							<!-- 							/.pagination -->
 
 						</div>
 					</div>
-<!-- 					/#bottom -->
+					<!-- 					/#bottom -->
 
-<!-- 					Modal -->
+					<!-- 					Modal -->
 					<div class="modal fade" id="tcModal" tabindex="-1" role="dialog"
 						aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-lg">
@@ -185,11 +197,11 @@
 									<h4 class="modal-title">Cadastro de Pacientes</h4>
 								</div>
 								<div class="modal-body">
-<!-- 									<div class="bs-callout bs-callout-success" -->
-<!-- 										id="callout-glyphicons-dont-mix"> -->
-<!-- 										<h4>Cadastro de Pacientes</h4> -->
-<!-- 										<p></p> -->
-<!-- 									</div> -->
+									<!-- 									<div class="bs-callout bs-callout-success" -->
+									<!-- 										id="callout-glyphicons-dont-mix"> -->
+									<!-- 										<h4>Cadastro de Pacientes</h4> -->
+									<!-- 										<p></p> -->
+									<!-- 									</div> -->
 									<h:form class="form-horizontal" role="form">
 										<div class="form-group">
 											<label for="inputPassword1" class="col-md-3 control-label">Nome</label>
@@ -225,27 +237,32 @@
 									</h:form>
 								</div>
 							</div>
-<!-- 							/.modal-content -->
+							<!-- 							/.modal-content -->
 						</div>
-<!-- 						/.modal-dialog -->
+						<!-- 						/.modal-dialog -->
 					</div>
-<!-- 					/.modal -->
+					<!-- 					/.modal -->
 				</div>
-<!-- 				/row -->
+				<!-- 				/row -->
 			</div>
 			<!--/col-span-9-->
 
 		</div>
 		<!--/row-->
 		<!-- /upper section -->
-		<footer><p><i class="fa fa-copyright"></i> Guilherme Scha Vieira - 2015</p></footer>
+		<footer>
+		<p>
+			<i class="fa fa-copyright"></i> Guilherme Scha Vieira - 2015
+		</p>
+		</footer>
 
 	</div>
 	<!--/container-->
 	<!-- /Main -->
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="../resources/js/bootstrap.min.js"></script>
 </h:body>
