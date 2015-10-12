@@ -9,5 +9,6 @@ public interface PacienteDAO {
 	public Paciente carregar(Integer codigo);
 	public Paciente buscarPorRg(Integer rg);
 	public Paciente buscarPorCpf(Integer cpf);
+	public Paciente buscarPorNome(String nome);
 	public List<Paciente> listar();
 }

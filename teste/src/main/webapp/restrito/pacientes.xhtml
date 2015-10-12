@@ -120,6 +120,7 @@
 						</div>
 
 						<h:form>
+							<h:messages styleClass="alert alert-danger" />
 							<h:dataTable styleClass="table table-striped"
 								value="#{pacienteBean.lista}" var="paciente">
 								<h:column>
@@ -264,7 +265,7 @@
 																<h:inputText type="email"
 																	value="#{pacienteBean.paciente.nascimento}"
 																	class="form-control" id="inputNascimento">
-																	<f:convertDateTime dateStyle="medium" />
+																	<f:convertDateTime pattern="dd/MM/yyyy" />
 																</h:inputText>
 															</div>
 														</div>

@@ -86,19 +86,11 @@
 			<div class="col-sm-9">
 
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-8">
 						<!-- column 2 -->
 						<h2>
 							<i class="glyphicon glyphicon-list-alt"></i> Cadastro de Triagem
 						</h2>
-					</div>
-					<div class="col-md-3"></div>
-					<div class="col-md-3">
-						<div class="btn-group" role="group" aria-label="...">
-							<button type="button" class="btn btn-danger h2"
-								data-toggle="modal" data-target="#tcModal">Cancelar
-								Triagem</button>
-						</div>
 					</div>
 				</div>
 
@@ -118,7 +110,27 @@
 							Paciente cadastrado com sucesso.
 						</div>
 
-						<h:form>
+						<h:form id="cadastroTriagem">
+							<h:messages styleClass="alert alert-danger" />
+							<div class="control-group">
+								<label class="col-md-3 control-label">Paciente</label>
+								<div class="controls col-md-5">
+									<input type="text" class="form-control" id="inputNomePaciente" name="inputNomePaciente"/>
+								</div>
+								<div class="col-md-4 pull-right">
+									<div class="btn-group" role="group" aria-label="...">
+										<button type="button" class="btn btn-danger"
+											data-toggle="modal" data-target="#tcModal">
+											<i class="fa fa-times"></i> Cancelar
+										</button>
+									</div>
+									<div class="btn-group" role="group" aria-label="...">
+										<h:commandButton action="#{triagemBean.salvar}"
+											class="btn btn-success pull-right" value="Confirmar" />
+									</div>
+								</div>
+								<br /> <br /> <br />
+							</div>
 							<ul class="nav nav-pills">
 								<li class="active"><a data-toggle="pill" href="#menu1">1</a></li>
 								<li><a data-toggle="pill" href="#menu2">2</a></li>
