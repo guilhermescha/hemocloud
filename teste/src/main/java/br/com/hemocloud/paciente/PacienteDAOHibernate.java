@@ -52,6 +52,14 @@ public class PacienteDAOHibernate implements PacienteDAO {
 		consulta.setInteger("rg", cpf);
 		return (Paciente) consulta.uniqueResult();
 	}
+
+	@Override
+	public Paciente buscarPorNome(String nome) {
+		String sql = "select u from Paciente u where u.nome = :nome";
+		Query consulta = this.session.createQuery(sql);
+		consulta.setString("nome", nome);
+		return (Paciente) consulta.uniqueResult();
+	}
 	
 	@Override
 	public List<Paciente> listar() {

@@ -31,19 +31,25 @@
 					data-target=".navbar-collapse">
 					<span class="icon-toggle"></span>
 				</button>
-				<a class="navbar-brand" href="#"><i class="fa fa-cloud"></i> HemoCloud</a>
+				<a class="navbar-brand" href="#"><i class="fa fa-cloud"></i>
+					HemoCloud</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 
 					<li class="dropdown"><a class="dropdown-toggle" role="button"
 						data-toggle="dropdown" href="#"> <i
-							class="glyphicon glyphicon-user"></i> <h:outputText value=" #{request.userPrincipal.name}"/> <span class="caret"></span></a>
+							class="glyphicon glyphicon-user"></i> <h:outputText
+								value=" #{request.userPrincipal.name}" /> <span class="caret"></span></a>
 						<ul id="g-account-menu" class="dropdown-menu" role="menu">
 							<li><a href="#">My Profile</a></li>
-							<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR"><li><a href="../admin/principal.jsf"><i class="glyphicon glyphicon-lock"></i> Área Administrativa</a></li></sec:ifAnyGranted>
-							<li><a href="#{request.contextPath}/j_spring_security_logout"><i class="glyphicon glyphicon-lock"></i>
-									Logout</a></li>
+							<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+								<li><a href="../admin/principal.jsf"><i
+										class="glyphicon glyphicon-lock"></i> Área Administrativa</a></li>
+							</sec:ifAnyGranted>
+							<li><a
+								href="#{request.contextPath}/j_spring_security_logout"><i
+									class="glyphicon glyphicon-lock"></i> Logout</a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -65,8 +71,8 @@
 				<hr />
 
 				<ul class="nav nav-stacked">
-					<li><a href="dashboard.jsf"><i class="glyphicon glyphicon-dashboard"></i>
-							Dashboard</a></li>
+					<li><a href="dashboard.jsf"><i
+							class="glyphicon glyphicon-dashboard"></i> Painel do Usuário</a></li>
 					<li><a href="pacientes.jsf"><i class="fa fa-users"></i>
 							Pacientes</a></li>
 					<li><a href="triagens.jsf"><i
@@ -86,8 +92,7 @@
 							<i class="fa fa-users"></i> Pacientes
 						</h2>
 					</div>
-					<div class="col-md-6">
-					</div>
+					<div class="col-md-6"></div>
 					<div class="col-md-3">
 						<div class="btn-group" role="group" aria-label="...">
 							<button type="button" class="btn btn-success h2"
@@ -115,45 +120,55 @@
 						</div>
 
 						<h:form>
-						<h:dataTable styleClass="table table-striped" value="#{pacienteBean.lista}"
-							var="paciente">
-							<h:column>
-								<f:facet name="header"> #</f:facet>
+							<h:messages styleClass="alert alert-danger" />
+							<h:dataTable styleClass="table table-striped"
+								value="#{pacienteBean.lista}" var="paciente">
+								<h:column>
+									<f:facet name="header"> #</f:facet>
 						#{paciente.codigo}
 					</h:column>
-							<h:column>
-								<f:facet name="header"></f:facet>
-								<h:commandLink action="#{pacienteBean.ativar}" id="pacienteativo">
-									<h:outputFormat rendered="#{paciente.ativo}" value=" " tooltip="Teste"><i class="fa fa-check-circle text-success"></i></h:outputFormat>
-									<h:outputFormat rendered="#{!paciente.ativo}" value=" "><i class="fa fa-ban text-danger"></i></h:outputFormat>
-								<f:setPropertyActionListener value="#{paciente}" target="#{pacienteBean.paciente}"></f:setPropertyActionListener>
-							</h:commandLink>
+								<h:column>
+									<f:facet name="header"></f:facet>
+									<h:commandLink action="#{pacienteBean.ativar}"
+										id="pacienteativo">
+										<h:outputFormat rendered="#{paciente.ativo}" value=" "
+											tooltip="Teste">
+											<i class="fa fa-check-circle text-success"></i>
+										</h:outputFormat>
+										<h:outputFormat rendered="#{!paciente.ativo}" value=" ">
+											<i class="fa fa-ban text-danger"></i>
+										</h:outputFormat>
+										<f:setPropertyActionListener value="#{paciente}"
+											target="#{pacienteBean.paciente}"></f:setPropertyActionListener>
+									</h:commandLink>
+								</h:column>
+								<h:column>
+									<f:facet name="header"> Nome</f:facet>#{paciente.nome}
 							</h:column>
-							<h:column>
-								<f:facet name="header"> Nome</f:facet>#{paciente.nome}
+								<h:column>
+									<f:facet name="header"> RG</f:facet>#{paciente.rg}
 							</h:column>
-							<h:column>
-								<f:facet name="header"> RG</f:facet>#{paciente.rg}
-							</h:column>
-							<h:column>
-								<h:commandButton action="#" class="btn btn-success btn-xs btn-block"
-									value="Visualizar" />
-							</h:column>
-							<h:column>
-								<h:commandButton action="#{pacienteBean.editar}"
-									class="btn btn-warning btn-xs btn-block" value="Editar">
-								<f:setPropertyActionListener value="#{paciente}" target="#{pacienteBean.paciente}"></f:setPropertyActionListener>
+								<h:column>
+									<h:commandButton action="#"
+										class="btn btn-success btn-xs btn-block" value="Visualizar" />
+								</h:column>
+								<h:column>
+									<h:commandButton action="#{pacienteBean.editar}"
+										class="btn btn-warning btn-xs btn-block" value="Editar">
+										<f:setPropertyActionListener value="#{paciente}"
+											target="#{pacienteBean.paciente}"></f:setPropertyActionListener>
 									</h:commandButton>
-							</h:column>
-							<h:column>
-								<h:commandButton action="#{pacienteBean.excluir}"
-								onclick="if (!confirm('Confirma a exclusão do paciente #{paciente.nome}?')) return false;"
-									class="btn btn-danger btn-xs btn-block" value="Excluir">
-									
-								<f:setPropertyActionListener value="#{paciente}" target="#{pacienteBean.paciente}"></f:setPropertyActionListener>
+								</h:column>
+								<h:column>
+									<h:commandButton action="#{pacienteBean.excluir}"
+										onclick="if (!confirm('Confirma a exclusão do paciente #{paciente.nome}?')) return false;"
+										class="btn btn-danger btn-xs btn-block" value="Excluir">
+
+										<f:setPropertyActionListener value="#{paciente}"
+											target="#{pacienteBean.paciente}"></f:setPropertyActionListener>
 									</h:commandButton>
-							</h:column>
-						</h:dataTable>
+								</h:column>
+							</h:dataTable>
 						</h:form>
 
 					</div>
@@ -185,37 +200,246 @@
 									<h4 class="modal-title">Cadastro de Pacientes</h4>
 								</div>
 								<div class="modal-body">
-<!-- 									<div class="bs-callout bs-callout-success" -->
-<!-- 										id="callout-glyphicons-dont-mix"> -->
-<!-- 										<h4>Cadastro de Pacientes</h4> -->
-<!-- 										<p></p> -->
-<!-- 									</div> -->
+									<!-- 									<div class="bs-callout bs-callout-success" -->
+									<!-- 										id="callout-glyphicons-dont-mix"> -->
+									<!-- 										<h4>Cadastro de Pacientes</h4> -->
+									<!-- 										<p></p> -->
+									<!-- 									</div> -->
 									<h:form class="form-horizontal" role="form">
-										<div class="form-group">
-											<label for="inputPassword1" class="col-md-3 control-label">Nome</label>
-											<div class="col-md-9">
-												<div class="input-group">
-													<span class="input-group-addon" id="basic-addon1"><i
-														class="glyphicon glyphicon-user"></i></span>
-													<h:inputText type="text"
-														value="#{pacienteBean.paciente.nome}" required="true"
-														requiredMessage="Nome obrigatório" class="form-control"
-														id="inputNome" />
+										<div class="panel panel-primary">
+											<div class="panel-heading" role="tab" id="dadosPessoais">
+												<div class="panel-title">
+													<i class="glyphicon glyphicon-user"></i> Dados Pessoais <a
+														role="button" data-toggle="collapse"
+														data-parent="#accordion" href="#collapseOne"
+														aria-expanded="true" aria-controls="collapseOne"> <i
+														class="glyphicon glyphicon-chevron-down pull-right"></i>
+													</a>
 												</div>
 											</div>
-										</div>
-										<div class="form-group">
-											<label for="inputPassword1" class="col-md-3 control-label">RG</label>
-											<div class="col-md-9">
-												<div class="input-group">
-													<span class="input-group-addon" id="basic-addon1"><i
-														class="fa fa-envelope" /></span>
-													<h:inputText type="email"
-														value="#{pacienteBean.paciente.rg}" required="true"
-														class="form-control" id="inputEmail1" />
+											<div id="collapseOne" class="panel-collapse collapse in"
+												role="tabpanel" aria-labelledby="dadosPessoais">
+												<div class="panel-body">
+													<div class="form-group">
+														<label for="inputPassword1" class="col-md-3 control-label">Nome</label>
+														<div class="col-md-9">
+															<div class="input-group">
+																<span class="input-group-addon" id="basic-addon1"><i
+																	class="glyphicon glyphicon-user"></i></span>
+																<h:inputText type="text"
+																	value="#{pacienteBean.paciente.nome}" required="true"
+																	requiredMessage="Nome obrigatório" class="form-control"
+																	id="inputNome" />
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label for="inputPassword1" class="col-md-3 control-label">RG</label>
+														<div class="col-md-3">
+															<div class="input-group">
+																<span class="input-group-addon" id="basic-addon1"><i
+																	class="fa fa-envelope" /></span>
+																<h:inputText type="email"
+																	value="#{pacienteBean.paciente.rg}" required="true"
+																	class="form-control" id="inputRg" />
+															</div>
+														</div>
+														<label for="inputPassword1" class="col-md-3 control-label">CPF</label>
+														<div class="col-md-3">
+															<div class="input-group">
+																<span class="input-group-addon" id="basic-addon1"><i
+																	class="fa fa-envelope" /></span>
+																<h:inputText type="email"
+																	value="#{pacienteBean.paciente.cpf}"
+																	class="form-control" id="inputCpf" />
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label for="inputPassword1" class="col-md-3 control-label">Data
+															de Nascimento</label>
+														<div class="col-md-9">
+															<div class="input-group">
+																<span class="input-group-addon" id="basic-addon1"><i
+																	class="fa fa-envelope" /></span>
+																<h:inputText type="email"
+																	value="#{pacienteBean.paciente.nascimento}"
+																	class="form-control" id="inputNascimento">
+																	<f:convertDateTime pattern="dd/MM/yyyy" />
+																</h:inputText>
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label for="inputPassword1" class="col-md-3 control-label">Sexo</label>
+														<div class="col-md-3">
+															<h:selectOneMenu id="sexo"
+																value="#{pacienteBean.paciente.sexo}" required="true"
+																requiredMessage="" class="form-control">
+																<f:selectItem itemValue="" itemLabel="Selecione..." />
+																<f:selectItem itemValue="M" itemLabel="Masculino" />
+																<f:selectItem itemValue="F" itemLabel="Feminino" />
+															</h:selectOneMenu>
+														</div>
+														<label for="inputPassword1" class="col-md-3 control-label">Tipo
+															Sanguíneo</label>
+														<div class="col-md-3">
+															<h:selectOneMenu id="tipoSanguineo"
+																value="#{pacienteBean.paciente.tipoSanguineo}"
+																required="true" requiredMessage="" class="form-control">
+																<f:selectItem itemValue="" itemLabel="Selecione..." />
+																<f:selectItem itemValue="A+" itemLabel="A+" />
+																<f:selectItem itemValue="A-" itemLabel="A-" />
+																<f:selectItem itemValue="B+" itemLabel="B+" />
+																<f:selectItem itemValue="B-" itemLabel="B-" />
+																<f:selectItem itemValue="AB+" itemLabel="AB+" />
+																<f:selectItem itemValue="AB-" itemLabel="AB-" />
+																<f:selectItem itemValue="O+" itemLabel="O+" />
+																<f:selectItem itemValue="O-" itemLabel="O-" />
+															</h:selectOneMenu>
+														</div>
+													</div>
 												</div>
+												<!--/panel content-->
 											</div>
 										</div>
+										<!--/panel-->
+										<div class="panel panel-primary">
+											<div class="panel-heading" role="tab" id="dadosEndereco">
+												<div class="panel-title">
+													<i class="glyphicon glyphicon-map-marker"></i> Endereço <a
+														role="button" data-toggle="collapse"
+														data-parent="#accordion" href="#collapseTwo"
+														aria-expanded="true" aria-controls="collapseTwo"> <i
+														class="glyphicon glyphicon-chevron-down pull-right"></i>
+													</a>
+												</div>
+											</div>
+											<div id="collapseTwo" class="panel-collapse collapse in"
+												role="tabpanel" aria-labelledby="dadosEndereco">
+												<div class="panel-body">
+													<div class="form-group">
+														<label for="inputPassword1" class="col-md-3 control-label">Rua</label>
+														<div class="col-md-9">
+															<div class="input-group">
+																<span class="input-group-addon" id="basic-addon1"><i
+																	class="fa fa-envelope" /></span>
+																<h:inputText type="email"
+																	value="#{pacienteBean.paciente.rua}"
+																	class="form-control" id="inputRua" />
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label for="inputPassword1" class="col-md-3 control-label">Bairro</label>
+														<div class="col-md-9">
+															<div class="input-group">
+																<span class="input-group-addon" id="basic-addon1"><i
+																	class="fa fa-envelope" /></span>
+																<h:inputText type="email"
+																	value="#{pacienteBean.paciente.bairro}"
+																	class="form-control" id="inputBairro" />
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label for="inputPassword1" class="col-md-3 control-label">CEP</label>
+														<div class="col-md-3">
+															<div class="input-group">
+																<span class="input-group-addon" id="basic-addon1"><i
+																	class="fa fa-envelope" /></span>
+																<h:inputText type="email"
+																	value="#{pacienteBean.paciente.cep}"
+																	class="form-control" id="inputCep" />
+															</div>
+														</div>
+														<label for="inputPassword1" class="col-md-3 control-label">Estado</label>
+														<div class="col-md-3">
+															<h:selectOneMenu id="estado"
+																value="#{pacienteBean.paciente.estado}" required="true"
+																class="form-control">
+																<f:selectItem itemValue="" itemLabel="Selecione..." />
+																<f:selectItem itemValue="AC" itemLabel="Acre" />
+																<f:selectItem itemValue="AL" itemLabel="Alagoas" />
+																<f:selectItem itemValue="AM" itemLabel="Amazonas" />
+																<f:selectItem itemValue="AP" itemLabel="Amapá" />
+																<f:selectItem itemValue="BA" itemLabel="Bahia" />
+																<f:selectItem itemValue="CE" itemLabel="Ceará" />
+																<f:selectItem itemValue="DF"
+																	itemLabel="Distrito Federal" />
+																<f:selectItem itemValue="ES" itemLabel="Espírito Santo" />
+																<f:selectItem itemValue="GO" itemLabel="Goiás" />
+																<f:selectItem itemValue="MA" itemLabel="Maranhão" />
+																<f:selectItem itemValue="MG" itemLabel="Minas Gerais" />
+																<f:selectItem itemValue="MS"
+																	itemLabel="Mato Grosso do Sul" />
+																<f:selectItem itemValue="MT" itemLabel="Mato Grosso" />
+																<f:selectItem itemValue="PA" itemLabel="Pará" />
+																<f:selectItem itemValue="PB" itemLabel="Paraíba" />
+																<f:selectItem itemValue="PE" itemLabel="Pernambuco" />
+																<f:selectItem itemValue="PI" itemLabel="Piauí" />
+																<f:selectItem itemValue="PR" itemLabel="Paraná" />
+																<f:selectItem itemValue="RJ" itemLabel="Rio de Janeiro" />
+																<f:selectItem itemValue="RN"
+																	itemLabel="Rio Grande do Norte" />
+																<f:selectItem itemValue="RO" itemLabel="Rondônia" />
+																<f:selectItem itemValue="RR" itemLabel="Roraima" />
+																<f:selectItem itemValue="RS"
+																	itemLabel="Rio Grande do Sul" />
+																<f:selectItem itemValue="SC" itemLabel="Santa Catarina" />
+																<f:selectItem itemValue="SE" itemLabel="Sergipe" />
+																<f:selectItem itemValue="SP" itemLabel="São Paulo" />
+																<f:selectItem itemValue="TO" itemLabel="Tocantins" />
+															</h:selectOneMenu>
+														</div>
+													</div>
+												</div>
+												<!--/panel content-->
+											</div>
+										</div>
+										<!--/panel-->
+										<!--/panel-->
+										<div class="panel panel-primary">
+											<div class="panel-heading" role="tab" id="dadosContato">
+												<div class="panel-title">
+													<i class="glyphicon glyphicon-phone-alt"></i> Contato <a
+														role="button" data-toggle="collapse"
+														data-parent="#accordion" href="#collapseThree"
+														aria-expanded="true" aria-controls="collapseThree"> <i
+														class="glyphicon glyphicon-chevron-down pull-right"></i>
+													</a>
+												</div>
+											</div>
+											<div id="collapseThree" class="panel-collapse collapse in"
+												role="tabpanel" aria-labelledby="dadosContato">
+												<div class="panel-body">
+													<div class="form-group">
+														<label for="inputPassword1" class="col-md-3 control-label">Telefone</label>
+														<div class="col-md-3">
+															<div class="input-group">
+																<span class="input-group-addon" id="basic-addon1"><i
+																	class="fa fa-envelope" /></span>
+																<h:inputText type="email"
+																	value="#{pacienteBean.paciente.telefone}"
+																	class="form-control" id="inputTelefone" />
+															</div>
+														</div>
+														<label for="inputPassword1" class="col-md-3 control-label">Celular</label>
+														<div class="col-md-3">
+															<div class="input-group">
+																<span class="input-group-addon" id="basic-addon1"><i
+																	class="fa fa-envelope" /></span>
+																<h:inputText type="email"
+																	value="#{pacienteBean.paciente.celular}"
+																	class="form-control" id="inputCelular" />
+															</div>
+														</div>
+													</div>
+												</div>
+												<!--/panel content-->
+											</div>
+										</div>
+										<!--/panel-->
 										<div class="form-group">
 											<div class="col-md-12">
 												<h:commandButton action="#{pacienteBean.salvar}"
@@ -238,14 +462,19 @@
 		</div>
 		<!--/row-->
 		<!-- /upper section -->
-		<footer><p><i class="fa fa-copyright"></i> Guilherme Scha Vieira - 2015</p></footer>
+		<footer>
+		<p>
+			<i class="fa fa-copyright"></i> Guilherme Scha Vieira - 2015
+		</p>
+		</footer>
 
 	</div>
 	<!--/container-->
 	<!-- /Main -->
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="../resources/js/bootstrap.min.js"></script>
 </h:body>

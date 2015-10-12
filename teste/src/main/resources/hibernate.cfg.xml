@@ -15,6 +15,7 @@
 
 		<mapping class="br.com.hemocloud.usuario.Usuario"/> 
 		<mapping class="br.com.hemocloud.paciente.Paciente"/> 
+		<mapping class="br.com.hemocloud.triagem.Triagem"/> 
 
 	</session-factory>
 </hibernate-configuration>
