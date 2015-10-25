@@ -1,10 +1,8 @@
 package br.com.hemocloud.paciente;
 
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 @ManagedBean(name="pacienteBean")
 @RequestScoped
@@ -13,6 +11,7 @@ public class PacienteBean {
 	private Paciente paciente = new Paciente();
 	private List<Paciente> lista;
 	private String destinosalvar;
+	private boolean somentePesquisa;
 	
 	public String novo() {
 		this.destinosalvar = "pacientes";
@@ -22,7 +21,13 @@ public class PacienteBean {
 	}
 	
 	public String editar() {
-		return "pacientes";
+		this.setSomentePesquisa(false);
+		return "paciente";
+	}
+	
+	public String visualizar() {
+		this.setSomentePesquisa(true);
+		return "paciente";
 	}
 	
 	public String salvar() {
@@ -70,6 +75,14 @@ public class PacienteBean {
 
 	public void setDestinosalvar(String destinosalvar) {
 		this.destinosalvar = destinosalvar;
+	}
+
+	public boolean isSomentePesquisa() {
+		return somentePesquisa;
+	}
+
+	public void setSomentePesquisa(boolean somentePesquisa) {
+		this.somentePesquisa = somentePesquisa;
 	}
 	
 }
