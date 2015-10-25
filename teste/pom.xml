@@ -4,12 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>javaparaweb</groupId>
-  <artifactId>teste</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>hemocloud</artifactId>
+  <version>0.1.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>Teste</name>
-  <description>Primeiro projeto com JavaServer Faces</description>
+  <name>HemoCloud</name>
   <build>
     <plugins>
       <plugin>
@@ -101,4 +99,6 @@
 			<version>8.0.26</version>
 		</dependency>
     </dependencies>
+    <description>Protótipo utilizado para o trabalho 'HemoCloud: Um Sistema para Comparação de Desempenho entre Banco de Dados como Serviço para Sistemas de Saúde'.</description>
+    <groupId>tcc</groupId>
 </project>

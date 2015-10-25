@@ -1,0 +1,1452 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- Bootstrap -->
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="font-awesome.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="callout.css"></h:outputStylesheet>
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>HemoCloud - Pacientes</title>
+
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</h:head>
+<h:body>
+	<!-- Header -->
+	<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="icon-toggle"></span>
+				</button>
+				<a class="navbar-brand" href="#"><i class="fa fa-cloud"></i>
+					HemoCloud</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+
+					<li class="dropdown"><a class="dropdown-toggle" role="button"
+						data-toggle="dropdown" href="#"> <i
+							class="glyphicon glyphicon-user"></i> <h:outputText
+								value=" #{request.userPrincipal.name}" /> <span class="caret"></span></a>
+						<ul id="g-account-menu" class="dropdown-menu" role="menu">
+							<li><a href="#">My Profile</a></li>
+							<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+								<li><a href="../admin/principal.jsf"><i
+										class="glyphicon glyphicon-lock"></i> Área Administrativa</a></li>
+							</sec:ifAnyGranted>
+							<li><a
+								href="#{request.contextPath}/j_spring_security_logout"><i
+									class="glyphicon glyphicon-lock"></i> Logout</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /Header -->
+
+	<!-- Main -->
+	<div class="container">
+
+		<!-- upper section -->
+		<div class="row">
+			<div class="col-sm-3">
+				<!-- left -->
+				<h3>
+					<i class="glyphicon glyphicon-dashboard"></i> Painel do Usuário
+				</h3>
+				<hr />
+
+				<ul class="nav nav-stacked">
+					<li><a href="dashboard.jsf"><i
+							class="glyphicon glyphicon-dashboard"></i> Painel do Usuário</a></li>
+					<li><a href="pacientes.jsf"><i class="fa fa-users"></i>
+							Pacientes</a></li>
+					<li><a href="triagens.jsf"><i
+							class="glyphicon glyphicon-list-alt"></i> Triagens</a></li>
+				</ul>
+
+				<hr />
+
+			</div>
+			<!-- /span-3 -->
+			<div class="col-sm-9">
+
+				<div class="row">
+					<div class="col-md-8">
+						<!-- column 2 -->
+						<h2>
+							<i class="glyphicon glyphicon-list-alt"></i> Cadastro de Triagem
+						</h2>
+					</div>
+				</div>
+
+
+				<hr />
+
+				<div class="row">
+
+					<!-- 					center-right -->
+					<div class="col-md-12">
+						<div id="alertCadastroPaciente"
+							class="alert alert-success collapse" role="alert">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							Paciente cadastrado com sucesso.
+						</div>
+
+						<h:form id="cadastroTriagem">
+							<h:messages styleClass="alert alert-danger" />
+							<div class="control-group">
+								<label class="col-md-2 control-label">Paciente</label>
+								<div class="controls col-md-4">
+									<h:inputText type="text"
+										value="#{triagemBean.triagem.paciente.nome}"
+										class="form-control" id="nomePaciente" readonly="true" />
+								</div>
+								<label class="col-md-3 control-label">Data/Hora Cadastro</label>
+								<div class="controls col-md-3">
+									<h:inputText type="text"
+										value="#{triagemBean.triagem.dataCadastro}"
+										class="form-control" id="dataCadastro" readonly="true">
+
+										<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss" />
+									</h:inputText>
+								</div>
+								<br /> <br />
+							</div>
+
+							<div class="tab-content">
+								<br />
+								<div class="form-group">
+									<label class="col-md-9 control-label">Já doou sangue?</label>
+									<div class="controls col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo001 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo001" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0001"
+									rendered="#{triagemBean.triagem.campo001}">
+									<div class="control-group">
+										<label for="inputPassword1" class="col-md-3 control-label">Há
+											quanto tempo?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo002}" class="form-control"
+												id="campo002" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="form-group">
+										<label for="inputPassword1" class="col-md-9 control-label">
+											Sentiu-se mal?</label>
+										<div class="col-md-3">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo003 eq '1' ? 'Não' : 'Sim'}"
+												class="form-control" id="campo003" readonly="true" />
+										</div>
+										<br /> <br />
+									</div>
+									<h:panelGroup id="fieldset0002"
+										rendered="#{triagemBean.triagem.campo003}">
+										<div class="control-group">
+											<label class="col-md-3 control-label">O que houve?</label>
+											<div class="controls col-md-9">
+												<h:inputText type="text"
+													value="#{triagemBean.triagem.campo004}"
+													class="form-control" id="campo004" readonly="true" />
+											</div>
+											<br /> <br /> <br />
+										</div>
+									</h:panelGroup>
+									<div class="form-group">
+										<label for="inputPassword1" class="col-md-9 control-label">
+											Já foi recusado ou apresentou testes alterados em alguma
+											doação?</label>
+										<div class="col-md-3">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo005 eq '1' ? 'Não' : 'Sim'}"
+												class="form-control" id="campo005" readonly="true" />
+										</div>
+										<br /> <br />
+									</div>
+									<h:panelGroup id="fieldset0003"
+										rendered="#{triagemBean.triagem.campo005}">
+										<div class="control-group">
+											<label class="col-md-3 control-label">Qual o motivo?</label>
+											<div class="controls col-md-9">
+												<h:inputText type="text"
+													value="#{triagemBean.triagem.campo006}"
+													class="form-control" id="campo006" readonly="true" />
+											</div>
+											<br /> <br />
+										</div>
+									</h:panelGroup>
+								</h:panelGroup>
+								<div class="form-group">
+									<label for="inputPassword1" class="col-md-9 control-label">
+										Está doando para fazer algum exame?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo007 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo007" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0004"
+									rendered="#{triagemBean.triagem.campo007}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Qual?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo008}" class="form-control"
+												id="campo008" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label for="inputPassword1" class="col-md-9 control-label">
+										Está alimentado?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo009 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo009" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0005"
+									rendered="#{triagemBean.triagem.campo009}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Que tipo de
+											alimento ingeriu?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo010}" class="form-control"
+												id="campo010" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="control-group">
+										<label class="col-md-3 control-label">Há quanto tempo?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo011}" class="form-control"
+												id="campo011" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label for="inputPassword1" class="col-md-9 control-label">
+										Dormiu bem?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo012 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo012" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label for="inputPassword1" class="col-md-9 control-label">
+										Está descansado?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo013 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo013" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label for="inputPassword1" class="col-md-9 control-label">
+										Está se sentindo bem?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo014 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo014" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label for="inputPassword1" class="col-md-9 control-label">
+										Perdeu peso recentemente sem motivo aparente ou fez dieta ou
+										tomou remédio?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo015 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo015" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0006"
+									rendered="#{triagemBean.triagem.campo015}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo016}" class="form-control"
+												id="campo016" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="control-group">
+									<label class="col-md-3 control-label">Quando ingeriu
+										bebida alcóolica pela última vez?</label>
+									<div class="controls col-md-9">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo017}" class="form-control"
+											id="campo017" readonly="true" />
+									</div>
+									<br /> <br /> <br />
+								</div>
+								<div class="control-group">
+									<label class="col-md-3 control-label">Bebeu o que?</label>
+									<div class="controls col-md-9">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo018}" class="form-control"
+											id="campo018" readonly="true" />
+									</div>
+									<br /> <br /> <br />
+								</div>
+								<div class="control-group">
+									<label class="col-md-3 control-label">Quanto?</label>
+									<div class="controls col-md-9">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo019}" class="form-control"
+											id="campo019" readonly="true" />
+									</div>
+									<br /> <br /> <br />
+								</div>
+								<div class="form-group">
+									<label for="inputPassword1" class="col-md-9 control-label">
+										Tem hábito de tomar bebida alcoólica?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo020 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo020" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0007"
+									rendered="#{triagemBean.triagem.campo020}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Que tipo?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo021}" class="form-control"
+												id="campo021" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quanto e com que
+											freqüência?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo022}" class="form-control"
+												id="campo022" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Está grávida?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo023 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo023" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Está amamentando?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo024 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo024" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Teve aborto ou
+										parto nos últimos 3 meses?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo025 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo025" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Está menstruada?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo026 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo026" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">O fluxo menstrual
+										está muito intenso?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo027 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo027" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="control-group">
+									<label class="col-md-3 control-label">Quando foi a
+										última menstruação?</label>
+									<div class="controls col-md-9">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo028}" class="form-control"
+											id="campo028" readonly="true" />
+									</div>
+									<br /> <br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Tomou alguma
+										vacina recentemente?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo029 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo029" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0008"
+									rendered="#{triagemBean.triagem.campo029}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Qual?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo030}" class="form-control"
+												id="campo030" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Usou algum
+										medicamento recentemente?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo031 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo031" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0009"
+									rendered="#{triagemBean.triagem.campo031}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Qual?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo032}" class="form-control"
+												id="campo032" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo033}" class="form-control"
+												id="campo033" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="control-group">
+										<label class="col-md-3 control-label">Por que?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo034}" class="form-control"
+												id="campo034" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Está fazendo
+										tratamento de pele ou fez nos últimos 30 dias?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo035 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo035" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0010"
+									rendered="#{triagemBean.triagem.campo035}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Que tipo de
+											produto usou ou está usando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo036}" class="form-control"
+												id="campo036" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Tem alergia?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo037 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo037" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0011"
+									rendered="#{triagemBean.triagem.campo037}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">A que?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo038}" class="form-control"
+												id="campo038" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando foi a
+											última crise?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo039}" class="form-control"
+												id="campo039" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="form-group">
+										<label class="col-md-9 control-label">Faz tratamento?</label>
+										<div class="col-md-3">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo040 eq '1' ? 'Não' : 'Sim'}"
+												class="form-control" id="campo040" readonly="true" />
+										</div>
+										<br /> <br />
+									</div>
+									<h:panelGroup id="fieldset0012"
+										rendered="#{triagemBean.triagem.campo040}">
+										<div class="control-group">
+											<label class="col-md-3 control-label">Qual?</label>
+											<div class="controls col-md-9">
+												<h:inputText type="text"
+													value="#{triagemBean.triagem.campo041}"
+													class="form-control" id="campo041" readonly="true" />
+											</div>
+											<br /> <br /> <br />
+										</div>
+									</h:panelGroup>
+								</h:panelGroup>
+								<!-- 								</div> -->
+								<!-- 								<div id="menu9" class="tab-pane fade"> -->
+								<div class="form-group">
+									<label class="col-md-9 control-label">Esteve gripado,
+										resfriado, com dor de garganta, febre ou diarréia, na última
+										semana?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo042 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo042" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0013"
+									rendered="#{triagemBean.triagem.campo042}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo043}" class="form-control"
+												id="campo043" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<!-- 								</div> -->
+								<!-- 								<div id="menu10" class="tab-pane fade"> -->
+								<div class="form-group">
+									<label class="col-md-9 control-label">Fez tratamento
+										dentário na última semana?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo044 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo044" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0014"
+									rendered="#{triagemBean.triagem.campo044}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Qual?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo045}" class="form-control"
+												id="campo045" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<!-- 								</div> -->
+								<!-- 								<div id="menu11" class="tab-pane fade"> -->
+								<div class="form-group">
+									<label class="col-md-9 control-label">Já foi operado?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo046 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo046" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0015"
+									rendered="#{triagemBean.triagem.campo046}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo047}" class="form-control"
+												id="campo047" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="control-group">
+										<label class="col-md-3 control-label">De que?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo048}" class="form-control"
+												id="campo048" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="form-group">
+										<label class="col-md-9 control-label">Precisou tomar
+											sangue?</label>
+										<div class="col-md-3">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo049 eq '1' ? 'Não' : 'Sim'}"
+												class="form-control" id="campo049" readonly="true" />
+										</div>
+										<br /> <br />
+									</div>
+									<div class="form-group">
+										<label class="col-md-9 control-label">Já voltou às
+											suas atividades normais?</label>
+										<div class="col-md-3">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo050 eq '1' ? 'Não' : 'Sim'}"
+												class="form-control" id="campo050" readonly="true" />
+										</div>
+										<br /> <br />
+									</div>
+								</h:panelGroup>
+								<!-- 								</div> -->
+								<!-- 								<div id="menu12" class="tab-pane fade"> -->
+								<div class="form-group">
+									<label class="col-md-9 control-label">Tem ou teve
+										convulsões?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo051 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo051" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0016"
+									rendered="#{triagemBean.triagem.campo051}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo052}" class="form-control"
+												id="campo052" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<!-- 								</div> -->
+								<!-- 								<div id="menu13" class="tab-pane fade"> -->
+								<div class="form-group">
+									<label class="col-md-9 control-label">Tem ou teve
+										problema do coração, rins, pulmões, fígado, estômago,
+										intestino, pele, psiquiátrico, de coagulação?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo053 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo053" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0017"
+									rendered="#{triagemBean.triagem.campo053}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Qual?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo054}" class="form-control"
+												id="campo054" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Tem/teve anemia,
+										diabetes, reumatismo?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo055 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo055" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Já teve alguma
+										doença grave?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo056 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo056" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0018"
+									rendered="#{triagemBean.triagem.campo056}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Qual?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo057}" class="form-control"
+												id="campo057" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<!-- 								</div> -->
+								<!-- 								<div id="menu14" class="tab-pane fade"> -->
+								<div class="form-group">
+									<label class="col-md-9 control-label">Tem doença de
+										Chagas?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo058 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo058" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Conhece
+										inseto/barbeiro que transmite a doença de Chagas?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo059 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo059" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Já foi picado?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo060 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo060" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Morou em casa de
+										pau a pique?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo061 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo061" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Teve malária?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo062 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo062" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0019"
+									rendered="#{triagemBean.triagem.campo062}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo063}" class="form-control"
+												id="campo063" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="control-group">
+										<label class="col-md-3 control-label">Fez tratamento e
+											foi considerado (a) curado (a) há quanto tempo?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo064}" class="form-control"
+												id="campo064" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Viajou nos
+										últimos 6 meses?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo065 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo065" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0020"
+									rendered="#{triagemBean.triagem.campo065}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Para onde?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo066}" class="form-control"
+												id="campo066" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="control-group">
+										<label class="col-md-3 control-label">Se a viagem foi
+											para área endêmica para malária, há quanto tempo voltou?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo067}" class="form-control"
+												id="campo067" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Já morou em outra
+										estado/cidade?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo068 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo068" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0021"
+									rendered="#{triagemBean.triagem.campo068}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Se for região
+											endêmica para malária, há quanto tempo se mudou?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo069}" class="form-control"
+												id="campo069" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Teve tuberculose?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo070 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo070" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Teve Hanseníase?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo071 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo071" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Teve filariose?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo072 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo072" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Recebeu hormônio
+										do crescimento?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo073 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo073" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0022"
+									rendered="#{triagemBean.triagem.campo073}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo074}" class="form-control"
+												id="campo074" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="form-group">
+										<label class="col-md-9 control-label">Lembra-se do
+											nome/marca?</label>
+										<div class="col-md-3">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo075 eq '1' ? 'Não' : 'Sim'}"
+												class="form-control" id="campo075" readonly="true" />
+										</div>
+										<br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Recebeu
+										transfusão de sangue?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo076 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo076" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0023"
+									rendered="#{triagemBean.triagem.campo076}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo077}" class="form-control"
+												id="campo077" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="control-group">
+										<label class="col-md-3 control-label">Por que?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo078}" class="form-control"
+												id="campo078" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Já teve hepatite
+										ou icterícia?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo079 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo079" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0024"
+									rendered="#{triagemBean.triagem.campo079}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo080}" class="form-control"
+												id="campo080" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Teve contato
+										íntimo com pessoas que tiveram hepatite no último ano?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo081 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo081" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+							</div>
+							<div id="menu18" class="tab-pane fade">
+								<div class="form-group">
+									<label class="col-md-9 control-label">Fez tatuagem a
+										agulha e a tinta?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo082 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo082" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0025"
+									rendered="#{triagemBean.triagem.campo082}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo083}" class="form-control"
+												id="campo083" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Fez acupuntura?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo084 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo084" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0026"
+									rendered="#{triagemBean.triagem.campo084}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo085}" class="form-control"
+												id="campo085" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="form-group">
+										<label class="col-md-9 control-label">Com profissional
+											registrado?</label>
+										<div class="col-md-3">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo086 eq '1' ? 'Não' : 'Sim'}"
+												class="form-control" id="campo086" readonly="true" />
+										</div>
+										<br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Fez piercing com
+										agulha?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo087 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo087" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0027"
+									rendered="#{triagemBean.triagem.campo087}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo088}" class="form-control"
+												id="campo088" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Sofreu algum
+										contato acidental envolvendo cortes na sua pele com
+										instrumentos contaminados com sangue de outra pessoa, como por
+										exemplo agulhas, bisturi?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo089 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo089" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Teve contato
+										acidental de mucosas (olho, boca) com material biológico
+										(sangue e secreções)?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo090 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo090" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+							</div>
+							<div id="menu20" class="tab-pane fade">
+								<div class="form-group">
+									<label class="col-md-9 control-label">Já teve alguma
+										doença venérea?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo091 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo091" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0028"
+									rendered="#{triagemBean.triagem.campo091}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Qual?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo092}" class="form-control"
+												id="campo092" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo093}" class="form-control"
+												id="campo093" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="control-group">
+										<label class="col-md-3 control-label">Fez tratamento e
+											foi considerado (a) curado(a) há quanto tempo?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo094}" class="form-control"
+												id="campo094" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Teve relação
+										sexual com profissional do sexo?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo095 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo095" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0029"
+									rendered="#{triagemBean.triagem.campo095}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo096}" class="form-control"
+												id="campo096" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Teve relação
+										sexual com parceiro ocasional, ou seja, "ficou e manteve
+										relações sexuais"?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo097 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo097" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Teve relação
+										sexual com parceiro desconhecido?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo098 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo098" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Tem parceiro
+										fixo?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo099 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo099" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0030"
+									rendered="#{triagemBean.triagem.campo099}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quantos?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo100}" class="form-control"
+												id="campo100" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="control-group">
+									<label class="col-md-3 control-label">Quantos parceiros
+										teve nos últimos 12 meses?</label>
+									<div class="controls col-md-9">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo101}" class="form-control"
+											id="campo101" readonly="true" />
+									</div>
+									<br /> <br /> <br />
+								</div>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Teve ou tem
+										relações sexuais com pessoa do mesmo sexo que você?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo102 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo102" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0031"
+									rendered="#{triagemBean.triagem.campo102}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo103}" class="form-control"
+												id="campo103" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Usou ou usa algum
+										tipo de droga?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo104 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo104" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0032"
+									rendered="#{triagemBean.triagem.campo104}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Qual?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo105}" class="form-control"
+												id="campo105" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo106}" class="form-control"
+												id="campo106" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Você já deu ou
+										recebeu droga ou dinheiro para manter relações sexuais?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo107 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo107" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0033"
+									rendered="#{triagemBean.triagem.campo107}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo108}" class="form-control"
+												id="campo108" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Já esteve preso
+										ou em clínicas de recuperação?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo109 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo109" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0034"
+									rendered="#{triagemBean.triagem.campo109}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando e por
+											quanto tempo?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo110}" class="form-control"
+												id="campo110" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">E seu parceiro já
+										esteve ou está preso ou em clínicas de recuperação?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo111 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo111" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0035"
+									rendered="#{triagemBean.triagem.campo111}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando e por
+											quanto tempo?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo112}" class="form-control"
+												id="campo112" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Teve ou tem
+										contato sexual com pessoa suspeita de ter o vírus da Aids?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo113 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo113" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0036"
+									rendered="#{triagemBean.triagem.campo113}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo114}" class="form-control"
+												id="campo114" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Já teve ou tem
+										relação sexual com pessoa que recebeu sangue ou faz
+										hemodiálise?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo115 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo115" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0037"
+									rendered="#{triagemBean.triagem.campo115}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo116}" class="form-control"
+												id="campo116" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Tem ou teve
+										relação com parceiro que já usou ou usa droga?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo117 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo117" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<h:panelGroup id="fieldset0038"
+									rendered="#{triagemBean.triagem.campo117}">
+									<div class="control-group">
+										<label class="col-md-3 control-label">Quando?</label>
+										<div class="controls col-md-9">
+											<h:inputText type="text"
+												value="#{triagemBean.triagem.campo118}" class="form-control"
+												id="campo118" readonly="true" />
+										</div>
+										<br /> <br /> <br />
+									</div>
+								</h:panelGroup>
+								<div class="form-group">
+									<label class="col-md-9 control-label">Tem ou teve
+										relação com parceiro que já teve hepatite, doença venérea?</label>
+									<div class="col-md-3">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo119 eq '1' ? 'Não' : 'Sim'}"
+											class="form-control" id="campo119" readonly="true" />
+									</div>
+									<br /> <br />
+								</div>
+								<div class="control-group">
+									<label class="col-md-3 control-label">E a vida sexual
+										do seu parceiro? Tem mais alguma informação importante sobre
+										ela?</label>
+									<div class="controls col-md-9">
+										<h:inputText type="text"
+											value="#{triagemBean.triagem.campo120}" class="form-control"
+											id="campo120" readonly="true" />
+									</div>
+									<br /> <br /> <br />
+								</div>
+								<!-- 								</div> -->
+							</div>
+
+						</h:form>
+
+					</div>
+				</div>
+				<!-- 				/row -->
+			</div>
+			<!--/col-span-9-->
+
+		</div>
+		<!--/row-->
+		<!-- /upper section -->
+		<footer>
+		<p>
+			<i class="fa fa-copyright"></i> Guilherme Scha Vieira - 2015
+		</p>
+		</footer>
+
+	</div>
+	<!--/container-->
+	<!-- /Main -->
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="../resources/js/bootstrap.min.js"></script>
+</h:body>
+</html>

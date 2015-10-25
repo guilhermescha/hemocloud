@@ -12,7 +12,7 @@
 	<h:outputStylesheet library="css" name="font-awesome.css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="callout.css"></h:outputStylesheet>
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<title>HemoCloud - Pacientes</title>
+	<title>HemoCloud - Cadastro de Triagens</title>
 
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -171,6 +171,7 @@
 													name="options0001" id="option0001_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0001_value" name="option0001_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -179,9 +180,8 @@
 											<label for="inputPassword1" class="col-md-3 control-label">Há
 												quanto tempo?</label>
 											<div class="controls col-md-9">
-												<!-- 										<h:inputText type="text" value="#{usuarioBean.usuario.nome}" -->
-												<!-- 											class="form-control" id="inputNome" /> -->
-												<input type="text" class="form-control" />
+											<h:inputText type="text" value="#{triagemBean.triagem.campo002}"
+												class="form-control" id="campo002" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -196,6 +196,7 @@
 														name="options0002" id="option0002_2" /> Não
 													</label>
 												</div>
+												<input type="hidden" class="form-control" id="option0002_value" name="option0002_value"/>
 											</div>
 											<br /> <br />
 										</div>
@@ -203,9 +204,8 @@
 											<div class="control-group">
 												<label class="col-md-3 control-label">O que houve?</label>
 												<div class="controls col-md-9">
-													<!-- 										<h:inputText type="text" value="#{usuarioBean.usuario.nome}" -->
-													<!-- 											class="form-control" id="inputNome" /> -->
-													<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo004}"
+													class="form-control" id="campo004" />
 												</div>
 												<br /> <br /> <br />
 											</div>
@@ -222,6 +222,7 @@
 														name="options0003" id="option0003_2" /> Não
 													</label>
 												</div>
+												<input type="hidden" class="form-control" id="option0003_value" name="option0003_value"/>
 											</div>
 											<br /> <br />
 										</div>
@@ -229,9 +230,8 @@
 											<div class="control-group">
 												<label class="col-md-3 control-label">Qual o motivo?</label>
 												<div class="controls col-md-9">
-													<!-- 										<h:inputText type="text" value="#{usuarioBean.usuario.nome}" -->
-													<!-- 											class="form-control" id="inputNome" /> -->
-													<input type="text" class="form-control" />
+													<h:inputText type="text" value="#{triagemBean.triagem.campo006}"
+													class="form-control" id="campo006" />
 												</div>
 												<br /> <br />
 											</div>
@@ -250,6 +250,7 @@
 													name="options0004" id="option0004_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0004_value" name="option0004_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -257,7 +258,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Qual?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo008}"
+													class="form-control" id="campo008" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -275,6 +277,7 @@
 													name="options0005" id="option0005_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0005_value" name="option0005_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -283,7 +286,8 @@
 											<label class="col-md-3 control-label">Que tipo de
 												alimento ingeriu?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo010}"
+													class="form-control" id="campo010" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -291,7 +295,8 @@
 											<label class="col-md-3 control-label">Há quanto
 												tempo?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo011}"
+													class="form-control" id="campo011" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -307,6 +312,7 @@
 													name="options0006" id="option0006_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0006_value" name="option0006_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -321,6 +327,7 @@
 													name="options0007" id="option0007_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0007_value" name="option0007_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -335,6 +342,7 @@
 													name="options0008" id="option0008_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0008_value" name="option0008_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -350,6 +358,7 @@
 													name="options0009" id="option0009_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0009_value" name="option0009_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -357,7 +366,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo016}"
+													class="form-control" id="campo016" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -368,21 +378,24 @@
 										<label class="col-md-3 control-label">Quando ingeriu
 											bebida alcóolica pela última vez?</label>
 										<div class="controls col-md-9">
-											<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo017}"
+													class="form-control" id="campo017" />
 										</div>
 										<br /> <br /> <br />
 									</div>
 									<div class="control-group">
 										<label class="col-md-3 control-label">Bebeu o que?</label>
 										<div class="controls col-md-9">
-											<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo018}"
+													class="form-control" id="campo018" />
 										</div>
 										<br /> <br /> <br />
 									</div>
 									<div class="control-group">
 										<label class="col-md-3 control-label">Quanto?</label>
 										<div class="controls col-md-9">
-											<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo019}"
+													class="form-control" id="campo019" />
 										</div>
 										<br /> <br /> <br />
 									</div>
@@ -397,6 +410,7 @@
 													name="options0010" id="option0010_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0010_value" name="option0010_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -404,7 +418,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Que tipo?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo021}"
+													class="form-control" id="campo021" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -412,7 +427,8 @@
 											<label class="col-md-3 control-label">Quanto e com
 												que freqüência?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo022}"
+													class="form-control" id="campo022" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -429,6 +445,7 @@
 													name="options0011" id="option0011_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0011_value" name="option0011_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -443,6 +460,7 @@
 													name="options0012" id="option0012_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0012_value" name="option0012_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -457,6 +475,7 @@
 													name="options0013" id="option0013_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0013_value" name="option0013_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -470,6 +489,7 @@
 													name="options0014" id="option0014_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0014_value" name="option0014_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -484,6 +504,7 @@
 													name="options0015" id="option0015_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0015_value" name="option0015_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -491,7 +512,8 @@
 										<label class="col-md-3 control-label">Quando foi a
 											última menstruação?</label>
 										<div class="controls col-md-9">
-											<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo028}"
+													class="form-control" id="campo028" />
 										</div>
 										<br /> <br /> <br />
 									</div>
@@ -508,6 +530,7 @@
 													name="options0016" id="option0016_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0016_value" name="option0016_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -515,7 +538,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Qual?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo030}"
+													class="form-control" id="campo030" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -533,6 +557,7 @@
 													name="options0017" id="option0017_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0017_value" name="option0017_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -540,21 +565,24 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Qual?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo032}"
+													class="form-control" id="campo032" />
 											</div>
 											<br /> <br /> <br />
 										</div>
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo033}"
+													class="form-control" id="campo033" />
 											</div>
 											<br /> <br /> <br />
 										</div>
 										<div class="control-group">
 											<label class="col-md-3 control-label">Por que?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo034}"
+													class="form-control" id="campo034" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -570,6 +598,7 @@
 													name="options0018" id="option0018_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0018_value" name="option0018_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -578,7 +607,8 @@
 											<label class="col-md-3 control-label">Que tipo de
 												produto usou ou está usando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo036}"
+													class="form-control" id="campo036" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -595,6 +625,7 @@
 													name="options0019" id="option0019_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0019_value" name="option0019_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -602,7 +633,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">A que?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo038}"
+													class="form-control" id="campo038" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -610,7 +642,8 @@
 											<label class="col-md-3 control-label">Quando foi a
 												última crise?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo039}"
+													class="form-control" id="campo039" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -624,6 +657,7 @@
 														name="options0020" id="option0020_2" /> Não
 													</label>
 												</div>
+												<input type="hidden" class="form-control" id="option0020_value" name="option0020_value"/>
 											</div>
 											<br /> <br />
 										</div>
@@ -631,7 +665,8 @@
 											<div class="control-group">
 												<label class="col-md-3 control-label">Qual?</label>
 												<div class="controls col-md-9">
-													<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo041}"
+													class="form-control" id="campo041" />
 												</div>
 												<br /> <br /> <br />
 											</div>
@@ -651,6 +686,7 @@
 													name="options0021" id="option0021_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0021_value" name="option0021_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -658,7 +694,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo043}"
+													class="form-control" id="campo043" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -676,6 +713,7 @@
 													name="options0022" id="option0022_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0022_value" name="option0022_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -683,7 +721,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Qual?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo045}"
+													class="form-control" id="campo045" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -700,6 +739,7 @@
 													name="options0023" id="option0023_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0023_value" name="option0023_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -707,14 +747,16 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo047}"
+													class="form-control" id="campo047" />
 											</div>
 											<br /> <br /> <br />
 										</div>
 										<div class="control-group">
 											<label class="col-md-3 control-label">De que?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo048}"
+													class="form-control" id="campo048" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -729,6 +771,7 @@
 														name="options0024" id="option0024_2" /> Não
 													</label>
 												</div>
+												<input type="hidden" class="form-control" id="option0024_value" name="option0024_value"/>
 											</div>
 											<br /> <br />
 										</div>
@@ -743,6 +786,7 @@
 														name="options0025" id="option0025_2" /> Não
 													</label>
 												</div>
+												<input type="hidden" class="form-control" id="option0025_value" name="option0025_value"/>
 											</div>
 											<br /> <br />
 										</div>
@@ -760,6 +804,7 @@
 													name="options0026" id="option0026_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0026_value" name="option0026_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -767,7 +812,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo052}"
+													class="form-control" id="campo052" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -786,6 +832,7 @@
 													name="options0027" id="option0027_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0027_value" name="option0027_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -793,7 +840,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Qual?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo054}"
+													class="form-control" id="campo054" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -809,6 +857,7 @@
 													name="options0028" id="option0028_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0028_value" name="option0028_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -823,6 +872,7 @@
 													name="options0029" id="option0029_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0029_value" name="option0029_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -830,7 +880,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Qual?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo057}"
+													class="form-control" id="campo057" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -848,6 +899,7 @@
 													name="options0030" id="option0030_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0030_value" name="option0030_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -862,6 +914,7 @@
 													name="options0031" id="option0031_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0031_value" name="option0031_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -875,6 +928,7 @@
 													name="options0032" id="option0032_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0032_value" name="option0032_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -889,6 +943,7 @@
 													name="options0033" id="option0033_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0033_value" name="option0033_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -902,6 +957,7 @@
 													name="options0034" id="option0034_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0034_value" name="option0034_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -909,7 +965,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo063}"
+													class="form-control" id="campo063" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -917,7 +974,8 @@
 											<label class="col-md-3 control-label">Fez tratamento
 												e foi considerado (a) curado (a) há quanto tempo?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo064}"
+													class="form-control" id="campo064" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -933,6 +991,7 @@
 													name="options0035" id="option0035_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0035_value" name="option0035_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -940,7 +999,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Para onde?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo066}"
+													class="form-control" id="campo066" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -948,7 +1008,8 @@
 											<label class="col-md-3 control-label">Se a viagem foi
 												para área endêmica para malária, há quanto tempo voltou?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo067}"
+													class="form-control" id="campo067" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -964,6 +1025,7 @@
 													name="options0036" id="option0036_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0036_value" name="option0036_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -972,7 +1034,8 @@
 											<label class="col-md-3 control-label">Se for região
 												endêmica para malária, há quanto tempo se mudou?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo069}"
+													class="form-control" id="campo069" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -988,6 +1051,7 @@
 													name="options0037" id="option0037_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0037_value" name="option0037_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1001,6 +1065,7 @@
 													name="options0038" id="option0038_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0038_value" name="option0038_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1014,6 +1079,7 @@
 													name="options0039" id="option0039_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0039_value" name="option0039_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1030,6 +1096,7 @@
 													name="options0040" id="option0040_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0040_value" name="option0040_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1037,7 +1104,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo074}"
+													class="form-control" id="campo074" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1052,6 +1120,7 @@
 														name="options0041" id="option0041_2" /> Não
 													</label>
 												</div>
+												<input type="hidden" class="form-control" id="option0041_value" name="option0041_value"/>
 											</div>
 											<br /> <br />
 										</div>
@@ -1069,6 +1138,7 @@
 													name="options0042" id="option0042_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0042_value" name="option0042_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1076,14 +1146,16 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo077}"
+													class="form-control" id="campo077" />
 											</div>
 											<br /> <br /> <br />
 										</div>
 										<div class="control-group">
 											<label class="col-md-3 control-label">Por que?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo078}"
+													class="form-control" id="campo078" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1101,6 +1173,7 @@
 													name="options0043" id="option0043_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0043_value" name="option0043_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1108,7 +1181,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo080}"
+													class="form-control" id="campo080" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1124,6 +1198,7 @@
 													name="options0044" id="option0044_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0044_value" name="option0044_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1140,6 +1215,7 @@
 													name="options0045" id="option0045_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0045_value" name="option0045_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1147,7 +1223,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo083}"
+													class="form-control" id="campo083" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1162,6 +1239,7 @@
 													name="options0046" id="option0046_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0046_value" name="option0046_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1169,7 +1247,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo085}"
+													class="form-control" id="campo085" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1184,6 +1263,7 @@
 														name="options0047" id="option0047_2" /> Não
 													</label>
 												</div>
+												<input type="hidden" class="form-control" id="option0047_value" name="option0047_value"/>
 											</div>
 											<br /> <br />
 										</div>
@@ -1199,6 +1279,7 @@
 													name="options0048" id="option0048_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0048_value" name="option0048_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1206,7 +1287,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo088}"
+													class="form-control" id="campo088" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1226,6 +1308,7 @@
 													name="options0049" id="option0049_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0049_value" name="option0049_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1241,6 +1324,7 @@
 													name="options0050" id="option0050_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0050_value" name="option0050_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1257,6 +1341,7 @@
 													name="options0051" id="option0051_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0051_value" name="option0051_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1264,14 +1349,16 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Qual?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo092}"
+													class="form-control" id="campo092" />
 											</div>
 											<br /> <br /> <br />
 										</div>
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo093}"
+													class="form-control" id="campo093" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1279,7 +1366,8 @@
 											<label class="col-md-3 control-label">Fez tratamento
 												e foi considerado (a) curado(a) há quanto tempo?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo094}"
+													class="form-control" id="campo094" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1295,6 +1383,7 @@
 													name="options0052" id="option0052_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0052_value" name="option0052_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1302,7 +1391,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo096}"
+													class="form-control" id="campo096" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1319,6 +1409,7 @@
 													name="options0053" id="option0053_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0053_value" name="option0053_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1333,6 +1424,7 @@
 													name="options0054" id="option0054_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0054_value" name="option0054_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1349,6 +1441,7 @@
 													name="options0055" id="option0055_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0055_value" name="option0055_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1356,7 +1449,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quantos?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo100}"
+													class="form-control" id="campo100" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1365,7 +1459,8 @@
 										<label class="col-md-3 control-label">Quantos
 											parceiros teve nos últimos 12 meses?</label>
 										<div class="controls col-md-9">
-											<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo101}"
+													class="form-control" id="campo101" />
 										</div>
 										<br /> <br /> <br />
 									</div>
@@ -1380,6 +1475,7 @@
 													name="options0056" id="option0056_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0056_value" name="option0056_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1387,7 +1483,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo103}"
+													class="form-control" id="campo103" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1405,6 +1502,7 @@
 													name="options0057" id="option0057_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0057_value" name="option0057_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1412,14 +1510,16 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Qual?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo105}"
+													class="form-control" id="campo105" />
 											</div>
 											<br /> <br /> <br />
 										</div>
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo106}"
+													class="form-control" id="campo106" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1435,6 +1535,7 @@
 													name="options0058" id="option0058_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0058_value" name="option0058_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1442,7 +1543,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo108}"
+													class="form-control" id="campo108" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1458,6 +1560,7 @@
 													name="options0059" id="option0059_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0059_value" name="option0059_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1466,7 +1569,8 @@
 											<label class="col-md-3 control-label">Quando e por
 												quanto tempo?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo110}"
+													class="form-control" id="campo110" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1482,6 +1586,7 @@
 													name="options0060" id="option0060_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0060_value" name="option0060_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1490,7 +1595,8 @@
 											<label class="col-md-3 control-label">Quando e por
 												quanto tempo?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo112}"
+													class="form-control" id="campo112" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1508,6 +1614,7 @@
 													name="options0061" id="option0061_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0061_value" name="option0061_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1515,7 +1622,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo114}"
+													class="form-control" id="campo114" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1532,6 +1640,7 @@
 													name="options0062" id="option0062_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0062_value" name="option0062_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1539,7 +1648,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo116}"
+													class="form-control" id="campo116" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1555,6 +1665,7 @@
 													name="options0063" id="option0063_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0063_value" name="option0063_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1562,7 +1673,8 @@
 										<div class="control-group">
 											<label class="col-md-3 control-label">Quando?</label>
 											<div class="controls col-md-9">
-												<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo118}"
+													class="form-control" id="campo118" />
 											</div>
 											<br /> <br /> <br />
 										</div>
@@ -1578,6 +1690,7 @@
 													name="options0064" id="option0064_2" /> Não
 												</label>
 											</div>
+											<input type="hidden" class="form-control" id="option0064_value" name="option0064_value"/>
 										</div>
 										<br /> <br />
 									</div>
@@ -1586,7 +1699,8 @@
 											do seu parceiro? Tem mais alguma informação importante sobre
 											ela?</label>
 										<div class="controls col-md-9">
-											<input type="text" class="form-control" />
+												<h:inputText type="text" value="#{triagemBean.triagem.campo120}"
+													class="form-control" id="campo120" />
 										</div>
 										<br /> <br /> <br />
 									</div>
@@ -1646,231 +1760,465 @@
 	<script>
 		$("#option0001_1").click(function() {
 			$("#fieldset0001").prop("disabled", false);
+			document.getElementById("option0001_value").value = "1";
+			alert(document.getElementById("option0001_value").value);
 		});
 		$("#option0001_2").click(function() {
 			$("#fieldset0001").prop("disabled", true);
+			document.getElementById("option0001_value").value = "0";
+			alert(document.getElementById("option0001_value").value);
 		});
 		$("#option0002_1").click(function() {
 			$("#fieldset0002").prop("disabled", false);
+			document.getElementById("option0002_value").value = "1";
 		});
 		$("#option0002_2").click(function() {
 			$("#fieldset0002").prop("disabled", true);
+			document.getElementById("option0002_value").value = "0";
 		});
 		$("#option0003_1").click(function() {
 			$("#fieldset0003").prop("disabled", false);
+			document.getElementById("option0003_value").value = "1";
 		});
 		$("#option0003_2").click(function() {
 			$("#fieldset0003").prop("disabled", true);
+			document.getElementById("option0003_value").value = "0";
 		});
 		$("#option0004_1").click(function() {
 			$("#fieldset0004").prop("disabled", false);
+			document.getElementById("option0004_value").value = "1";
 		});
 		$("#option0004_2").click(function() {
 			$("#fieldset0004").prop("disabled", true);
+			document.getElementById("option0004_value").value = "0";
 		});
 		$("#option0005_1").click(function() {
 			$("#fieldset0005").prop("disabled", false);
+			document.getElementById("option0005_value").value = "1";
 		});
 		$("#option0005_2").click(function() {
 			$("#fieldset0005").prop("disabled", true);
+			document.getElementById("option0005_value").value = "0";
+		});
+		$("#option0008_1").click(function() {
+			document.getElementById("option0008_value").value = "1";
+		});
+		$("#option0008_2").click(function() {
+			document.getElementById("option0008_value").value = "0";
+		});
+		$("#option0007_1").click(function() {
+			document.getElementById("option0007_value").value = "1";
+		});
+		$("#option0007_2").click(function() {
+			document.getElementById("option0007_value").value = "0";
+		});
+		$("#option0006_1").click(function() {
+			document.getElementById("option0006_value").value = "1";
+		});
+		$("#option0006_2").click(function() {
+			document.getElementById("option0006_value").value = "0";
 		});
 		$("#option0009_1").click(function() {
 			$("#fieldset0006").prop("disabled", false);
+			document.getElementById("option0009_value").value = "1";
 		});
 		$("#option0009_2").click(function() {
 			$("#fieldset0006").prop("disabled", true);
+			document.getElementById("option0009_value").value = "0";
 		});
 		$("#option0010_1").click(function() {
 			$("#fieldset0007").prop("disabled", false);
+			document.getElementById("option0010_value").value = "1";
 		});
 		$("#option0010_2").click(function() {
 			$("#fieldset0007").prop("disabled", true);
+			document.getElementById("option0010_value").value = "0";
+		});
+		$("#option0015_1").click(function() {
+			document.getElementById("option0015_value").value = "1";
+		});
+		$("#option0015_2").click(function() {
+			document.getElementById("option0015_value").value = "0";
+		});
+		$("#option0014_1").click(function() {
+			document.getElementById("option0014_value").value = "1";
+		});
+		$("#option0014_2").click(function() {
+			document.getElementById("option0014_value").value = "0";
+		});
+		$("#option0013_1").click(function() {
+			document.getElementById("option0013_value").value = "1";
+		});
+		$("#option0013_2").click(function() {
+			document.getElementById("option0013_value").value = "0";
+		});
+		$("#option0012_1").click(function() {
+			document.getElementById("option0012_value").value = "1";
+		});
+		$("#option0012_2").click(function() {
+			document.getElementById("option0012_value").value = "0";
+		});
+		$("#option0011_1").click(function() {
+			document.getElementById("option0011_value").value = "1";
+		});
+		$("#option0011_2").click(function() {
+			document.getElementById("option0011_value").value = "0";
 		});
 		$("#option0016_1").click(function() {
 			$("#fieldset0008").prop("disabled", false);
+			document.getElementById("option0016_value").value = "1";
 		});
 		$("#option0016_2").click(function() {
 			$("#fieldset0008").prop("disabled", true);
+			document.getElementById("option0016_value").value = "0";
 		});
 		$("#option0017_1").click(function() {
 			$("#fieldset0009").prop("disabled", false);
+			document.getElementById("option0017_value").value = "1";
 		});
 		$("#option0017_2").click(function() {
 			$("#fieldset0009").prop("disabled", true);
+			document.getElementById("option0017_value").value = "0";
 		});
 		$("#option0018_1").click(function() {
 			$("#fieldset0010").prop("disabled", false);
+			document.getElementById("option0018_value").value = "1";
 		});
 		$("#option0018_2").click(function() {
 			$("#fieldset0010").prop("disabled", true);
+			document.getElementById("option0018_value").value = "0";
 		});
 		$("#option0019_1").click(function() {
 			$("#fieldset0011").prop("disabled", false);
+			document.getElementById("option0019_value").value = "1";
 		});
 		$("#option0019_2").click(function() {
 			$("#fieldset0011").prop("disabled", true);
+			document.getElementById("option0019_value").value = "0";
 		});
 		$("#option0020_1").click(function() {
 			$("#fieldset0012").prop("disabled", false);
+			document.getElementById("option0020_value").value = "1";
 		});
 		$("#option0020_2").click(function() {
 			$("#fieldset0012").prop("disabled", true);
+			document.getElementById("option0020_value").value = "0";
 		});
 		$("#option0021_1").click(function() {
 			$("#fieldset0013").prop("disabled", false);
+			document.getElementById("option0021_value").value = "1";
 		});
 		$("#option0021_2").click(function() {
 			$("#fieldset0013").prop("disabled", true);
+			document.getElementById("option0021_value").value = "0";
 		});
 		$("#option0022_1").click(function() {
 			$("#fieldset0014").prop("disabled", false);
+			document.getElementById("option0022_value").value = "1";
 		});
 		$("#option0022_2").click(function() {
 			$("#fieldset0014").prop("disabled", true);
+			document.getElementById("option0022_value").value = "0";
 		});
 		$("#option0023_1").click(function() {
 			$("#fieldset0015").prop("disabled", false);
+			document.getElementById("option0023_value").value = "1";
 		});
 		$("#option0023_2").click(function() {
 			$("#fieldset0015").prop("disabled", true);
+			document.getElementById("option0023_value").value = "0";
+		});
+		$("#option0025_1").click(function() {
+			document.getElementById("option0025_value").value = "1";
+		});
+		$("#option0025_2").click(function() {
+			document.getElementById("option0025_value").value = "0";
+		});
+		$("#option0024_1").click(function() {
+			document.getElementById("option0024_value").value = "1";
+		});
+		$("#option0024_2").click(function() {
+			document.getElementById("option0024_value").value = "0";
 		});
 		$("#option0026_1").click(function() {
 			$("#fieldset0016").prop("disabled", false);
+			document.getElementById("option0026_value").value = "1";
 		});
 		$("#option0026_2").click(function() {
 			$("#fieldset0016").prop("disabled", true);
+			document.getElementById("option0026_value").value = "0";
 		});
 		$("#option0027_1").click(function() {
 			$("#fieldset0017").prop("disabled", false);
+			document.getElementById("option0027_value").value = "1";
 		});
 		$("#option0027_2").click(function() {
 			$("#fieldset0017").prop("disabled", true);
+			document.getElementById("option0027_value").value = "0";
+		});
+		$("#option0028_1").click(function() {
+			document.getElementById("option0028_value").value = "1";
+		});
+		$("#option0028_2").click(function() {
+			document.getElementById("option0028_value").value = "0";
 		});
 		$("#option0029_1").click(function() {
 			$("#fieldset0018").prop("disabled", false);
+			document.getElementById("option0029_value").value = "1";
 		});
 		$("#option0029_2").click(function() {
 			$("#fieldset0018").prop("disabled", true);
+			document.getElementById("option0029_value").value = "0";
+		});
+		$("#option0023_1").click(function() {
+			document.getElementById("option0023_value").value = "1";
+		});
+		$("#option0023_2").click(function() {
+			document.getElementById("option0023_value").value = "0";
+		});
+		$("#option0022_1").click(function() {
+			document.getElementById("option0022_value").value = "1";
+		});
+		$("#option0022_2").click(function() {
+			document.getElementById("option0022_value").value = "0";
+		});
+		$("#option0021_1").click(function() {
+			document.getElementById("option0021_value").value = "1";
+		});
+		$("#option0021_2").click(function() {
+			document.getElementById("option0021_value").value = "0";
+		});
+		$("#option0020_1").click(function() {
+			document.getElementById("option0020_value").value = "1";
+		});
+		$("#option0020_2").click(function() {
+			document.getElementById("option0020_value").value = "0";
 		});
 		$("#option0034_1").click(function() {
 			$("#fieldset0019").prop("disabled", false);
+			document.getElementById("option0034_value").value = "1";
 		});
 		$("#option0034_2").click(function() {
 			$("#fieldset0019").prop("disabled", true);
+			document.getElementById("option0034_value").value = "0";
 		});
 		$("#option0035_1").click(function() {
 			$("#fieldset0020").prop("disabled", false);
+			document.getElementById("option0035_value").value = "1";
 		});
 		$("#option0035_2").click(function() {
 			$("#fieldset0020").prop("disabled", true);
+			document.getElementById("option0035_value").value = "0";
 		});
 		$("#option0036_1").click(function() {
 			$("#fieldset0021").prop("disabled", false);
+			document.getElementById("option0036_value").value = "1";
 		});
 		$("#option0036_2").click(function() {
 			$("#fieldset0021").prop("disabled", true);
+			document.getElementById("option0036_value").value = "0";
+		});
+		$("#option0039_1").click(function() {
+			document.getElementById("option0039_value").value = "1";
+		});
+		$("#option0039_2").click(function() {
+			document.getElementById("option0039_value").value = "0";
+		});
+		$("#option0038_1").click(function() {
+			document.getElementById("option0038_value").value = "1";
+		});
+		$("#option0038_2").click(function() {
+			document.getElementById("option0038_value").value = "0";
+		});
+		$("#option0037_1").click(function() {
+			document.getElementById("option0037_value").value = "1";
+		});
+		$("#option0037_2").click(function() {
+			document.getElementById("option0037_value").value = "0";
 		});
 		$("#option0040_1").click(function() {
 			$("#fieldset0022").prop("disabled", false);
+			document.getElementById("option0040_value").value = "1";
 		});
 		$("#option0040_2").click(function() {
 			$("#fieldset0022").prop("disabled", true);
+			document.getElementById("option0040_value").value = "0";
+		});
+		$("#option0041_1").click(function() {
+			document.getElementById("option0041_value").value = "1";
+		});
+		$("#option0041_2").click(function() {
+			document.getElementById("option0041_value").value = "0";
 		});
 		$("#option0042_1").click(function() {
 			$("#fieldset0023").prop("disabled", false);
+			document.getElementById("option0042_value").value = "1";
 		});
 		$("#option0042_2").click(function() {
 			$("#fieldset0023").prop("disabled", true);
+			document.getElementById("option0042_value").value = "0";
 		});
 		$("#option0043_1").click(function() {
 			$("#fieldset0024").prop("disabled", false);
+			document.getElementById("option0043_value").value = "1";
 		});
 		$("#option0043_2").click(function() {
 			$("#fieldset0024").prop("disabled", true);
+			document.getElementById("option0043_value").value = "0";
+		});
+		$("#option0044_1").click(function() {
+			document.getElementById("option0044_value").value = "1";
+		});
+		$("#option0044_2").click(function() {
+			document.getElementById("option0044_value").value = "0";
 		});
 		$("#option0045_1").click(function() {
 			$("#fieldset0025").prop("disabled", false);
+			document.getElementById("option0045_value").value = "1";
 		});
 		$("#option0045_2").click(function() {
 			$("#fieldset0025").prop("disabled", true);
+			document.getElementById("option0045_value").value = "0";
 		});
 		$("#option0046_1").click(function() {
 			$("#fieldset0026").prop("disabled", false);
+			document.getElementById("option0046_value").value = "1";
 		});
 		$("#option0046_2").click(function() {
 			$("#fieldset0026").prop("disabled", true);
+			document.getElementById("option0046_value").value = "0";
+		});
+		$("#option0047_1").click(function() {
+			document.getElementById("option0047_value").value = "1";
+		});
+		$("#option0047_2").click(function() {
+			document.getElementById("option0047_value").value = "0";
 		});
 		$("#option0048_1").click(function() {
 			$("#fieldset0027").prop("disabled", false);
+			document.getElementById("option0048_value").value = "1";
 		});
 		$("#option0048_2").click(function() {
 			$("#fieldset0027").prop("disabled", true);
+			document.getElementById("option0048_value").value = "0";
+		});
+		$("#option0040_1").click(function() {
+			document.getElementById("option0040_value").value = "1";
+		});
+		$("#option0040_2").click(function() {
+			document.getElementById("option0040_value").value = "0";
+		});
+		$("#option0049_1").click(function() {
+			document.getElementById("option0049_value").value = "1";
+		});
+		$("#option0049_2").click(function() {
+			document.getElementById("option0049_value").value = "0";
 		});
 		$("#option0051_1").click(function() {
 			$("#fieldset0028").prop("disabled", false);
+			document.getElementById("option0051_value").value = "1";
 		});
 		$("#option0051_2").click(function() {
 			$("#fieldset0028").prop("disabled", true);
+			document.getElementById("option0051_value").value = "0";
 		});
 		$("#option0052_1").click(function() {
 			$("#fieldset0029").prop("disabled", false);
+			document.getElementById("option0052_value").value = "1";
 		});
 		$("#option0052_2").click(function() {
 			$("#fieldset0029").prop("disabled", true);
+			document.getElementById("option0052_value").value = "0";
+		});
+		$("#option0054_1").click(function() {
+			document.getElementById("option0054_value").value = "1";
+		});
+		$("#option0054_2").click(function() {
+			document.getElementById("option0054_value").value = "0";
+		});
+		$("#option0053_1").click(function() {
+			document.getElementById("option0053_value").value = "1";
+		});
+		$("#option0053_2").click(function() {
+			document.getElementById("option0053_value").value = "0";
 		});
 		$("#option0055_1").click(function() {
 			$("#fieldset0030").prop("disabled", false);
+			document.getElementById("option0055_value").value = "1";
 		});
 		$("#option0055_2").click(function() {
 			$("#fieldset0030").prop("disabled", true);
+			document.getElementById("option0055_value").value = "0";
 		});
 		$("#option0056_1").click(function() {
 			$("#fieldset0031").prop("disabled", false);
+			document.getElementById("option0056_value").value = "1";
 		});
 		$("#option0056_2").click(function() {
 			$("#fieldset0031").prop("disabled", true);
+			document.getElementById("option0056_value").value = "0";
 		});
 		$("#option0057_1").click(function() {
 			$("#fieldset0032").prop("disabled", false);
+			document.getElementById("option0057_value").value = "1";
 		});
 		$("#option0057_2").click(function() {
 			$("#fieldset0032").prop("disabled", true);
+			document.getElementById("option0057_value").value = "0";
 		});
 		$("#option0058_1").click(function() {
 			$("#fieldset0033").prop("disabled", false);
+			document.getElementById("option0058_value").value = "1";
 		});
 		$("#option0058_2").click(function() {
 			$("#fieldset0033").prop("disabled", true);
+			document.getElementById("option0058_value").value = "0";
 		});
 		$("#option0059_1").click(function() {
 			$("#fieldset0034").prop("disabled", false);
+			document.getElementById("option0059_value").value = "1";
 		});
 		$("#option0059_2").click(function() {
 			$("#fieldset0034").prop("disabled", true);
+			document.getElementById("option0059_value").value = "0";
 		});
 		$("#option0060_1").click(function() {
 			$("#fieldset0035").prop("disabled", false);
+			document.getElementById("option0060_value").value = "1";
 		});
 		$("#option0060_2").click(function() {
 			$("#fieldset0035").prop("disabled", true);
+			document.getElementById("option0060_value").value = "0";
 		});
 		$("#option0061_1").click(function() {
 			$("#fieldset0036").prop("disabled", false);
+			document.getElementById("option0061_value").value = "1";
 		});
 		$("#option0061_2").click(function() {
 			$("#fieldset0036").prop("disabled", true);
+			document.getElementById("option0061_value").value = "0";
 		});
 		$("#option0062_1").click(function() {
 			$("#fieldset0037").prop("disabled", false);
+			document.getElementById("option0062_value").value = "1";
 		});
 		$("#option0062_2").click(function() {
 			$("#fieldset0037").prop("disabled", true);
+			document.getElementById("option0062_value").value = "0";
 		});
 		$("#option0063_1").click(function() {
 			$("#fieldset0038").prop("disabled", false);
+			document.getElementById("option0063_value").value = "1";
 		});
 		$("#option0063_2").click(function() {
 			$("#fieldset0038").prop("disabled", true);
+			document.getElementById("option0063_value").value = "0";
+		});
+		$("#option0064_1").click(function() {
+			document.getElementById("option0064_value").value = "1";
+		});
+		$("#option0064_2").click(function() {
+			document.getElementById("option0064_value").value = "0";
 		});
 	</script>
 </h:body>
