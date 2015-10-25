@@ -14,6 +14,7 @@ public class UsuarioBean {
 	private String confirmaSenha;
 	private List<Usuario> lista;
 	private String destinosalvar;
+	private boolean somentePesquisa;
 	
 	public String novo() {
 		this.destinosalvar = "/publico/mostrausuario";
@@ -24,6 +25,13 @@ public class UsuarioBean {
 	
 	public String editar() {
 		this.confirmaSenha = this.usuario.getSenha();
+		this.setSomentePesquisa(false);
+		return "usuario";
+	}
+	
+	public String visualizar() {
+		this.confirmaSenha = this.usuario.getSenha();
+		this.setSomentePesquisa(true);
 		return "usuario";
 	}
 	
@@ -96,6 +104,14 @@ public class UsuarioBean {
 
 	public void setDestinosalvar(String destinosalvar) {
 		this.destinosalvar = destinosalvar;
+	}
+
+	public boolean isSomentePesquisa() {
+		return somentePesquisa;
+	}
+
+	public void setSomentePesquisa(boolean somentePesquisa) {
+		this.somentePesquisa = somentePesquisa;
 	}
 	
 }
