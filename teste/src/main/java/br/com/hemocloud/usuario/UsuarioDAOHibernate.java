@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
 
 import br.com.hemocloud.util.DAOException;
+import br.com.hemocloud.util.TransactionUtil;
 
 public class UsuarioDAOHibernate implements UsuarioDAO {
 	private Session session;
@@ -15,7 +16,9 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 
 	@Override
 	public void salvar(Usuario usuario) {
+		TransactionUtil.transactionStart();
 		this.session.save(usuario);
+		TransactionUtil.transactionEnd("inserção");
 
 	}
 
@@ -26,14 +29,18 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 			usuario.setPermissao(usuarioPermissao.getPermissao());
 			this.session.evict(usuarioPermissao);
 		}
+		TransactionUtil.transactionStart();
 		this.session.update(usuario);
+		TransactionUtil.transactionEnd("atualização");
 
 	}
 
 	@Override
 	public void excluir(Usuario usuario) {
+		TransactionUtil.transactionStart();
 		this.session.delete(usuario);
 		this.session.flush();
+		TransactionUtil.transactionEnd("exclusão");
 
 	}
 

@@ -1,13 +1,20 @@
 package br.com.hemocloud.triagem;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import br.com.hemocloud.paciente.Paciente;
 import br.com.hemocloud.paciente.PacienteDAO;
+import br.com.hemocloud.paciente.PacienteRN;
 import br.com.hemocloud.util.DAOFactory;
 
 @ManagedBean(name="triagemBean")
@@ -108,6 +115,59 @@ public class TriagemBean {
 		triagemRN.salvar(this.triagem);
 		
 		return this.destinosalvar;
+	}
+	
+	public void gerar() {
+		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		Integer quantidadeTriagens = Integer.parseInt(request.getParameter("quantidadeTriagens"));
+		Random gerador = new Random();
+		String[] listaTempo = {"dias","semanas","meses","anos"};
+		if (quantidadeTriagens != 0 || quantidadeTriagens != null) {
+			TriagemRN triagemRN = new TriagemRN();
+			PacienteRN pacienteRN = new PacienteRN();
+			for (int i = 0; i < quantidadeTriagens; i++) {
+				this.triagem = new Triagem();
+				while (this.triagem.getPaciente() == null || !this.triagem.getPaciente().isAtivo())
+					this.triagem.setPaciente(pacienteRN.carregar(gerador.nextInt(pacienteRN.listar().size())));
+				this.triagem.setDataCadastro(new Date());
+				this.triagem.setCampo001(gerador.nextBoolean());
+				this.triagem.setCampo002(this.triagem.isCampo001() ? gerarPeriodo(gerador, listaTempo) : "");
+				this.triagem.setCampo003(this.triagem.isCampo001() ? gerador.nextBoolean() : false);
+				this.triagem.setCampo004(this.triagem.isCampo003() ? "Teste" : "");
+				this.triagem.setCampo005(this.triagem.isCampo001() ? gerador.nextBoolean() : false);
+				this.triagem.setCampo006(this.triagem.isCampo005() ? "Teste" : "");
+				this.triagem.setCampo007(gerador.nextBoolean());
+				this.triagem.setCampo008(this.triagem.isCampo007() ? "Teste" : "");
+				this.triagem.setCampo009(gerador.nextBoolean());
+				this.triagem.setCampo010(this.triagem.isCampo009() ? "Teste" : "");
+				this.triagem.setCampo011(this.triagem.isCampo009() ? "Teste" : "");
+				this.triagem.setCampo012(gerador.nextBoolean());
+				this.triagem.setCampo013(gerador.nextBoolean());
+				this.triagem.setCampo014(gerador.nextBoolean());
+				this.triagem.setCampo015(gerador.nextBoolean());
+				this.triagem.setCampo016(this.triagem.isCampo015() ? gerarPeriodo(gerador, listaTempo) : "");
+				this.triagem.setCampo017(gerarPeriodo(gerador, listaTempo));
+				this.triagem.setCampo018("Teste");
+				this.triagem.setCampo019("Teste");
+				this.triagem.setCampo020(gerador.nextBoolean());
+				this.triagem.setCampo021(this.triagem.isCampo020() ? "Teste" : "");
+				this.triagem.setCampo022(this.triagem.isCampo020() ? "Teste" : "");
+				this.triagem.setCampo023(gerador.nextBoolean());
+				this.triagem.setCampo024(gerador.nextBoolean());
+				this.triagem.setCampo025(gerador.nextBoolean());
+				this.triagem.setCampo026(gerador.nextBoolean());
+				this.triagem.setCampo027(gerador.nextBoolean());
+				this.triagem.setCampo028(gerarPeriodo(gerador, listaTempo));
+				this.triagem.setCampo029(gerador.nextBoolean());
+				this.triagem.setCampo030(this.triagem.isCampo029() ? "Teste" : "");
+				
+				triagemRN.salvar(this.triagem);
+			}
+		}
+	}
+	
+	private String gerarPeriodo(Random gerador, String[] listaTempo) {
+		return String.valueOf(gerador.nextInt(10)+1) + " " + listaTempo[gerador.nextInt(listaTempo.length)];
 	}
 	
 	private boolean buscaConteudoRadioButton(HttpServletRequest request, String idCampo) {
