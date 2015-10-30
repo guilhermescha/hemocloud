@@ -1,8 +1,19 @@
 package br.com.hemocloud.paciente;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+
+import br.com.hemocloud.usuario.Usuario;
+import br.com.hemocloud.usuario.UsuarioRN;
 
 @ManagedBean(name="pacienteBean")
 @RequestScoped
@@ -52,6 +63,36 @@ public class PacienteBean {
 		PacienteRN pacienteRN = new PacienteRN();
 		pacienteRN.salvar(this.paciente);
 		return null;
+	}
+	
+	public void gerar() {
+		Calendar calendar = Calendar.getInstance();
+		SimpleDateFormat simpledateformat = new SimpleDateFormat("DDMMYYYY_HHMMSS_");
+		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		Integer quantidadePacientes = Integer.parseInt(request.getParameter("quantidadePacientes"));
+		Random gerador = new Random();
+		String[] listaSexo = {"M","F"};
+		String[] listaTipoSanguineo = {"A-","A+","B+","B-","AB+","AB-","O+","O-"};
+		if (quantidadePacientes != 0 || quantidadePacientes != null) {
+			PacienteRN pacienteRN = new PacienteRN();
+			for (int i = 0; i < quantidadePacientes; i++) {
+				this.paciente = new Paciente();
+				this.paciente.setNome("Paciente_" + simpledateformat.format(calendar.getTime()) + String.valueOf(i));
+				this.paciente.setBairro("Bairro teste " + String.valueOf(i));
+				this.paciente.setRua("Rua teste " + String.valueOf(i));
+				this.paciente.setRg(gerador.nextInt(888888888) + 1111111111);
+				this.paciente.setCpf(gerador.nextInt(999999990) + 191);
+				this.paciente.setSexo(listaSexo[gerador.nextInt(listaSexo.length)].charAt(0));
+				this.paciente.setTipoSanguineo(listaTipoSanguineo[gerador.nextInt(listaTipoSanguineo.length)]);
+				this.paciente.setCep(gerador.nextInt(9999999)+90000000);
+				this.paciente.setTelefone(gerador.nextInt(9999999)+30000000);
+				this.paciente.setCelular(gerador.nextInt(9999999)+90000000);
+				this.paciente.setEstado("RS");
+				this.paciente.setNascimento(Date.valueOf(LocalDate.of(gerador.nextInt(50)+1950, gerador.nextInt(11)+1, gerador.nextInt(27)+1)));
+				this.paciente.setAtivo(true);
+				pacienteRN.salvar(this.paciente);
+			}
+		}
 	}
 	
 	public List<Paciente> getLista() {
