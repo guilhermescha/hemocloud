@@ -18,7 +18,7 @@ public class TriagemDAOHibernate implements TriagemDAO {
 	public void salvar(Triagem triagem) {
 		TransactionUtil.transactionStart();
 		this.session.save(triagem);
-		TransactionUtil.transactionEnd("inserção");
+		TransactionUtil.transactionEnd("Tempo de inserção da Triagem");
 
 	}
 
@@ -26,7 +26,7 @@ public class TriagemDAOHibernate implements TriagemDAO {
 	public void atualizar(Triagem triagem) {
 		TransactionUtil.transactionStart();
 		this.session.update(triagem);
-		TransactionUtil.transactionEnd("atualização");
+		TransactionUtil.transactionEnd("Tempo de atualização da Triagem");
 
 	}
 
@@ -35,18 +35,24 @@ public class TriagemDAOHibernate implements TriagemDAO {
 		TransactionUtil.transactionStart();
 		this.session.delete(triagem);
 		this.session.flush();
-		TransactionUtil.transactionEnd("exclusão");
+		TransactionUtil.transactionEnd("Tempo de exclusão da Triagem");
 
 	}
 
 	@Override
 	public Triagem carregar(Integer codigo) {
-		return (Triagem) this.session.get(Triagem.class, codigo);
+		TransactionUtil.transactionStart();
+		Triagem triagem = (Triagem) this.session.get(Triagem.class, codigo);
+		TransactionUtil.transactionEnd("Tempo de busca da Triagem");
+		return triagem;
 	}
 	
 	@Override
 	public List<Triagem> listar() {
-		return this.session.createCriteria(Triagem.class).list();
+		TransactionUtil.transactionStart();
+		List<Triagem> lista = this.session.createCriteria(Triagem.class).list();
+		TransactionUtil.transactionEnd("Tempo de carregamento da lista de triagens");
+		return lista;
 	}
 
 }
