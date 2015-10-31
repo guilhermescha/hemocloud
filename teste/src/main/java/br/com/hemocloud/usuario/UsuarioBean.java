@@ -1,10 +1,13 @@
 package br.com.hemocloud.usuario;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 @ManagedBean(name="usuarioBean")
 @RequestScoped
@@ -64,6 +67,24 @@ public class UsuarioBean {
 		UsuarioRN usuarioRN = new UsuarioRN();
 		usuarioRN.salvar(this.usuario);
 		return null;
+	}
+	
+	public void gerar() {
+		Calendar calendar = Calendar.getInstance();
+		SimpleDateFormat simpledateformat = new SimpleDateFormat("DDMMYYYY_HHMMSS_");
+		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		Integer quantidadeUsuarios = Integer.parseInt(request.getParameter("quantidadeUsuarios"));
+		if (quantidadeUsuarios != 0 || quantidadeUsuarios != null) {
+			UsuarioRN usuarioRN = new UsuarioRN();
+			for (int i = 0; i < quantidadeUsuarios; i++) {
+				this.usuario = new Usuario();
+				this.usuario.setNome("TesteGerador_" + simpledateformat.format(calendar.getTime()) + String.valueOf(i));
+				this.usuario.setEmail("TesteGerador_" + simpledateformat.format(calendar.getTime()) + String.valueOf(i) + "@gerador.com");
+				this.usuario.setSenha("TesteGerador_" + simpledateformat.format(calendar.getTime()) + String.valueOf(i));
+				this.usuario.setAtivo(true);
+				usuarioRN.salvar(this.usuario);
+			}
+		}
 	}
 	
 	public List<Usuario> getLista() {

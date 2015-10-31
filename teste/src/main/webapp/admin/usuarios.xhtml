@@ -71,6 +71,8 @@
 							class="glyphicon glyphicon-dashboard"></i> Painel do Usuário</a></li>
 					<li class="active"><a href="#"><i class="fa fa-users"></i>
 							Usuários</a></li>
+					<li class="active"><a href="gerador.jsf"><i class="fa fa-random"></i>
+							Gerar Registros</a></li>
 				</ul>
 
 				<hr />
@@ -137,9 +139,6 @@
 								</h:column>
 								<h:column>
 									<f:facet name="header"> Nome</f:facet>#{usuario.nome}
-							</h:column>
-								<h:column>
-									<f:facet name="header"> Email</f:facet>#{usuario.email}
 							</h:column>
 								<h:column>
 									<f:facet name="header"> Privilégios</f:facet>

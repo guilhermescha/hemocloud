@@ -69,6 +69,7 @@
 		<!-- /.container-fluid -->
 	</div>
 	<div class="container">
+		<h:messages errorClass="alert alert-danger"/>
 		<div class="row">
 			<div class="col-md-8">
 				<div class="jumbotron">
@@ -76,7 +77,7 @@
 						<i class="fa fa-cloud"></i> HemoCloud
 					</h1>
 
-					<p>Protótipo utilizado para o desensvolvimento do trabalho
+					<p>Protótipo utilizado para o desenvolvimento do trabalho
 						"HemoCloud - Um Estudo Sobre a Utilização de Banco de Dados como
 						Serviço para Sistemas de Saúde".</p>
 					<p>
@@ -111,7 +112,7 @@
 								<span class="input-group-addon" id="basic-addon1"><i
 									class="fa fa-envelope" /></span>
 								<h:inputText type="email" value="#{usuarioBean.usuario.email}"
-									required="true" class="form-control" id="inputEmail1" />
+									required="true" requiredMessage="Email obrigatório" class="form-control" id="inputEmail1" />
 							</div>
 						</div>
 					</div>
@@ -122,7 +123,7 @@
 								<span class="input-group-addon" id="basic-addon1"><i
 									class="fa fa-key" /></span>
 								<h:inputSecret type="password"
-									value="#{usuarioBean.usuario.senha}" required="true"
+									value="#{usuarioBean.usuario.senha}" required="true" requiredMessage="Senha obrigatória"
 									class="form-control" id="inputPassword1" />
 							</div>
 						</div>
@@ -135,7 +136,7 @@
 								<span class="input-group-addon" id="basic-addon1"><i
 									class="glyphicon glyphicon-ok"></i></span>
 								<h:inputSecret value="#{usuarioBean.confirmasenha}"
-									required="true" type="password" class="form-control"
+									required="true" requiredMessage="Necessária confirmação da senha" type="password" class="form-control"
 									id="inputPassword2" />
 							</div>
 						</div>
