@@ -8,8 +8,8 @@ public class TransactionUtil {
 		transactionStart = System.currentTimeMillis();
 	}
 
-	public static void transactionEnd(String operacao) {
-		System.out.println("Tempo de " + operacao + ": " + String.valueOf(System.currentTimeMillis() - transactionStart) + "ms");
+	public static void transactionEnd(String msg) {
+		System.out.println(msg + ": " + String.valueOf(System.currentTimeMillis() - transactionStart) + "ms");
 	}
 
 }

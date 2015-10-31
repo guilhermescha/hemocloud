@@ -18,7 +18,7 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 	public void salvar(Usuario usuario) {
 		TransactionUtil.transactionStart();
 		this.session.save(usuario);
-		TransactionUtil.transactionEnd("inserção");
+		TransactionUtil.transactionEnd("Tempo de inserção do usuário");
 
 	}
 
@@ -31,7 +31,7 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 		}
 		TransactionUtil.transactionStart();
 		this.session.update(usuario);
-		TransactionUtil.transactionEnd("atualização");
+		TransactionUtil.transactionEnd("Tempo de atualização do usuário");
 
 	}
 
@@ -40,26 +40,34 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 		TransactionUtil.transactionStart();
 		this.session.delete(usuario);
 		this.session.flush();
-		TransactionUtil.transactionEnd("exclusão");
+		TransactionUtil.transactionEnd("Tempo de exclusão do usuário");
 
 	}
 
 	@Override
 	public Usuario carregar(Integer codigo) {
-		return (Usuario) this.session.get(Usuario.class, codigo);
+		TransactionUtil.transactionStart();
+		Usuario usuario = (Usuario) this.session.get(Usuario.class, codigo);
+		TransactionUtil.transactionEnd("Tempo de busca de usuário");
+		return usuario;
 	}
 
 	@Override
 	public Usuario buscarPorEmail(String email) {
+		TransactionUtil.transactionStart();
 		String sql = "select u from Usuario u where u.email = :email";
 		Query consulta = this.session.createQuery(sql);
 		consulta.setString("email", email);
+		TransactionUtil.transactionEnd("Tempo de busca de usuário por email");
 		return (Usuario) consulta.uniqueResult();
 	}
 
 	@Override
 	public List<Usuario> listar() {
-		return this.session.createCriteria(Usuario.class).list();
+		TransactionUtil.transactionStart();
+		List<Usuario> lista = this.session.createCriteria(Usuario.class).list();
+		TransactionUtil.transactionEnd("Tempo de carregamento da lista de usuários");
+		return lista;
 	}
 
 }
