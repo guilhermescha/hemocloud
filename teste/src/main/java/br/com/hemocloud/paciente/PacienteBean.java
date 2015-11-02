@@ -7,11 +7,14 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import br.com.hemocloud.triagem.Triagem;
+import br.com.hemocloud.triagem.TriagemRN;
 import br.com.hemocloud.usuario.Usuario;
 import br.com.hemocloud.usuario.UsuarioRN;
 
@@ -52,6 +55,13 @@ public class PacienteBean {
 	}
 	
 	public String excluir() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		TriagemRN triagemRN = new TriagemRN();
+		if (triagemRN.existePorPaciente(this.paciente.getCodigo())) {
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Paciente vinculado a triagens. Não pode ser excluído!",""));
+			return null;
+		}
 		PacienteRN pacienteRN = new PacienteRN();
 		pacienteRN.excluir(this.paciente);
 		this.lista = null;
@@ -73,6 +83,7 @@ public class PacienteBean {
 		Random gerador = new Random();
 		String[] listaSexo = {"M","F"};
 		String[] listaTipoSanguineo = {"A-","A+","B+","B-","AB+","AB-","O+","O-"};
+		String[] listaEstados = {"AC","AL","AM","AP","BA","CE","DF","ES","GO","MA","MG","MS","MT","PA","PB","PE","PI","PR","RJ","RN","RO","RR","RS","SC","SE","SP","TO"};
 		if (quantidadePacientes != 0 || quantidadePacientes != null) {
 			PacienteRN pacienteRN = new PacienteRN();
 			for (int i = 0; i < quantidadePacientes; i++) {
@@ -87,9 +98,9 @@ public class PacienteBean {
 				this.paciente.setCep(gerador.nextInt(9999999)+90000000);
 				this.paciente.setTelefone(gerador.nextInt(9999999)+30000000);
 				this.paciente.setCelular(gerador.nextInt(9999999)+90000000);
-				this.paciente.setEstado("RS");
+				this.paciente.setEstado(listaEstados[gerador.nextInt(listaEstados.length)]);
 				this.paciente.setNascimento(Date.valueOf(LocalDate.of(gerador.nextInt(50)+1950, gerador.nextInt(11)+1, gerador.nextInt(27)+1)));
-				this.paciente.setAtivo(true);
+				this.paciente.setAtivo(gerador.nextBoolean());
 				pacienteRN.salvar(this.paciente);
 			}
 		}
