@@ -11,6 +11,9 @@ public class TriagemRN {
 	public Triagem carregar(Integer codigo) { 
 		return this.triagemDAO.carregar(codigo);
 	}
+	public boolean existePorPaciente(Integer codigo) { 
+		return this.triagemDAO.existePorPaciente(codigo);
+	}
 	public void salvar(Triagem triagem) { 
 		Integer codigo = triagem.getCodigo();
 		if (codigo == null || codigo == 0) {

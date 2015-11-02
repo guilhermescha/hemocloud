@@ -1,11 +1,11 @@
 package br.com.hemocloud.triagem;
 
 import java.util.List;
+
+import org.hibernate.NonUniqueResultException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.exception.ConstraintViolationException;
 
-import br.com.hemocloud.util.DAOException;
 import br.com.hemocloud.util.TransactionUtil;
 
 public class TriagemDAOHibernate implements TriagemDAO {
@@ -45,6 +45,23 @@ public class TriagemDAOHibernate implements TriagemDAO {
 		Triagem triagem = (Triagem) this.session.get(Triagem.class, codigo);
 		TransactionUtil.transactionEnd("Tempo de busca da Triagem");
 		return triagem;
+	}
+
+	@Override
+	public boolean existePorPaciente(Integer codigo) {
+		TransactionUtil.transactionStart();
+		String sql = "select u from Triagem u where u.paciente = :paciente_codigo";
+		Query consulta = this.session.createQuery(sql);
+		consulta.setInteger("paciente_codigo", codigo);
+		Triagem triagem;
+		try {
+			triagem = (Triagem) consulta.uniqueResult();
+		} catch (NonUniqueResultException  n) {
+			TransactionUtil.transactionEnd("Tempo de busca de existência de Triagem por paciente");
+			return true;
+		}
+		TransactionUtil.transactionEnd("Tempo de busca de existência de Triagem por paciente:");
+		return (triagem != null);
 	}
 	
 	@Override
