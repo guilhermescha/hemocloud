@@ -7,5 +7,6 @@ public interface TriagemDAO {
 	public void atualizar(Triagem triagem);
 	public void excluir(Triagem triagem);
 	public Triagem carregar(Integer codigo);
+	public boolean existePorPaciente(Integer codigo);
 	public List<Triagem> listar();
 }
