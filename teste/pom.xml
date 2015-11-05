@@ -1,51 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>hemocloud</artifactId>
-  <version>0.1.1-SNAPSHOT</version>
-  <packaging>war</packaging>
-  <name>HemoCloud</name>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>2.7</version>
-        <configuration>
-          <encoding>UTF-8</encoding>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-    <repositories>
-    	<repository>
-    		<id>jvnet-nexus-releases</id>
-    		<name>jvnet-nexus-releases</name>
-    		<url>https://maven.java.net/content/repositories/releases/</url>
-    	</repository>
-    	<repository>
-    		<id>org.springframework.security.taglibs.facelets</id>
-    		<url>http://spring-security-facelets-taglib.googlecode.com/svn/repo/</url>
-    	</repository>
-    </repositories>
-    <dependencies>
-    	<dependency>
-    		<groupId>javax</groupId>
-    		<artifactId>javaee-api</artifactId>
-    		<version>7.0</version>
-    		<scope>provided</scope>
-	    	</dependency>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>hemocloud</artifactId>
+	<version>0.1.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>HemoCloud</name>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>jvnet-nexus-releases</id>
+			<name>jvnet-nexus-releases</name>
+			<url>https://maven.java.net/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<id>org.springframework.security.taglibs.facelets</id>
+			<url>http://spring-security-facelets-taglib.googlecode.com/svn/repo/</url>
+		</repository>
+	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.faces</artifactId>
@@ -98,7 +97,12 @@
 			<artifactId>tomcat-dbcp</artifactId>
 			<version>8.0.26</version>
 		</dependency>
-    </dependencies>
-    <description>Protótipo utilizado para o trabalho 'HemoCloud: Um Sistema para Comparação de Desempenho entre Banco de Dados como Serviço para Sistemas de Saúde'.</description>
-    <groupId>tcc</groupId>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+	</dependencies>
+	<description>Protótipo utilizado para o trabalho 'HemoCloud: Um Sistema para Comparação de Desempenho entre Banco de Dados como Serviço para Sistemas de Saúde'.</description>
+	<groupId>tcc</groupId>
 </project>
