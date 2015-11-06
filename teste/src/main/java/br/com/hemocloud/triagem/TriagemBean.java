@@ -37,7 +37,7 @@ public class TriagemBean {
 	}
 	
 	public String salvar() {
-		if (this.triagem.getCodigo() == null || this.triagem.getCodigo().isEmpty()) {
+		if (this.triagem.getCodigo() == null || this.triagem.getCodigo() == 0) {
 			this.triagem.setDataCadastro(new Date());
 		}
 		TriagemRN triagemRN = new TriagemRN();
