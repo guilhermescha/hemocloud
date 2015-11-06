@@ -92,12 +92,7 @@ public class PacienteDAOHibernate implements PacienteDAO {
 
 	@Override
 	public int quantidadeRegistros() {
-		TransactionUtil.transactionStart();
-		String sql = "select max(codigo) from Paciente";
-		Query consulta = this.session.createQuery(sql);
-		int quantidade =  (int) consulta.uniqueResult();
-		TransactionUtil.transactionEnd("Tempo de busca da quantidade de pacientes");
-		return quantidade;
+		return 0;
 	}
 	
 	@Override
