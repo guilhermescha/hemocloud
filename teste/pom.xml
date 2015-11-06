@@ -69,17 +69,17 @@
 			<version>0.6.6</version>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>4.3.4.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.36</version>
-			<scope>provided</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.hibernate</groupId> -->
+<!-- 			<artifactId>hibernate-core</artifactId> -->
+<!-- 			<version>4.3.4.Final</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>mysql</groupId> -->
+<!-- 			<artifactId>mysql-connector-java</artifactId> -->
+<!-- 			<version>5.1.36</version> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
@@ -139,7 +139,7 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
-			<version>1.1.0.RELEASE</version>
+			<version>1.5.2.RELEASE</version>
 		</dependency>
 
 	</dependencies>

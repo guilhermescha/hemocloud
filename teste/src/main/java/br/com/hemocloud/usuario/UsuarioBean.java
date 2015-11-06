@@ -46,7 +46,7 @@ public class UsuarioBean {
 					"Senha confirmada incorretamente!",""));
 			return "index";
 		}
-		if (this.usuario.getCodigo() == null || this.usuario.getCodigo() == 0) {
+		if (this.usuario.getCodigo() == null || this.usuario.getCodigo().isEmpty()) {
 			this.usuario.setAtivo(true);
 		}
 		UsuarioRN usuarioRN = new UsuarioRN();

@@ -45,7 +45,7 @@ public class PacienteBean {
 	}
 	
 	public String salvar() {
-		if (this.paciente.getCodigo() == null || this.paciente.getCodigo() == 0) {
+		if (this.paciente.getCodigo() == null || this.paciente.getCodigo().isEmpty()) {
 			this.paciente.setAtivo(true);
 		}
 		PacienteRN pacienteRN = new PacienteRN();
@@ -57,11 +57,11 @@ public class PacienteBean {
 	public String excluir() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		TriagemRN triagemRN = new TriagemRN();
-		if (triagemRN.existePorPaciente(this.paciente.getCodigo())) {
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Paciente vinculado a triagens. Não pode ser excluído!",""));
-			return null;
-		}
+//		if (triagemRN.existePorPaciente(this.paciente.getCodigo())) {
+//			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+//					"Paciente vinculado a triagens. Não pode ser excluído!",""));
+//			return null;
+//		}
 		PacienteRN pacienteRN = new PacienteRN();
 		pacienteRN.excluir(this.paciente);
 		this.lista = null;

@@ -15,8 +15,8 @@ public class TriagemRN {
 		return this.triagemDAO.existePorPaciente(codigo);
 	}
 	public void salvar(Triagem triagem) { 
-		Integer codigo = triagem.getCodigo();
-		if (codigo == null || codigo == 0) {
+		String codigo = triagem.getCodigo();
+		if (codigo == null || codigo.isEmpty()) {
 			this.triagemDAO.salvar(triagem);
 		} else {
 			this.triagemDAO.atualizar(triagem);

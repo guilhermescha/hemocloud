@@ -8,7 +8,7 @@ public class PacienteRN {
 	public PacienteRN() { 
 		this.pacienteDAO = DAOFactory.criarPacienteDAO();
 	}
-	public Paciente carregar(Integer codigo) { 
+	public Paciente carregar(String codigo) { 
 		return this.pacienteDAO.carregar(codigo);
 	}
 	public Paciente buscarPorRg(Integer rg) { 
@@ -17,9 +17,12 @@ public class PacienteRN {
 	public Paciente buscarPorCpf(Integer cpf) { 
 		return this.pacienteDAO.buscarPorCpf(cpf);
 	}
+	public Paciente buscarPorSexo(String sexo) { 
+		return this.pacienteDAO.buscarPorSexo(sexo);
+	}
 	public void salvar(Paciente paciente) { 
-		Integer codigo = paciente.getCodigo();
-		if (codigo == null || codigo == 0) {
+		String codigo = paciente.getCodigo();
+		if (codigo == null || codigo.isEmpty()) {
 			this.pacienteDAO.salvar(paciente);
 		} else {
 			this.pacienteDAO.atualizar(paciente);

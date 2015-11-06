@@ -1,6 +1,7 @@
 package br.com.hemocloud.usuario;
 
 import java.util.List;
+
 import br.com.hemocloud.util.DAOFactory;
 
 public class UsuarioRN {
@@ -15,8 +16,8 @@ public class UsuarioRN {
 		return this.usuarioDAO.buscarPorEmail(email);
 	}
 	public void salvar(Usuario usuario) { 
-		Integer codigo = usuario.getCodigo();
-		if (codigo == null || codigo == 0) {
+		String codigo = usuario.getCodigo();
+		if (codigo == null || codigo.isEmpty()) {
 			usuario.getPermissao().add("ROLE_USUARIO");
 			this.usuarioDAO.salvar(usuario);
 		} else {

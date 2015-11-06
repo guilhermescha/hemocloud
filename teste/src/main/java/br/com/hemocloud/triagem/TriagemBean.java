@@ -37,7 +37,7 @@ public class TriagemBean {
 	}
 	
 	public String salvar() {
-		if (this.triagem.getCodigo() == null || this.triagem.getCodigo() == 0) {
+		if (this.triagem.getCodigo() == null || this.triagem.getCodigo().isEmpty()) {
 			this.triagem.setDataCadastro(new Date());
 		}
 		TriagemRN triagemRN = new TriagemRN();
@@ -123,13 +123,14 @@ public class TriagemBean {
 		Integer quantidadeTriagens = Integer.parseInt(request.getParameter("quantidadeTriagens"));
 		Random gerador = new Random();
 		String[] listaTempo = {"dias","semanas","meses","anos"};
+		String[] listaSexo = {"M","F"};
 		if (quantidadeTriagens != 0 || quantidadeTriagens != null) {
 			TriagemRN triagemRN = new TriagemRN();
 			PacienteRN pacienteRN = new PacienteRN();
 			for (int i = 0; i < quantidadeTriagens; i++) {
 				this.triagem = new Triagem();
 				while (this.triagem.getPaciente() == null || !this.triagem.getPaciente().isAtivo())
-					this.triagem.setPaciente(pacienteRN.carregar(gerador.nextInt(pacienteRN.listar().size())));
+					this.triagem.setPaciente(pacienteRN.buscarPorSexo(listaSexo[gerador.nextInt(listaSexo.length)]));
 				this.triagem.setDataCadastro(new Date());
 				this.triagem.setCampo001(gerador.nextBoolean());
 				this.triagem.setCampo002(this.triagem.isCampo001() ? gerarPeriodo(gerador, listaTempo) : "");
