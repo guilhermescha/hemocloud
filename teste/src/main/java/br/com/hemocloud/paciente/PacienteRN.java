@@ -31,6 +31,9 @@ public class PacienteRN {
 	public void excluir(Paciente paciente) { 
 		this.pacienteDAO.excluir(paciente);
 	}
+	public int contar() { 
+		return this.pacienteDAO.quantidadeRegistros();
+	}
 	public List<Paciente> listar() { 
 		return this.pacienteDAO.listar();
 	}

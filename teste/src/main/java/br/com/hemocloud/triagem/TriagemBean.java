@@ -127,6 +127,7 @@ public class TriagemBean {
 		if (quantidadeTriagens != 0 || quantidadeTriagens != null) {
 			TriagemRN triagemRN = new TriagemRN();
 			PacienteRN pacienteRN = new PacienteRN();
+			int quantidadePacientes = pacienteRN.contar();
 			for (int i = 0; i < quantidadeTriagens; i++) {
 				this.triagem = new Triagem();
 				while (this.triagem.getPaciente() == null || !this.triagem.getPaciente().isAtivo())
@@ -252,7 +253,8 @@ public class TriagemBean {
 				this.triagem.setCampo118(this.triagem.isCampo117() ? gerarPeriodo(gerador, listaTempo) : "");
 				this.triagem.setCampo119(gerador.nextBoolean());
 				this.triagem.setCampo120(this.triagem.isCampo119() ? "Teste" : "");
-				
+
+				System.out.print(String.valueOf(i) + " - ");
 				triagemRN.salvar(this.triagem);
 			}
 		}

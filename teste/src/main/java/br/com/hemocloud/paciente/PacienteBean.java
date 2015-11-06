@@ -101,6 +101,7 @@ public class PacienteBean {
 				this.paciente.setEstado(listaEstados[gerador.nextInt(listaEstados.length)]);
 				this.paciente.setNascimento(Date.valueOf(LocalDate.of(gerador.nextInt(50)+1950, gerador.nextInt(11)+1, gerador.nextInt(27)+1)));
 				this.paciente.setAtivo(gerador.nextBoolean());
+				System.out.print(String.valueOf(i) + " - ");
 				pacienteRN.salvar(this.paciente);
 			}
 		}
