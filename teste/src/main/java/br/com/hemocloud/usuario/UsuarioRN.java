@@ -15,9 +15,12 @@ public class UsuarioRN {
 		return this.usuarioDAO.buscarPorEmail(email);
 	}
 	public void salvar(Usuario usuario) { 
+		// Certifica-se de que o usuário gravado tenha permissão padrão de usuário
+		if (!usuario.getPermissao().contains("ROLE_USUARIO")) usuario.getPermissao().add("ROLE_USUARIO");
+		// Se não existe nenhum usuário na base de dados, o primeiro cadastrado será o administrador
+		if (listar().isEmpty()) usuario.getPermissao().add("ROLE_ADMINISTRADOR");
 		Integer codigo = usuario.getCodigo();
 		if (codigo == null || codigo == 0) {
-			usuario.getPermissao().add("ROLE_USUARIO");
 			this.usuarioDAO.salvar(usuario);
 		} else {
 			this.usuarioDAO.atualizar(usuario);
