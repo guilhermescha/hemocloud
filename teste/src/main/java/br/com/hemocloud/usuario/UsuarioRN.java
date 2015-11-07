@@ -15,7 +15,10 @@ public class UsuarioRN {
 	public Usuario buscarPorEmail(String email) { 
 		return this.usuarioDAO.buscarPorEmail(email);
 	}
-	public void salvar(Usuario usuario) { 
+	public void salvar(Usuario usuario) { 		// Certifica-se de que o usuário gravado tenha permissão padrão de usuário
+		if (!usuario.getPermissao().contains("ROLE_USUARIO")) usuario.getPermissao().add("ROLE_USUARIO");
+		// Se não existe nenhum usuário na base de dados, o primeiro cadastrado será o administrador
+		if (listar().isEmpty()) usuario.getPermissao().add("ROLE_ADMINISTRADOR");
 		String codigo = usuario.getCodigo();
 		if (codigo == null || codigo.isEmpty()) {
 			usuario.getPermissao().add("ROLE_USUARIO");
