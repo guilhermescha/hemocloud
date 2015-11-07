@@ -18,6 +18,7 @@ public class UsuarioBean {
 	private List<Usuario> lista;
 	private String destinosalvar;
 	private boolean somentePesquisa;
+	private boolean isAdministrador;
 	
 	public String novo() {
 		this.destinosalvar = "/publico/mostrausuario";
@@ -28,12 +29,14 @@ public class UsuarioBean {
 	
 	public String editar() {
 		this.confirmaSenha = this.usuario.getSenha();
+		this.isAdministrador = this.usuario.getPermissao().contains("ROLE_ADMINISTRADOR");
 		this.setSomentePesquisa(false);
 		return "usuario";
 	}
 	
 	public String visualizar() {
 		this.confirmaSenha = this.usuario.getSenha();
+		this.isAdministrador = this.usuario.getPermissao().contains("ROLE_ADMINISTRADOR");
 		this.setSomentePesquisa(true);
 		return "usuario";
 	}
@@ -48,6 +51,12 @@ public class UsuarioBean {
 		}
 		if (this.usuario.getCodigo() == null || this.usuario.getCodigo().isEmpty()) {
 			this.usuario.setAtivo(true);
+		}
+		java.util.Set<String> permissoes = this.usuario.getPermissao();
+		if (isAdministrador) {
+			permissoes.add("ROLE_ADMINISTRADOR");
+		} else {
+			permissoes.remove("ROLE_ADMINISTRADOR");
 		}
 		UsuarioRN usuarioRN = new UsuarioRN();
 		usuarioRN.salvar(this.usuario);
@@ -105,6 +114,15 @@ public class UsuarioBean {
 		}
 		return null;
 	}
+
+	public boolean isAdministrador() {
+		return isAdministrador;
+	}
+
+	public void setAdministrador(boolean isAdministrador) {
+		this.isAdministrador = isAdministrador;
+	}
+
 
 	public Usuario getUsuario() {
 		return usuario;

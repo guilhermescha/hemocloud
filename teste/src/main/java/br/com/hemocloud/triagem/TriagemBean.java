@@ -129,7 +129,7 @@ public class TriagemBean {
 			PacienteRN pacienteRN = new PacienteRN();
 			for (int i = 0; i < quantidadeTriagens; i++) {
 				this.triagem = new Triagem();
-				while (this.triagem.getPaciente() == null || !this.triagem.getPaciente().isAtivo())
+				while (this.triagem.getPaciente() == null)
 					this.triagem.setPaciente(pacienteRN.buscarPorSexo(listaSexo[gerador.nextInt(listaSexo.length)]));
 				this.triagem.setDataCadastro(new Date());
 				this.triagem.setCampo001(gerador.nextBoolean());
