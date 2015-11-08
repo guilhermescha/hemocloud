@@ -8,7 +8,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import br.com.hemocloud.util.DAOException;
 import br.com.hemocloud.util.TransactionUtil;
 
-public class UsuarioDAOHibernate implements UsuarioDAO {
+public class UsuarioDAOImpl implements UsuarioDAO {
 	private Session session;
 	public void setSession(Session session) {
 		this.session = session;
