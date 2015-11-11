@@ -8,7 +8,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import br.com.hemocloud.util.DAOException;
 import br.com.hemocloud.util.TransactionUtil;
 
-public class UsuarioDAOHibernate implements UsuarioDAO {
+public class UsuarioDAOImpl implements UsuarioDAO {
 	private Session session;
 	public void setSession(Session session) {
 		this.session = session;
@@ -30,7 +30,7 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 			this.session.evict(usuarioPermissao);
 		}
 		TransactionUtil.transactionStart();
-		this.session.update(usuario);
+		this.session.merge(usuario);
 		TransactionUtil.transactionEnd("Tempo de atualização do usuário");
 
 	}

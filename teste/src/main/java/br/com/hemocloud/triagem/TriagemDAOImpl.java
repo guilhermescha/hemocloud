@@ -8,7 +8,7 @@ import org.hibernate.Session;
 
 import br.com.hemocloud.util.TransactionUtil;
 
-public class TriagemDAOHibernate implements TriagemDAO {
+public class TriagemDAOImpl implements TriagemDAO {
 	private Session session;
 	public void setSession(Session session) {
 		this.session = session;

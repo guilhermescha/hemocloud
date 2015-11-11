@@ -7,19 +7,19 @@ import br.com.hemocloud.triagem.*;
 public class DAOFactory {
 
 	public static UsuarioDAO criarUsuarioDAO() {
-		UsuarioDAOHibernate usuarioDAO = new UsuarioDAOHibernate();
+		UsuarioDAOImpl usuarioDAO = new UsuarioDAOImpl();
 		usuarioDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
 		return usuarioDAO;
 	}
 
 	public static PacienteDAO criarPacienteDAO() {
-		PacienteDAOHibernate pacienteDAO = new PacienteDAOHibernate();
+		PacienteDAOImpl pacienteDAO = new PacienteDAOImpl();
 		pacienteDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
 		return pacienteDAO;
 	}
 
 	public static TriagemDAO criarTriagemDAO() {
-		TriagemDAOHibernate triagemDAO = new TriagemDAOHibernate();
+		TriagemDAOImpl triagemDAO = new TriagemDAOImpl();
 		triagemDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
 		return triagemDAO;
 	}
