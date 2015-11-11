@@ -30,7 +30,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			this.session.evict(usuarioPermissao);
 		}
 		TransactionUtil.transactionStart();
-		this.session.update(usuario);
+		this.session.merge(usuario);
 		TransactionUtil.transactionEnd("Tempo de atualização do usuário");
 
 	}
