@@ -13,6 +13,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.StaleObjectStateException;
+
 import br.com.hemocloud.triagem.Triagem;
 import br.com.hemocloud.triagem.TriagemRN;
 import br.com.hemocloud.usuario.Usuario;
@@ -45,13 +47,19 @@ public class PacienteBean {
 	}
 	
 	public String salvar() {
+		FacesContext context = FacesContext.getCurrentInstance();
 		if (this.paciente.getCodigo() == null || this.paciente.getCodigo() == 0) {
 			this.paciente.setAtivo(true);
 		}
 		PacienteRN pacienteRN = new PacienteRN();
-		pacienteRN.salvar(this.paciente);
+		try {
+			pacienteRN.salvar(this.paciente);
+		} catch (StaleObjectStateException e) {
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+					"Alteração recusada! Registro alterado por outro usuário!",""));
+		}
 		
-		return this.destinosalvar;
+		return "pacientes";
 	}
 	
 	public String excluir() {

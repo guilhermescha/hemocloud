@@ -137,6 +137,8 @@ public class Triagem implements Serializable {
 	private String	campo118;
 	private boolean	campo119;
 	private String	campo120;
+	@Version Long version;
+	
 	public Integer getCodigo() {
 		return codigo;
 	}
@@ -875,6 +877,12 @@ public class Triagem implements Serializable {
 	public void setCampo120(String campo120) {
 		this.campo120 = campo120;
 	}
+	public Long getVersion() {
+		return version;
+	}
+	public void setVersion(Long version) {
+		this.version = version;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -1002,6 +1010,7 @@ public class Triagem implements Serializable {
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		result = prime * result + ((dataCadastro == null) ? 0 : dataCadastro.hashCode());
 		result = prime * result + ((paciente == null) ? 0 : paciente.hashCode());
+		result = prime * result + ((version == null) ? 0 : version.hashCode());
 		return result;
 	}
 	@Override
@@ -1435,6 +1444,11 @@ public class Triagem implements Serializable {
 			if (other.paciente != null)
 				return false;
 		} else if (!paciente.equals(other.paciente))
+			return false;
+		if (version == null) {
+			if (other.version != null)
+				return false;
+		} else if (!version.equals(other.version))
 			return false;
 		return true;
 	}

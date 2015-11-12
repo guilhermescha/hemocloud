@@ -9,6 +9,10 @@ import java.util.Set;
 @Entity
 public class Paciente implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private Integer codigo;
@@ -26,6 +30,7 @@ public class Paciente implements Serializable {
 	private Integer telefone;
 	private Integer celular;
 	private boolean ativo;
+	@Version Long version;
 	
 	public Integer getCodigo() {
 		return codigo;
@@ -111,6 +116,12 @@ public class Paciente implements Serializable {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
+	public Long getVersion() {
+		return version;
+	}
+	public void setVersion(Long version) {
+		this.version = version;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -129,6 +140,7 @@ public class Paciente implements Serializable {
 		result = prime * result + sexo;
 		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
 		result = prime * result + ((tipoSanguineo == null) ? 0 : tipoSanguineo.hashCode());
+		result = prime * result + ((version == null) ? 0 : version.hashCode());
 		return result;
 	}
 	@Override
@@ -203,6 +215,11 @@ public class Paciente implements Serializable {
 			if (other.tipoSanguineo != null)
 				return false;
 		} else if (!tipoSanguineo.equals(other.tipoSanguineo))
+			return false;
+		if (version == null) {
+			if (other.version != null)
+				return false;
+		} else if (!version.equals(other.version))
 			return false;
 		return true;
 	}

@@ -113,6 +113,8 @@
 						<h:form id="cadastroTriagem">
 							<h:messages styleClass="alert alert-danger" />
 							<div class="control-group">
+								<h:inputHidden value="#{triagemBean.triagem.codigo}" />
+								<h:inputHidden value="#{triagemBean.triagem.version}" />
 								<label class="col-md-3 control-label">Paciente</label>
 								<div class="controls col-md-5">
 									<input type="text" class="form-control" id="inputNomePaciente" name="inputNomePaciente"/>

@@ -1,6 +1,9 @@
 package br.com.hemocloud.triagem;
 
 import java.util.List;
+
+import org.hibernate.StaleObjectStateException;
+
 import br.com.hemocloud.util.DAOFactory;
 
 public class TriagemRN {
@@ -14,7 +17,7 @@ public class TriagemRN {
 	public boolean existePorPaciente(Integer codigo) { 
 		return this.triagemDAO.existePorPaciente(codigo);
 	}
-	public void salvar(Triagem triagem) { 
+	public void salvar(Triagem triagem) throws StaleObjectStateException { 
 		Integer codigo = triagem.getCodigo();
 		if (codigo == null || codigo == 0) {
 			this.triagemDAO.salvar(triagem);

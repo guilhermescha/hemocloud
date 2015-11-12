@@ -3,6 +3,7 @@ package br.com.hemocloud.paciente;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.StaleObjectStateException;
 import org.hibernate.exception.ConstraintViolationException;
 
 import br.com.hemocloud.util.DAOException;
@@ -23,9 +24,9 @@ public class PacienteDAOImpl implements PacienteDAO {
 	}
 
 	@Override
-	public void atualizar(Paciente paciente) {
+	public void atualizar(Paciente paciente) throws StaleObjectStateException {
 		TransactionUtil.transactionStart();
-		this.session.update(paciente);
+		this.session.merge(paciente);
 		TransactionUtil.transactionEnd("Tempo de atualização do Paciente");
 
 	}

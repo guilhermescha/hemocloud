@@ -3,6 +3,7 @@ package br.com.hemocloud.usuario;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.StaleObjectStateException;
 import org.hibernate.exception.ConstraintViolationException;
 
 import br.com.hemocloud.util.DAOException;
@@ -23,7 +24,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 
 	@Override
-	public void atualizar(Usuario usuario) {
+	public void atualizar(Usuario usuario) throws StaleObjectStateException {
 		if (usuario.getPermissao() == null || usuario.getPermissao().size() == 0) {
 			Usuario usuarioPermissao = this.carregar(usuario.getCodigo());
 			usuario.setPermissao(usuarioPermissao.getPermissao());
