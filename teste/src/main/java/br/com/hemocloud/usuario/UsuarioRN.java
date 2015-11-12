@@ -1,6 +1,9 @@
 package br.com.hemocloud.usuario;
 
 import java.util.List;
+
+import org.hibernate.StaleObjectStateException;
+
 import br.com.hemocloud.util.DAOFactory;
 
 public class UsuarioRN {
@@ -14,7 +17,7 @@ public class UsuarioRN {
 	public Usuario buscarPorEmail(String email) { 
 		return this.usuarioDAO.buscarPorEmail(email);
 	}
-	public void salvar(Usuario usuario) { 
+	public void salvar(Usuario usuario) throws StaleObjectStateException { 
 		// Certifica-se de que o usuário gravado tenha permissão padrão de usuário
 		if (!usuario.getPermissao().contains("ROLE_USUARIO")) usuario.getPermissao().add("ROLE_USUARIO");
 		// Se não existe nenhum usuário na base de dados, o primeiro cadastrado será o administrador

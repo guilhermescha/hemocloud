@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.NonUniqueResultException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.StaleObjectStateException;
 
 import br.com.hemocloud.util.TransactionUtil;
 
@@ -23,9 +24,9 @@ public class TriagemDAOImpl implements TriagemDAO {
 	}
 
 	@Override
-	public void atualizar(Triagem triagem) {
+	public void atualizar(Triagem triagem) throws StaleObjectStateException {
 		TransactionUtil.transactionStart();
-		this.session.update(triagem);
+		this.session.merge(triagem);
 		TransactionUtil.transactionEnd("Tempo de atualização da Triagem");
 
 	}

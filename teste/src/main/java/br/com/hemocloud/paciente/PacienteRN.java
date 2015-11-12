@@ -1,6 +1,9 @@
 package br.com.hemocloud.paciente;
 
 import java.util.List;
+
+import org.hibernate.StaleObjectStateException;
+
 import br.com.hemocloud.util.DAOFactory;
 
 public class PacienteRN {
@@ -17,7 +20,7 @@ public class PacienteRN {
 	public Paciente buscarPorCpf(Integer cpf) { 
 		return this.pacienteDAO.buscarPorCpf(cpf);
 	}
-	public void salvar(Paciente paciente) { 
+	public void salvar(Paciente paciente) throws StaleObjectStateException { 
 		Integer codigo = paciente.getCodigo();
 		if (codigo == null || codigo == 0) {
 			this.pacienteDAO.salvar(paciente);

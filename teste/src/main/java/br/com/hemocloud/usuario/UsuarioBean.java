@@ -9,6 +9,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.StaleObjectStateException;
+
 @ManagedBean(name="usuarioBean")
 @RequestScoped
 public class UsuarioBean {
@@ -59,7 +61,12 @@ public class UsuarioBean {
 			permissoes.remove("ROLE_ADMINISTRADOR");
 		}
 		UsuarioRN usuarioRN = new UsuarioRN();
-		usuarioRN.salvar(this.usuario);
+		try {
+			usuarioRN.salvar(this.usuario);
+		} catch (StaleObjectStateException e) {
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+					"Alteração recusada! Registro alterado por outro usuário!",""));
+		}
 		
 		return this.destinosalvar;
 	}

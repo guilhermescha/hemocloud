@@ -13,6 +13,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.StaleObjectStateException;
+
 import br.com.hemocloud.paciente.Paciente;
 import br.com.hemocloud.paciente.PacienteDAO;
 import br.com.hemocloud.paciente.PacienteRN;
@@ -43,7 +45,8 @@ public class TriagemBean {
 		TriagemRN triagemRN = new TriagemRN();
 		// Busca dados informados para salvar no banco de dados
 
-		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 		String inputNomePaciente = request.getParameter("inputNomePaciente");
 		if (inputNomePaciente == "" || inputNomePaciente == null) return "";
 		PacienteDAO pacienteDAO = DAOFactory.criarPacienteDAO();
@@ -113,7 +116,12 @@ public class TriagemBean {
 		this.triagem.setCampo117(buscaConteudoRadioButton(request,"option0063_value"));
 		this.triagem.setCampo119(buscaConteudoRadioButton(request,"option0064_value"));
 		// Salva a triagem
-		triagemRN.salvar(this.triagem);
+		try {
+			triagemRN.salvar(this.triagem);
+		} catch (StaleObjectStateException e) {
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+					"Alteração recusada! Registro alterado por outro usuário!",""));
+		}
 		
 		return this.destinosalvar;
 	}

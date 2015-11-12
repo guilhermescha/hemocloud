@@ -8,6 +8,10 @@ import java.util.Set;
 @Entity
 public class Usuario implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private Integer codigo;
@@ -16,6 +20,7 @@ public class Usuario implements Serializable {
 	@org.hibernate.annotations.NaturalId
 	private String senha;
 	private boolean ativo;
+	@Version Long version;
 	
 	@ElementCollection(targetClass = String.class)
 	@JoinTable(
@@ -61,6 +66,12 @@ public class Usuario implements Serializable {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
+	public Long getVersion() {
+		return version;
+	}
+	public void setVersion(Long version) {
+		this.version = version;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -71,6 +82,7 @@ public class Usuario implements Serializable {
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((permissao == null) ? 0 : permissao.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
+		result = prime * result + ((version == null) ? 0 : version.hashCode());
 		return result;
 	}
 	@Override
@@ -108,6 +120,11 @@ public class Usuario implements Serializable {
 			if (other.senha != null)
 				return false;
 		} else if (!senha.equals(other.senha))
+			return false;
+		if (version == null) {
+			if (other.version != null)
+				return false;
+		} else if (!version.equals(other.version))
 			return false;
 		return true;
 	}
