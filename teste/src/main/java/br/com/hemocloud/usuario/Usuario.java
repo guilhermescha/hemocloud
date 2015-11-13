@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 
 public class Usuario {
 
@@ -15,6 +16,8 @@ public class Usuario {
 	private String senha;
 	private boolean ativo;
 	private Set<String> permissao = new HashSet<String>();
+	@Version
+	private Long version;
 	
 	public Set<String> getPermissao() {
 		return permissao;
@@ -51,5 +54,11 @@ public class Usuario {
 	}
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
+	}
+	public Long getVersion() {
+		return version;
+	}
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 }
