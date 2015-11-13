@@ -69,10 +69,10 @@
 				<ul class="nav nav-stacked">
 					<li class="active"><a href="../restrito/dashboard.jsf"><i
 							class="glyphicon glyphicon-dashboard"></i> Dashboard</a></li>
-					<li class="active"><a href="usuarios.jsf"><i class="fa fa-users"></i>
-							Usuários</a></li>
-					<li class="active"><a href="gerador.jsf"><i class="fa fa-random"></i>
-							Gerar Registros</a></li>
+					<li class="active"><a href="usuarios.jsf"><i
+							class="fa fa-users"></i> Usuários</a></li>
+					<li class="active"><a href="gerador.jsf"><i
+							class="fa fa-random"></i> Gerar Registros</a></li>
 				</ul>
 
 				<hr />
@@ -80,8 +80,8 @@
 			</div>
 			<!-- /span-3 -->
 			<div class="col-sm-9">
-			
-							<div class="row">
+
+				<div class="row">
 					<div class="col-md-3">
 						<!-- column 2 -->
 						<h2>
@@ -92,7 +92,7 @@
 
 
 				<hr />
-			
+
 				<div class="row">
 					<!--center-right-->
 					<div class="col-md-12">
@@ -106,69 +106,86 @@
 						</div>
 
 						<h:form>
-					
-									<div class="panel panel-success">
-					<div class="panel-heading">
-						<div class="panel-title">
-							<i class="glyphicon glyphicon-wrench pull-right"></i>
-							<h4>Dados do usuário</h4>
-						</div>
-					</div>
-					<div class="panel-body">
 
-						<h:form class="form form-vertical" role="form">
-							<h:inputHidden value="#{usuarioBean.usuario.codigo}" />
-							<div class="control-group">
-								<label>Nome</label>
-								<div class="controls">
-								<h:inputText type="text" value="#{usuarioBean.usuario.nome}" readonly="#{usuarioBean.somentePesquisa}"
-									class="form-control" id="inputNome" />
+							<div class="panel panel-success">
+								<div class="panel-heading">
+									<div class="panel-title">
+										<i class="glyphicon glyphicon-wrench pull-right"></i>
+										<h4>Dados do usuário</h4>
+									</div>
 								</div>
-							</div>
-							<div class="control-group">
-								<label>Email</label>
-								<div class="controls">
-								<h:inputText type="email" value="#{usuarioBean.usuario.email}" readonly="#{usuarioBean.somentePesquisa}"
-									class="form-control" id="inputEmail1" />
-								</div>
-							</div>
-							<div class="control-group">
-								<label>Senha</label>
-								<div class="controls">
-								<h:inputText type="email" value="#{usuarioBean.usuario.senha}" readonly="#{usuarioBean.somentePesquisa}"
-									class="form-control" id="inputSenha1" />
-								</div>
-							</div>
-							<div class="control-group">
-								<label>Confirma Senha</label>
-								<div class="controls">
-								<h:inputText type="email" value="#{usuarioBean.confirmasenha}" rendered="#{!usuarioBean.somentePesquisa}"
-									class="form-control" id="inputConfirmaSenha1" />
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls">
-									<h:selectBooleanCheckbox value="#{usuarioBean.usuario.ativo}" readonly="#{usuarioBean.somentePesquisa}"/> Usuário Ativo
-								</div>
-							</div>
-							<div class="control-group">
-								<label></label>
-								<div class="controls">
-												<h:commandButton action="#{usuarioBean.salvar}" rendered="#{!usuarioBean.somentePesquisa}"
+								<div class="panel-body">
+
+									<h:form class="form form-vertical" role="form">
+										<h:inputHidden value="#{usuarioBean.usuario.codigo}" />
+										<h:inputHidden value="#{usuarioBean.usuario.version}" />
+										<div class="control-group">
+											<label>Nome</label>
+											<div class="controls">
+												<h:inputText type="text" value="#{usuarioBean.usuario.nome}"
+													readonly="#{usuarioBean.somentePesquisa}"
+													class="form-control" id="inputNome" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label>Email</label>
+											<div class="controls">
+												<h:inputText type="email"
+													value="#{usuarioBean.usuario.email}"
+													readonly="#{usuarioBean.somentePesquisa}"
+													class="form-control" id="inputEmail1" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label>Senha</label>
+											<div class="controls">
+												<h:inputText type="email"
+													value="#{usuarioBean.usuario.senha}"
+													readonly="#{usuarioBean.somentePesquisa}"
+													class="form-control" id="inputSenha1" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label>Confirma Senha</label>
+											<div class="controls">
+												<h:inputText type="email"
+													value="#{usuarioBean.confirmasenha}"
+													rendered="#{!usuarioBean.somentePesquisa}"
+													class="form-control" id="inputConfirmaSenha1" />
+											</div>
+										</div>
+										<div class="control-group">
+											<div class="controls">
+												<h:selectBooleanCheckbox
+													value="#{usuarioBean.usuario.ativo}"
+													readonly="#{usuarioBean.somentePesquisa}" />
+												Usuário Ativo
+												<h:selectBooleanCheckbox
+													value="#{usuarioBean.administrador}"
+													readonly="#{usuarioBean.somentePesquisa}"
+													id="isAdministrador" />
+												Usuário Administrador
+											</div>
+										</div>
+										<div class="control-group">
+											<label></label>
+											<div class="controls">
+												<h:commandButton action="#{usuarioBean.salvar}"
+													rendered="#{!usuarioBean.somentePesquisa}"
 													class="btn btn-primary btn-block" value="Cadastrar">
 													<f:setPropertyActionListener value="/admin/usuarios"
 														target="#{usuarioBean.destinosalvar}"></f:setPropertyActionListener>
 												</h:commandButton>
 											</div>
+										</div>
+									</h:form>
+
+
+								</div>
+								<!--/panel content-->
 							</div>
-						</h:form>
+							<!--/panel-->
 
-
-					</div>
-					<!--/panel content-->
-				</div>
-				<!--/panel-->
-					
 						</h:form>
 
 					</div>

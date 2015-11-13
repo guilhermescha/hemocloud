@@ -2,6 +2,7 @@ package br.com.hemocloud.usuario;
 
 import java.util.List;
 
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -25,7 +26,7 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 	}
 
 	@Override
-	public void atualizar(Usuario usuario) {
+	public void atualizar(Usuario usuario) throws OptimisticLockingFailureException {
 		TransactionUtil.transactionStart();
 		this.mongoOps.save(usuario, USUARIO_COLLECTION);
 		TransactionUtil.transactionEnd("Tempo de atualização do usuário");
